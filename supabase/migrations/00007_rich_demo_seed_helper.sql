@@ -1,4 +1,19 @@
 -- ============================================================================
+-- Demo workspace bootstrap (added for local dev parity)
+-- Production already has this row; locally we create it before subsequent
+-- migrations that reference '99999999-9999-4999-8999-100000000001'.
+-- ============================================================================
+INSERT INTO public.workspaces (id, name, slug, timezone, locale, currency)
+VALUES (
+  '99999999-9999-4999-8999-100000000001'::uuid,
+  'Demo Workspace',
+  'demo',
+  'America/Sao_Paulo',
+  'pt-BR',
+  'BRL'
+) ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================================
 -- AdSales Hub — Rich demo seed helper
 -- Migration: 00007
 --

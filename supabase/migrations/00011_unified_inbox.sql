@@ -121,45 +121,5 @@ DROP TRIGGER IF EXISTS trg_set_updated_at ON live_chat_widgets;
 CREATE TRIGGER trg_set_updated_at BEFORE UPDATE ON live_chat_widgets
   FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
 
--- ============================================================================
--- Demo data
--- ============================================================================
 
-INSERT INTO live_chat_widgets (workspace_id, welcome_message)
-VALUES ('99999999-9999-4999-8999-100000000001', 'Oi! Como podemos ajudar hoje?')
-ON CONFLICT (workspace_id) DO NOTHING;
-
--- Seed 6 demo conversations
-INSERT INTO conversations (id, workspace_id, channel, channel_identifier, contact_id, status, priority, last_message_at, last_message_preview, unread_count, assignee_user_id) VALUES
-  (md5('conv_1')::uuid, '99999999-9999-4999-8999-100000000001', 'whatsapp_cloud',     '+5511900000001', 'dddddddd-dddd-4ddd-8ddd-100000000001', 'open',   'high',   now() - INTERVAL '10 minutes', 'Bom dia, recebi a proposta mas tenho algumas duvidas sobre o escopo de ads...', 2, (SELECT id FROM users WHERE workspace_id='99999999-9999-4999-8999-100000000001' LIMIT 1)),
-  (md5('conv_2')::uuid, '99999999-9999-4999-8999-100000000001', 'instagram_dm',       'ig_user_lukas42','dddddddd-dddd-4ddd-8ddd-100000000005', 'open',   'normal', now() - INTERVAL '2 hours',    'Curti muito o reel de demo. Da pra fazer uma ligacao quinta?',                   1, NULL),
-  (md5('conv_3')::uuid, '99999999-9999-4999-8999-100000000001', 'messenger',          'fb_psid_90124', 'dddddddd-dddd-4ddd-8ddd-100000000007', 'pending','normal', now() - INTERVAL '5 hours',    'Pode me mandar o trial? Vi no Instagram que e 14 dias gratis.',                 1, NULL),
-  (md5('conv_4')::uuid, '99999999-9999-4999-8999-100000000001', 'email',              'joao@acme.com.br','dddddddd-dddd-4ddd-8ddd-100000000001','open',  'normal', now() - INTERVAL '1 day',       'Obrigado pela reuniao. Tem como me enviar o case da Globex por escrito?',      0, (SELECT id FROM users WHERE workspace_id='99999999-9999-4999-8999-100000000001' LIMIT 1)),
-  (md5('conv_5')::uuid, '99999999-9999-4999-8999-100000000001', 'live_chat',          'web_sess_abc', NULL,                                  'open',   'normal', now() - INTERVAL '30 minutes', 'Quanto custa o plano Crescimento?',                                             1, NULL),
-  (md5('conv_6')::uuid, '99999999-9999-4999-8999-100000000001', 'whatsapp_unofficial','+5511900000003','dddddddd-dddd-4ddd-8ddd-100000000003','resolved','low',   now() - INTERVAL '3 days',     'Perfeito, obrigado pelo retorno!',                                              0, (SELECT id FROM users WHERE workspace_id='99999999-9999-4999-8999-100000000001' LIMIT 1))
-ON CONFLICT (id) DO NOTHING;
-
--- Seed messages per conversation
-INSERT INTO conversation_messages (workspace_id, conversation_id, direction, sender_name, content, created_at) VALUES
-  -- conv 1 (WhatsApp cloud)
-  ('99999999-9999-4999-8999-100000000001', md5('conv_1')::uuid, 'inbound',  'Joao Silva',  'Bom dia! Tudo bem?',                                                     now() - INTERVAL '30 minutes'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_1')::uuid, 'outbound', 'Ana Julia',   'Bom dia Joao, tudo bem sim! Em que posso ajudar?',                         now() - INTERVAL '28 minutes'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_1')::uuid, 'inbound',  'Joao Silva',  'Recebi a proposta mas tenho duvidas sobre o escopo de ads. Poderia detalhar quantas campanhas por mes estao inclusas?', now() - INTERVAL '20 minutes'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_1')::uuid, 'inbound',  'Joao Silva',  'Bom dia, recebi a proposta mas tenho algumas duvidas sobre o escopo de ads...', now() - INTERVAL '10 minutes'),
-  -- conv 2 (Instagram DM)
-  ('99999999-9999-4999-8999-100000000001', md5('conv_2')::uuid, 'inbound',  'lukas42',     'Curti muito o reel de demo. Da pra fazer uma ligacao quinta?',             now() - INTERVAL '2 hours'),
-  -- conv 3 (Messenger)
-  ('99999999-9999-4999-8999-100000000001', md5('conv_3')::uuid, 'inbound',  'Carlos Mendes','Oi, vi o anuncio',                                                        now() - INTERVAL '6 hours'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_3')::uuid, 'inbound',  'Carlos Mendes','Pode me mandar o trial? Vi no Instagram que e 14 dias gratis.',           now() - INTERVAL '5 hours'),
-  -- conv 4 (Email)
-  ('99999999-9999-4999-8999-100000000001', md5('conv_4')::uuid, 'inbound',  'Joao Silva',  'Obrigado pela reuniao. Tem como me enviar o case da Globex por escrito?',  now() - INTERVAL '1 day'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_4')::uuid, 'outbound', 'Ana Julia',   'Claro Joao! Estou preparando o PDF e te envio hoje ate 18h.',              now() - INTERVAL '22 hours'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_4')::uuid, 'internal_note', 'Ana Julia','Joao esta em negociacao final. Precisa do case com numeros reais.',    now() - INTERVAL '22 hours'),
-  -- conv 5 (Live chat)
-  ('99999999-9999-4999-8999-100000000001', md5('conv_5')::uuid, 'inbound',  'Visitante',   'Ola!',                                                                     now() - INTERVAL '35 minutes'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_5')::uuid, 'inbound',  'Visitante',   'Quanto custa o plano Crescimento?',                                       now() - INTERVAL '30 minutes'),
-  -- conv 6 (WhatsApp unofficial)
-  ('99999999-9999-4999-8999-100000000001', md5('conv_6')::uuid, 'inbound',  'Pedro Souza', 'Oi, teve novidade do meu pedido?',                                        now() - INTERVAL '4 days'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_6')::uuid, 'outbound', 'Bruno Costa', 'Oi Pedro, tudo certo! Seu contrato ja foi assinado. Muito obrigado!',     now() - INTERVAL '3 days 2 hours'),
-  ('99999999-9999-4999-8999-100000000001', md5('conv_6')::uuid, 'inbound',  'Pedro Souza', 'Perfeito, obrigado pelo retorno!',                                         now() - INTERVAL '3 days')
-ON CONFLICT DO NOTHING;
+-- Demo data section removed for fresh-DB compatibility (depends on seed.sql fixtures)
