@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 380" width="400" height="380">
+  <rect width="400" height="380" fill="#0E0E10"></rect>
+  <g transform="translate(140,60)">
+    <path d="M 27,0 L 93,0 C 105.15,0 120,14.850000000000001 120,27 L 120,93 C 120,105.15 105.15,120 93,120 L 27,120 C 14.850000000000001,120 0,105.15 0,93 L 0,27 C 0,14.850000000000001 14.850000000000001,0 27,0 Z" fill="#1A1A1D"></path>
+    
+  <circle cx="60" cy="25" r="4.2" fill="#FF5A1F"></circle>
+  <path d="M60 36 L93.6 69.6 L74.4 69.6 L74.4 94.8 L45.6 94.8 L45.6 69.6 L26.4 69.6 Z" fill="#FF5A1F"></path>
+
+  </g>
+  <text x="200" y="290" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, &#39;Helvetica Neue&#39;, Arial, sans-serif" font-size="44" font-weight="600" letter-spacing="-1.8" fill="#FFFFFF">AdSales<tspan font-weight="700" fill="#FF5A1F">·</tspan>Hub</text>
+</svg>

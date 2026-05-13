@@ -1,0 +1,108 @@
+# =============================================================================
+# AdSales Hub — docker-compose
+#
+# Perfis disponiveis (scripts/deploy.sh automatiza):
+#
+#   docker compose up web                    # soh a app (usa Supabase externo)
+#   docker compose --profile caddy up        # app + reverse proxy com TLS
+#
+# Flags de ambiente recomendadas (via .env ou docker compose --env-file):
+#   NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY (baked in at build)
+#   SUPABASE_SERVICE_ROLE_KEY, ENCRYPTION_KEY, ANTHROPIC_API_KEY, ...
+#
+# Para Supabase local em dev: use `npx supabase start` (CLI) — ele gerencia
+# seus proprios containers. Para self-host completo em VPS, use o repo oficial:
+#   https://github.com/supabase/supabase/tree/master/docker
+# e aponte NEXT_PUBLIC_SUPABASE_URL para o seu dominio.
+# =============================================================================
+
+x-common-env: &common-env
+  NODE_ENV: production
+  PORT: 3000
+  HOSTNAME: 0.0.0.0
+  NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+  NEXT_PUBLIC_APP_DOMAIN: ${NEXT_PUBLIC_APP_DOMAIN:-localhost}
+  NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+  SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+  SUPABASE_JWT_SECRET: ${SUPABASE_JWT_SECRET:-}
+  ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+  CRON_SECRET: ${CRON_SECRET:-}
+  ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  REPLICATE_API_TOKEN: ${REPLICATE_API_TOKEN:-}
+  CREATOMATE_API_KEY: ${CREATOMATE_API_KEY:-}
+  RESEND_API_KEY: ${RESEND_API_KEY:-}
+  STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+  STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-}
+  STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+  STRIPE_PRICE_OPERACAO: ${STRIPE_PRICE_OPERACAO:-}
+  STRIPE_PRICE_CRESCIMENTO: ${STRIPE_PRICE_CRESCIMENTO:-}
+  STRIPE_PRICE_ESCALA: ${STRIPE_PRICE_ESCALA:-}
+  META_APP_ID: ${META_APP_ID:-}
+  META_APP_SECRET: ${META_APP_SECRET:-}
+  META_SYSTEM_USER_TOKEN: ${META_SYSTEM_USER_TOKEN:-}
+  META_WEBHOOK_VERIFY_TOKEN: ${META_WEBHOOK_VERIFY_TOKEN:-}
+  WHATSAPP_TOKEN: ${WHATSAPP_TOKEN:-}
+  WHATSAPP_PHONE_NUMBER_ID: ${WHATSAPP_PHONE_NUMBER_ID:-}
+  WHATSAPP_VERIFY_TOKEN: ${WHATSAPP_VERIFY_TOKEN:-}
+  WHATSAPP_BUSINESS_ACCOUNT_ID: ${WHATSAPP_BUSINESS_ACCOUNT_ID:-}
+  VAPI_API_KEY: ${VAPI_API_KEY:-}
+  VAPI_WEBHOOK_SECRET: ${VAPI_WEBHOOK_SECRET:-}
+  BRDID_API_TOKEN: ${BRDID_API_TOKEN:-}
+
+services:
+  web:
+    image: adsales-hub:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # NEXT_PUBLIC_* sao inlinados no bundle no momento do build.
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+        NEXT_PUBLIC_APP_DOMAIN: ${NEXT_PUBLIC_APP_DOMAIN:-localhost}
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-}
+    container_name: adsales_web
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    environment:
+      <<: *common-env
+    # Quando o Supabase roda via `npx supabase start`, o gateway escuta em
+    # 127.0.0.1:54321 no host. Para alcancar do container, use:
+    #   NEXT_PUBLIC_SUPABASE_URL=http://host.docker.internal:54321
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "curl", "-fsSL", "http://localhost:3000/api/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  # Caddy (perfil opcional) — reverse proxy com TLS automatico via Let's Encrypt.
+  # Ative com `docker compose --profile caddy up -d`. Configure CADDY_DOMAIN e
+  # aponte o DNS para esse host. Tudo antes de expor a porta 80/443.
+  caddy:
+    profiles: ["caddy"]
+    image: caddy:2-alpine
+    container_name: adsales_caddy
+    restart: unless-stopped
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      CADDY_DOMAIN: ${CADDY_DOMAIN:-example.com}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

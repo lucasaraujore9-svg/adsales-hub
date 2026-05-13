@@ -1,0 +1,67 @@
+import type { MetadataRoute } from "next";
+
+const SITE_URL = "https://adsaleshub.7iegroup.com.br";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: ["/", "/privacy", "/terms", "/brandbook.html", "/brand-assets/"],
+        disallow: [
+          "/api/",
+          "/dashboard",
+          "/dashboard/*",
+          "/inbox",
+          "/inbox/*",
+          "/pipeline",
+          "/pipeline/*",
+          "/negocios",
+          "/negocios/*",
+          "/contatos",
+          "/contatos/*",
+          "/atividades",
+          "/atividades/*",
+          "/campanhas",
+          "/campanhas/*",
+          "/marketing",
+          "/marketing/*",
+          "/social",
+          "/social/*",
+          "/analytics",
+          "/analytics/*",
+          "/relatorios",
+          "/relatorios/*",
+          "/analise",
+          "/analise/*",
+          "/configuracoes",
+          "/configuracoes/*",
+          "/onboarding",
+          "/upgrade",
+          "/login",
+          "/signup",
+          "/forgot-password",
+          "/accept-invite",
+        ],
+      },
+      // AI / LLM crawlers — explicitly allowed for citations
+      { userAgent: "GPTBot", allow: "/" },
+      { userAgent: "ChatGPT-User", allow: "/" },
+      { userAgent: "OAI-SearchBot", allow: "/" },
+      { userAgent: "anthropic-ai", allow: "/" },
+      { userAgent: "ClaudeBot", allow: "/" },
+      { userAgent: "Claude-Web", allow: "/" },
+      { userAgent: "PerplexityBot", allow: "/" },
+      { userAgent: "Perplexity-User", allow: "/" },
+      { userAgent: "Google-Extended", allow: "/" },
+      { userAgent: "Applebot-Extended", allow: "/" },
+      { userAgent: "Bytespider", allow: "/" },
+      { userAgent: "CCBot", allow: "/" },
+      { userAgent: "cohere-ai", allow: "/" },
+      { userAgent: "DuckAssistBot", allow: "/" },
+      { userAgent: "Mistral-AI-User", allow: "/" },
+    ],
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
+  };
+}

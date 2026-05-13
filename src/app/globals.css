@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* AdSales/Hub — Brand Book v2 tokens (light-first) */
+  :root {
+    --bg: #fafaf7;
+    --bg-2: #f2f1ec;
+    --bg-3: #e8e7e1;
+    --panel: #ffffff;
+    --ink: #0e0e10;
+    --ink-2: #2a2a2e;
+    --ink-3: #5a5a60;
+    --ink-4: #8e8e94;
+    --ink-5: #c5c5be;
+    --line: rgba(14, 14, 16, 0.08);
+    --line-2: rgba(14, 14, 16, 0.16);
+    --line-3: rgba(14, 14, 16, 0.24);
+    --accent: #ff5a1f;
+    --accent-dark: #e64b14;
+    --accent-2: #ffd4c1;
+    --accent-soft: rgba(255, 90, 31, 0.10);
+    --accent-wash: rgba(255, 90, 31, 0.04);
+    --accent-ink: #b4340a;
+    --good: #0a7b3f;
+    --warn: #f59e0b;
+    --bad: #dc2626;
+    --red: #dc2626;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* shadcn compatibility shims */
+    --background: var(--bg);
+    --foreground: var(--ink);
+    --card: var(--panel);
+    --card-foreground: var(--ink);
+    --popover: var(--panel);
+    --popover-foreground: var(--ink);
+    --primary: var(--accent);
+    --primary-foreground: #ffffff;
+    --secondary: var(--bg-2);
+    --secondary-foreground: var(--ink);
+    --muted: var(--bg-2);
+    --muted-foreground: var(--ink-3);
+    --accent-bg: var(--bg-2);
+    --accent-foreground: var(--ink);
+    --destructive: var(--bad);
+    --destructive-foreground: #ffffff;
+    --border: var(--line);
+    --input: var(--line);
+    --ring: var(--accent);
+    --radius: 0.875rem;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0e0e10;
+    --bg-2: #131315;
+    --bg-3: #1c1c20;
+    --panel: #16161a;
+    --ink: #fafaf7;
+    --ink-2: #e5e5e0;
+    --ink-3: #a8a8ae;
+    --ink-4: #6b6b72;
+    --ink-5: #34343a;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-2: rgba(255, 255, 255, 0.16);
+    --line-3: rgba(255, 255, 255, 0.24);
+    --accent-soft: rgba(255, 90, 31, 0.14);
+    --accent-ink: #ffb393;
+  }
+
+  * {
+    border-color: var(--line);
+  }
+
+  html,
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.005em;
+  }
+
+  body {
+    min-height: 100vh;
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .kicker {
+    @apply inline-flex items-center gap-2 text-[12px] font-medium uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent-ink);
+  }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+
+  /* Wordmark: Inter 600 with orange slash separator (Brand Book canonical) */
+  .wm {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .wm .slash {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Brand book v2: serif-italic deprecated. Now = Inter 600, no italic. */
+  .serif,
+  .serif-italic {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: -0.025em;
+  }
+
+  .prose-content h2 {
+    margin: 2.5rem 0 1rem;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .prose-content h3 {
+    margin: 2rem 0 0.75rem;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .prose-content p {
+    margin: 1rem 0;
+  }
+  .prose-content a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .prose-content a:hover {
+    color: var(--accent);
+  }
+  .prose-content strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .prose-content ul,
+  .prose-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  .prose-content li {
+    margin: 0.5rem 0;
+  }
+  .prose-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--bg-2);
+    color: var(--ink);
+  }
+  .prose-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 4px 10px 10px 4px;
+    font-size: 16px;
+  }
+  .prose-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 14.5px;
+  }
+  .prose-content th,
+  .prose-content td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+  .prose-content th {
+    background: var(--bg-2);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .prose-content td:first-child {
+    font-weight: 500;
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  @keyframes slideIn {
+    0% { transform: translateY(8px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-6px); }
+  }
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow:
+        0 0 0 0 rgba(255, 90, 31, 0.3),
+        0 30px 80px -30px rgba(255, 90, 31, 0.4);
+    }
+    50% {
+      box-shadow:
+        0 0 0 14px rgba(255, 90, 31, 0),
+        0 30px 80px -30px rgba(255, 90, 31, 0.6);
+    }
+  }
+}

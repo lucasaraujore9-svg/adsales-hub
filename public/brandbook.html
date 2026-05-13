@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AdSales·Hub — Brand Book</title>
+<link rel="icon" type="image/svg+xml" href="/brand-assets/svg/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-2: #F2F1EC;
+    --panel: #FFFFFF;
+    --ink: #0E0E10;
+    --ink-2: #2A2A2E;
+    --ink-3: #5A5A60;
+    --ink-4: #8E8E94;
+    --line: rgba(14,14,16,.08);
+    --line-2: rgba(14,14,16,.16);
+    --accent: #FF5A1F;
+    --accent-dark: #E64B14;
+    --accent-soft: rgba(255,90,31,.10);
+    --green: #0A7B3F;
+    --red: #DC2626;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img, svg { max-width: 100%; }
+  .stage { max-width: 100%; overflow: hidden; }
+  body { font-size: 15px; line-height: 1.55; letter-spacing: -0.005em; }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  .kicker { font-size: 11px; color: var(--ink-4); text-transform: uppercase; letter-spacing: .14em; font-weight: 600; }
+  .mono { font-family: var(--font-mono); }
+  h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.03em; }
+  .slash { color: var(--accent); font-weight: 700; }
+
+  /* Hero */
+  .hero { padding: 100px 0 80px; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .hero-glow { position: absolute; top: -160px; right: -200px; width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--accent-soft), transparent 60%); pointer-events: none; }
+  .hero-meta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .pill { padding: 6px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+  .pill.live { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
+  .hero h1 { margin-top: 32px; font-size: clamp(56px, 7vw, 88px); line-height: 0.98; letter-spacing: -0.045em; max-width: 18ch; }
+  .hero-sub { margin-top: 24px; max-width: 620px; font-size: 18px; color: var(--ink-3); line-height: 1.55; }
+  .hero-tags { margin-top: 36px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .hero-tag { padding: 6px 12px; background: var(--bg-2); border-radius: 999px; font-size: 12px; color: var(--ink-2); font-weight: 500; }
+
+  /* Sections */
+  section.brand { padding: 100px 0; border-bottom: 1px solid var(--line); }
+  section.brand.dark { background: var(--ink); color: var(--bg); border-bottom: none; }
+  section.brand.dark .kicker { color: rgba(255,255,255,.55); }
+  section.brand.dark h2 { color: var(--bg); }
+  .sec-head { display: flex; gap: 64px; align-items: end; justify-content: space-between; margin-bottom: 56px; }
+  .sec-head h2 { font-size: clamp(36px, 4.4vw, 56px); line-height: 1.02; letter-spacing: -0.04em; max-width: 14ch; }
+  .sec-head p { max-width: 380px; font-size: 15px; color: var(--ink-3); line-height: 1.55; }
+  section.brand.dark .sec-head p { color: rgba(255,255,255,.65); }
+
+  /* Stage */
+  .stage { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 64px;
+    display: grid; place-items: center; min-height: 280px; position: relative; }
+  .stage.dark { background: var(--ink); border-color: rgba(255,255,255,.08); }
+  .stage.accent { background: var(--accent); border: none; }
+  .stage.bg2 { background: var(--bg-2); }
+  .stage .label { position: absolute; top: 18px; left: 22px;
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-4); text-transform: uppercase; letter-spacing: .08em; font-weight: 500; }
+  .stage.dark .label, .stage.accent .label { color: rgba(255,255,255,.6); }
+
+  .stage-grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .caption { margin-top: 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .caption .name { font-size: 14px; font-weight: 600; }
+  .caption .meta { font-size: 12px; color: var(--ink-4); font-family: var(--font-mono); }
+
+  /* Wordmark inline */
+  .wm { font-weight: 600; letter-spacing: -0.04em; }
+  .wm .slash { font-weight: 700; }
+
+  /* Color swatches */
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .sw { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .sw .chip { height: 160px; }
+  .sw .meta { padding: 18px; display: flex; flex-direction: column; gap: 4px; }
+  .sw .name { font-weight: 600; font-size: 15px; }
+  .sw .role { font-size: 12px; color: var(--ink-4); }
+  .sw .vals { margin-top: 8px; display: flex; flex-direction: column; gap: 2px; font-size: 11.5px; color: var(--ink-3); font-family: var(--font-mono); }
+
+  /* Persona cards */
+  .persona { padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; }
+  .persona-stat { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); padding: 4px 0; }
+  .persona-stat strong { color: var(--ink); font-weight: 600; }
+
+  /* Don'ts */
+  .donts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .dont { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 24px; min-height: 200px;
+    display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+  .dont .x { position: absolute; top: 12px; right: 12px; width: 24px; height: 24px; border-radius: 999px; background: var(--red);
+    display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 13px; }
+  .dont .why { font-size: 12px; color: var(--ink-3); line-height: 1.45; margin-top: 12px; }
+
+  /* Type spec */
+  .ts-card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 36px; }
+
+  /* Construction grid */
+  .construction-bg {
+    background-image: linear-gradient(to right, rgba(255,90,31,.18) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255,90,31,.18) 1px, transparent 1px);
+    background-size: 16px 16px; border-radius: 18px; padding: 40px;
+  }
+
+  /* Footer */
+  footer { padding: 80px 0 40px; }
+  .foot { display: flex; justify-content: space-between; align-items: end; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-4); font-family: var(--font-mono); }
+
+  /* App icon */
+  .app-icon-mask { border-radius: 22.37%; overflow: hidden; box-shadow: 0 30px 80px -30px rgba(0,0,0,.35); }
+
+  /* Number block */
+  .num-block { display: flex; flex-direction: column; gap: 8px; }
+  .num-block .v { font-size: 56px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+  .num-block .v.lg { font-size: 72px; }
+  .num-block .v.md { font-size: 42px; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HERO                                                         -->
+<!-- ============================================================ -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container" style="position: relative;">
+    <div class="hero-meta">
+      <a href="Landing Page.html" style="font-size: 13px; color: var(--ink-3); display: inline-flex; align-items: center; gap: 6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Voltar à landing
+      </a>
+      <span class="pill live">em construção</span>
+      <span class="pill">Maio 2026</span>
+      </div>
+    <h1>A marca <span class="wm">AdSales<span class="slash">·</span>Hub</span>.</h1>
+    <p class="hero-sub">
+      Sistema visual em construção. Squircle preto, seta laranja sólida, ponto laranja acima, wordmark Inter 600 com separador "·" centralizado. Tom operacional para gestor de tráfego, microagência e PME. Tom operacional para gestor de tráfego, microagência e PME.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">Análise de mercado</span>
+      <span class="hero-tag">Personas</span>
+      <span class="hero-tag">TAM/SAM/SOM</span>
+      <span class="hero-tag">Símbolo</span>
+      <span class="hero-tag">Wordmark</span>
+      <span class="hero-tag">Lockups</span>
+      <span class="hero-tag">App icon</span>
+      <span class="hero-tag">Cor</span>
+      <span class="hero-tag">Tipografia</span>
+      <span class="hero-tag">Construção</span>
+      <span class="hero-tag">Don'ts</span>
+      <span class="hero-tag">Downloads</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 00 · ANÁLISE DE MERCADO                                      -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">00 · Análise de mercado &amp; branding</div>
+        <h2 style="margin-top: 16px;">Antes da marca,<br/>o público <span class="slash">·</span> real.</h2>
+      </div>
+      <p>
+        Esta identidade nasce de uma leitura honesta do mercado: quem realmente compra, quanto paga, como decide. Esta seção fundamenta as escolhas visuais que vêm depois.
+      </p>
+    </div>
+
+    <!-- TLDR -->
+    <div style="padding: 36px; background: var(--ink); color: #fff; border-radius: 22px; margin-bottom: 32px;">
+      <div class="kicker" style="color: rgba(255,255,255,.55);">TL;DR · LEITURA HONESTA</div>
+      <h3 style="margin-top: 14px; font-size: 28px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2;">
+        O público real do AdSales·Hub <span class="slash" style="color: var(--accent);">não</span> é o empresário sofisticado que troca a agência. É o <span class="slash">freelancer de tráfego</span>, a <span class="slash">microagência</span> e a <span class="slash">PME que já tenta no braço</span>.
+      </h3>
+      <p style="margin-top: 18px; color: rgba(255,255,255,.7); font-size: 15px; line-height: 1.6; max-width: 70ch;">
+        Esse público compra ferramenta, não plataforma premium. Decide em horas, não semanas. Cancela rápido. Quer prova de ROAS, não estética Apple. A marca foi desenhada para esse comportamento.
+      </p>
+    </div>
+
+    <!-- Personas -->
+    <div class="kicker" style="margin-bottom: 14px;">PÚBLICO REAL · 3 SEGMENTOS</div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+      <div class="persona">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div style="font-size: 28px; font-weight: 600; letter-spacing: -0.03em;">A</div>
+          <span style="padding: 4px 10px; background: var(--accent-soft); color: var(--accent); border-radius: 999px; font-size: 11px; font-weight: 600;">CORE · 55%</span>
+        </div>
+        <h4 style="font-size: 18px;">Freelancer de tráfego</h4>
+        <p style="font-size: 13px; color: var(--ink-3); margin-top: 8px; line-height: 1.5;">
+          Gestor solo, 3–12 contas. Já usa Meta Ads Manager + planilha + RD/Pipedrive separados. Fatura R$ 8–25k/mês.
+        </p>
+        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <div class="persona-stat"><span>Idade</span><strong>24–38</strong></div>
+          <div class="persona-stat"><span>Onde está</span><strong>Instagram, YouTube</strong></div>
+          <div class="persona-stat"><span>Compra</span><strong>1–3 dias</strong></div>
+          <div class="persona-stat"><span>Ticket aceito</span><strong>R$ 190–490/mês</strong></div>
+          <div class="persona-stat"><span>Cancela em</span><strong>2–4 meses</strong></div>
+        </div>
+        <div style="margin-top: 14px; padding: 12px; background: var(--bg-2); border-radius: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); line-height: 1.5;">
+          "Gastei 3h essa semana fazendo relatório no PowerPoint pra cliente. Se isso vira automático eu pago."
+        </div>
+      </div>
+      <div class="persona">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div style="font-size: 28px; font-weight: 600; letter-spacing: -0.03em;">B</div>
+          <span style="padding: 4px 10px; background: var(--accent-soft); color: var(--accent); border-radius: 999px; font-size: 11px; font-weight: 600;">CORE · 30%</span>
+        </div>
+        <h4 style="font-size: 18px;">Microagência (2–8 pessoas)</h4>
+        <p style="font-size: 13px; color: var(--ink-3); margin-top: 8px; line-height: 1.5;">
+          Dono é gestor que cresceu. Sócio designer + 1–2 estagiários. Atende 8–25 clientes pequenos. Margem apertada.
+        </p>
+        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <div class="persona-stat"><span>Faturamento</span><strong>R$ 30–120k/mês</strong></div>
+          <div class="persona-stat"><span>Onde está</span><strong>LinkedIn, eventos</strong></div>
+          <div class="persona-stat"><span>Compra</span><strong>Trial · 7–14 dias</strong></div>
+          <div class="persona-stat"><span>Ticket aceito</span><strong>R$ 690–1.490/mês</strong></div>
+          <div class="persona-stat"><span>Cancela em</span><strong>6–12 meses</strong></div>
+        </div>
+        <div style="margin-top: 14px; padding: 12px; background: var(--bg-2); border-radius: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); line-height: 1.5;">
+          "Eu não preciso substituir minha agência — eu sou a agência. Preciso de margem."
+        </div>
+      </div>
+      <div class="persona">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div style="font-size: 28px; font-weight: 600; letter-spacing: -0.03em;">C</div>
+          <span style="padding: 4px 10px; background: var(--bg-2); color: var(--ink-3); border-radius: 999px; font-size: 11px; font-weight: 600;">SECUNDÁRIO · 15%</span>
+        </div>
+        <h4 style="font-size: 18px;">PME que faz no braço</h4>
+        <p style="font-size: 13px; color: var(--ink-3); margin-top: 8px; line-height: 1.5;">
+          Empresário 35–55. R$ 80k–800k/mês. Sócio/sobrinho/funcionário cuida do anúncio. Quer profissionalizar sem contratar.
+        </p>
+        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <div class="persona-stat"><span>Setor</span><strong>Serviço local · e-com</strong></div>
+          <div class="persona-stat"><span>Onde está</span><strong>Indicação, Google</strong></div>
+          <div class="persona-stat"><span>Compra</span><strong>2–6 semanas</strong></div>
+          <div class="persona-stat"><span>Ticket aceito</span><strong>R$ 290–690/mês</strong></div>
+          <div class="persona-stat"><span>Risco</span><strong>Churn alto</strong></div>
+        </div>
+        <div style="margin-top: 14px; padding: 12px; background: var(--bg-2); border-radius: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); line-height: 1.5;">
+          "Não sei se vai funcionar pra mim. Tem alguém que ajuda a configurar?"
+        </div>
+      </div>
+    </div>
+
+    <!-- TAM/SAM/SOM -->
+    <div style="margin-top: 32px;">
+      <div class="kicker" style="margin-bottom: 14px;">TAMANHO DO MERCADO · BRASIL · 2026</div>
+      <div class="stage" style="padding: 56px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; width: 100%; align-items: stretch;">
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="num-block">
+              <div class="kicker">TAM · TOTAL ADDRESSABLE</div>
+              <div class="v lg">~480 mil</div>
+              <div style="font-size: 13.5px; color: var(--ink-3); max-width: 36ch; line-height: 1.5;">
+                Anunciantes ativos no Meta no Brasil somam ~3,2M, mas só ~15% têm spend mensal &gt; R$ 500 e perfil de comprar SaaS de gestão.
+              </div>
+            </div>
+            <div class="num-block">
+              <div class="kicker">SAM · SERVICEABLE</div>
+              <div class="v" style="color: var(--ink-2);">~120 mil</div>
+              <div style="font-size: 13.5px; color: var(--ink-3); max-width: 36ch; line-height: 1.5;">
+                Quem já paga ≥ R$ 200/mês em RD, Pipedrive, mLabs ou Reportei, e tem ao menos 1 conta Meta Ads ativa.
+              </div>
+            </div>
+            <div class="num-block">
+              <div class="kicker">SOM · 3 ANOS · ALVO REALISTA</div>
+              <div class="v md" style="color: var(--accent);">~3,5 mil contas</div>
+              <div style="font-size: 13.5px; color: var(--ink-3); max-width: 36ch; line-height: 1.5;">
+                3% do SAM em 36 meses. ARR projetado: ~R$ 25–35M com ticket médio R$ 600–800/mês e churn ~25–30% a/a.
+              </div>
+            </div>
+          </div>
+          <div style="background: var(--bg-2); border-radius: 18px; padding: 32px; display: flex; flex-direction: column; justify-content: center; gap: 18px;">
+            <div class="kicker">VISUALIZAÇÃO PROPORCIONAL</div>
+            <div style="position: relative; width: 100%; aspect-ratio: 1.1; max-width: 380px; margin: 0 auto;">
+              <div style="position: absolute; inset: 0; border-radius: 50%; background: rgba(14,14,16,.06); border: 1px solid var(--line);"></div>
+              <div style="position: absolute; inset: 25%; border-radius: 50%; background: rgba(14,14,16,.10); border: 1px solid var(--line);"></div>
+              <div style="position: absolute; inset: 42%; border-radius: 50%; background: var(--accent); display: grid; place-items: center;">
+                <span style="font-size: 11px; color: #fff; font-weight: 600; letter-spacing: .04em;">SOM</span>
+              </div>
+              <span style="position: absolute; top: 6%; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--ink-3); font-weight: 600; letter-spacing: .04em;">TAM · 480 mil</span>
+              <span style="position: absolute; top: 27%; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--ink-3); font-weight: 600; letter-spacing: .04em;">SAM · 120 mil</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-4); line-height: 1.5; padding-top: 8px; border-top: 1px solid var(--line); text-align: center;">
+              fontes: Meta Insights · ABComm · Sebrae · benchmarks RD/Pipedrive Brasil 2024–2025
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Competitive -->
+    <div style="margin-top: 32px;">
+      <div class="kicker" style="margin-bottom: 14px;">CONTEXTO COMPETITIVO</div>
+      <div class="stage" style="padding: 0; align-items: stretch; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; width: 100%;">
+          <div style="padding: 24px; border-right: 1px solid var(--line);">
+            <div class="kicker">CRM nacional</div>
+            <div style="font-size: 17px; font-weight: 600; margin-top: 8px;">RD · Pipedrive · HubSpot</div>
+            <div style="font-size: 12.5px; color: var(--ink-3); margin-top: 12px; line-height: 1.5;">Marca consolidada. Faltam tráfego pago integrado e geração com IA. Ticket R$ 200–2.500.</div>
+          </div>
+          <div style="padding: 24px; border-right: 1px solid var(--line);">
+            <div class="kicker">Reporting/Tráfego</div>
+            <div style="font-size: 17px; font-weight: 600; margin-top: 8px;">Reportei · Adsby · Madgicx</div>
+            <div style="font-size: 12.5px; color: var(--ink-3); margin-top: 12px; line-height: 1.5;">Resolvem só métrica/criativo. Não fecham loop com vendas. R$ 100–600.</div>
+          </div>
+          <div style="padding: 24px; border-right: 1px solid var(--line);">
+            <div class="kicker">Conteúdo/Social</div>
+            <div style="font-size: 17px; font-weight: 600; margin-top: 8px;">mLabs · Etus · Postgrain</div>
+            <div style="font-size: 12.5px; color: var(--ink-3); margin-top: 12px; line-height: 1.5;">Calendário, agendamento. Não tocam pipeline nem ROAS. R$ 80–300.</div>
+          </div>
+          <div style="padding: 24px; background: var(--accent-soft);">
+            <div class="kicker" style="color: var(--accent);">VOCÊ</div>
+            <div style="font-size: 17px; font-weight: 600; margin-top: 8px;">AdSales<span class="slash">·</span>Hub</div>
+            <div style="font-size: 12.5px; color: var(--ink-2); margin-top: 12px; line-height: 1.5;">Único que une os três pedaços. Risco: cair entre as categorias se não comunicar isso em 3 segundos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Behavior + objections -->
+    <div style="margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <div class="persona">
+        <div class="kicker">COMPORTAMENTO DE COMPRA</div>
+        <ul style="list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>Decide vendo conteúdo de YouTube/Instagram <strong style="font-weight: 600;">antes</strong> de visitar o site.</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>Quer ver <strong style="font-weight: 600;">tela do produto</strong> em 30s. Demo em vídeo &gt; copy.</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>Compara preço com agência atual (R$ 2–8k). SaaS &lt; R$ 1k parece "barato demais".</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>Trial gratuito é mandatório (92% das ferramentas SaaS BR para esse perfil).</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span>Suporte por WhatsApp não é nice-to-have, é tabela de seleção.</li>
+        </ul>
+      </div>
+      <div class="persona">
+        <div class="kicker">OBJEÇÕES REAIS · ORDEM DE FREQUÊNCIA</div>
+        <ol style="list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 28px; position: relative;"><span class="mono" style="position: absolute; left: 0; top: 0; font-size: 11px; color: var(--ink-4); font-weight: 600;">01</span>"<strong style="font-weight: 600;">A IA cria campanha boa?</strong>" — querem ver criativo, copy e ROAS reais.</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 28px; position: relative;"><span class="mono" style="position: absolute; left: 0; top: 0; font-size: 11px; color: var(--ink-4); font-weight: 600;">02</span>"<strong style="font-weight: 600;">Vou perder meu CRM?</strong>" — medo de migração. CSV em 1 clique e WhatsApp.</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 28px; position: relative;"><span class="mono" style="position: absolute; left: 0; top: 0; font-size: 11px; color: var(--ink-4); font-weight: 600;">03</span>"<strong style="font-weight: 600;">Caro pra começar.</strong>" — comparam R$ 290 com mLabs+Pipedrive (~R$ 188).</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 28px; position: relative;"><span class="mono" style="position: absolute; left: 0; top: 0; font-size: 11px; color: var(--ink-4); font-weight: 600;">04</span>"<strong style="font-weight: 600;">Aguenta minha operação?</strong>" — agência: multiusuário, papéis, white-label.</li>
+          <li style="font-size: 14px; color: var(--ink-2); line-height: 1.5; padding-left: 28px; position: relative;"><span class="mono" style="position: absolute; left: 0; top: 0; font-size: 11px; color: var(--ink-4); font-weight: 600;">05</span>"<strong style="font-weight: 600;">E se quebrar a conta de Ads?</strong>" — pavor genuíno de perder histórico.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Decisão de tom -->
+    <div style="margin-top: 32px; padding: 36px; background: var(--accent); color: #fff; border-radius: 22px;">
+      <div class="kicker" style="color: rgba(255,255,255,.7);">DECISÃO DE TOM</div>
+      <h3 style="margin-top: 14px; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.25; max-width: 28ch;">
+        Não é "agência boutique editorial". O público real responde a "ferramenta operacional que dá grana".
+      </h3>
+      <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div>
+          <div class="mono" style="font-size: 11px; opacity: .7; text-transform: uppercase; letter-spacing: .1em;">Mudança 1</div>
+          <div style="margin-top: 6px; font-size: 14px; line-height: 1.5;">Bolinha <strong style="font-weight: 600;">laranja sólida</strong> — laranja deixa de ser acento e vira cor dominante. Para de competir com brand neutro.</div>
+        </div>
+        <div>
+          <div class="mono" style="font-size: 11px; opacity: .7; text-transform: uppercase; letter-spacing: .1em;">Mudança 2</div>
+          <div style="margin-top: 6px; font-size: 14px; line-height: 1.5;">Wordmark <strong style="font-weight: 600;">Inter 600</strong>, sem itálico serif. Mais peso, menos artesania editorial.</div>
+        </div>
+        <div>
+          <div class="mono" style="font-size: 11px; opacity: .7; text-transform: uppercase; letter-spacing: .1em;">Mudança 3</div>
+          <div style="margin-top: 6px; font-size: 14px; line-height: 1.5;">Separador <strong style="font-weight: 600;">"·"</strong> — ponto central que une, sem ruído. Marketing·Vendas como unidade indivisível.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 01 · CONCEITO                                                -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">01 · Conceito</div>
+        <h2 style="margin-top: 16px;">Uma seta dentro<br/>de uma <span class="slash">·</span> bolinha.</h2>
+      </div>
+      <p>
+        O símbolo carrega três elementos: o <strong style="font-weight: 600;">squircle preto</strong> (a plataforma sólida, profunda), a <strong style="font-weight: 600;">seta laranja</strong> (crescimento, performance, ROAS) e o <strong style="font-weight: 600;">ponto laranja</strong> acima (o destino, a meta). O "·" entre <em>AdSales</em> e <em>Hub</em> é o conector — marketing e vendas como unidade indivisível.
+      </p>
+    </div>
+
+    <div class="stage" style="padding: 96px;">
+      <span class="label">SÍMBOLO PRIMÁRIO</span>
+      <svg viewBox="0 0 200 200" width="200" height="200" aria-label="AdSales·Hub symbol">
+        <path d="M 45,0 L 155,0 C 175.25,0 200,24.750000000000004 200,45 L 200,155 C 200,175.25 175.25,200 155,200 L 45,200 C 24.750000000000004,200 0,175.25 0,155 L 0,45 C 0,24.750000000000004 24.750000000000004,0 45,0 Z" fill="#0E0E10"/><circle cx="100" cy="42" r="7" fill="#FF5A1F"/><path d="M100 60 L156 116 L124 116 L124 158 L76 158 L76 116 L44 116 Z" fill="#FF5A1F"/>
+      </svg>
+    </div>
+
+    <div style="margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div style="padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px;">
+        <div class="kicker">Squircle preto</div>
+        <p style="margin-top: 10px; font-size: 14px; color: var(--ink-2); line-height: 1.5;">Forma sólida e estável. É a plataforma — o lugar único onde a operação acontece. Cantos contínuos no padrão iOS para legibilidade em qualquer tamanho.</p>
+      </div>
+      <div style="padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px;">
+        <div class="kicker">Seta branca</div>
+        <p style="margin-top: 10px; font-size: 14px; color: var(--ink-2); line-height: 1.5;">Para cima sempre. Crescimento, ROAS, receita. Volume calibrado para legibilidade até 16px.</p>
+      </div>
+      <div style="padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px;">
+        <div class="kicker">Separador "·"</div>
+        <p style="margin-top: 10px; font-size: 14px; color: var(--ink-2); line-height: 1.5;">Ponto centralizado em laranja. Une <em>AdSales</em> e <em>Hub</em> sem ruído — rítmo limpo, indivisível.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 02 · LOCKUPS                                                 -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">02 · Lockups</div>
+        <h2 style="margin-top: 16px;">Cinco formas<br/>de aparecer.</h2>
+      </div>
+      <p>O lockup primário é horizontal. O empilhado é vertical. Em apps, perfis e redes use só o símbolo.</p>
+    </div>
+
+    <!-- Primary -->
+    <div class="stage" style="padding: 80px 64px;">
+      <span class="label">A · PRIMÁRIO HORIZONTAL</span>
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <svg viewBox="0 0 64 64" width="72" height="72">
+          <path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+        </svg>
+        <span class="wm" style="font-size: 44px; color: var(--ink);">AdSales<span class="slash">·</span>Hub</span>
+      </div>
+    </div>
+    <div class="caption">
+      <span class="name">Lockup primário</span>
+      <span class="meta">símbolo + wordmark · uso geral</span>
+    </div>
+
+    <div class="stage-grid grid-2" style="margin-top: 32px;">
+      <div class="stage" style="padding: 64px 48px;">
+        <span class="label">B · EMPILHADO</span>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 18px;">
+          <svg viewBox="0 0 64 64" width="80" height="80">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+          </svg>
+          <span class="wm" style="font-size: 32px;">AdSales<span class="slash">·</span>Hub</span>
+        </div>
+      </div>
+      <div class="stage" style="padding: 64px 48px;">
+        <span class="label">C · APENAS SÍMBOLO</span>
+        <svg viewBox="0 0 64 64" width="120" height="120">
+          <path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="stage-grid grid-2" style="margin-top: 32px;">
+      <div class="stage" style="padding: 64px 48px;">
+        <span class="label">D · APENAS WORDMARK</span>
+        <span class="wm" style="font-size: 44px;">AdSales<span class="slash">·</span>Hub</span>
+      </div>
+      <div class="stage" style="padding: 64px 48px;">
+        <span class="label">E · ASSINATURA INLINE</span>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg viewBox="0 0 64 64" width="32" height="32">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+          </svg>
+          <span class="wm" style="font-size: 18px;">AdSales<span class="slash">·</span>Hub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 03 · CONSTRUÇÃO                                              -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">03 · Construção</div>
+        <h2 style="margin-top: 16px;">Geometria<br/>e <span class="slash">·</span> respiro.</h2>
+      </div>
+      <p>O símbolo é construído numa grade 64×64. Área de proteção: ½ altura do wordmark. Tamanho mínimo legível: 16px.</p>
+    </div>
+
+    <div class="stage-grid grid-2">
+      <div class="stage construction-bg" style="padding: 40px;">
+        <span class="label">GRADE · 64×64</span>
+        <svg viewBox="0 0 64 64" width="320" height="320"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/>
+          <g opacity=".5" stroke="rgba(255,255,255,.5)" stroke-width="0.3" stroke-dasharray="1 1">
+            <line x1="32" y1="0" x2="32" y2="64"/><line x1="0" y1="32" x2="64" y2="32"/>
+            <line x1="17" y1="0" x2="17" y2="64"/><line x1="47" y1="0" x2="47" y2="64"/>
+            <line x1="0" y1="18" x2="64" y2="18"/><line x1="0" y1="48" x2="64" y2="48"/>
+          </g><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+        </svg>
+      </div>
+
+      <div class="stage" style="padding: 56px;">
+        <span class="label">ÁREA DE PROTEÇÃO · X</span>
+        <div style="position: relative;">
+          <div style="position: absolute; inset: -28px; border: 1px dashed var(--line-2); border-radius: 18px;"></div>
+          <div style="display: flex; align-items: center; gap: 14px; padding: 12px;">
+            <svg viewBox="0 0 64 64" width="56" height="56">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+            </svg>
+            <span class="wm" style="font-size: 30px;">AdSales<span class="slash">·</span>Hub</span>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 24px; left: 24px; right: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-4); display: flex; justify-content: space-between;">
+          <span>X = ½ altura do wordmark</span>
+          <span>nada toca a área pontilhada</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" style="margin-top: 32px; padding: 56px; align-items: end;">
+      <span class="label">ESCALA · TAMANHOS MÍNIMOS</span>
+      <div style="display: flex; align-items: end; gap: 56px; padding-top: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="16" height="16"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          <span class="mono" style="font-size: 11px; color: var(--ink-4);">16 px · favicon</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="32" height="32"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          <span class="mono" style="font-size: 11px; color: var(--ink-4);">32 px · UI dense</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="56" height="56"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          <span class="mono" style="font-size: 11px; color: var(--ink-4);">56 px · header</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="96" height="96"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          <span class="mono" style="font-size: 11px; color: var(--ink-4);">96 px · hero</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="160" height="160"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          <span class="mono" style="font-size: 11px; color: var(--ink-4);">160 px · marketing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 04 · APP ICON & FAVICON                                      -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">04 · App icon &amp; favicons</div>
+        <h2 style="margin-top: 16px;">Pequeno,<br/>certeiro,<br/>laranja.</h2>
+      </div>
+      <p>Squircle preto com seta laranja garante reconhecimento mesmo a 16px na aba do browser. Contraste forte = identificação instantânea.</p>
+    </div>
+
+    <div class="stage-grid grid-2">
+      <div class="stage" style="padding: 56px;">
+        <span class="label">APP ICON · iOS · 1024×1024</span>
+        <div style="background: #FF5A1F; aspect-ratio: 1; width: 220px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 30px 80px -30px rgba(0,0,0,.35);">
+          <svg viewBox="0 0 200 200" width="160" height="160">
+            <circle cx="100" cy="42" r="7" fill="#FFFFFF"/>
+            <path d="M100 60 L156 116 L124 116 L124 158 L76 158 L76 116 L44 116 Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stage dark" style="padding: 56px;">
+        <span class="label">APP ICON · DARK MODE</span>
+        <div style="background: #FF5A1F; aspect-ratio: 1; width: 220px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 30px 80px -30px rgba(0,0,0,.35);">
+          <svg viewBox="0 0 200 200" width="160" height="160">
+            <circle cx="100" cy="42" r="7" fill="#FFFFFF"/>
+            <path d="M100 60 L156 116 L124 116 L124 158 L76 158 L76 116 L44 116 Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" style="margin-top: 32px; padding: 56px;">
+      <span class="label">FAVICON · 16 / 32 / 64 / 180</span>
+      <div style="display: flex; align-items: end; gap: 80px; padding-top: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <div style="background: var(--bg-2); border: 1px solid var(--line); padding: 12px; border-radius: 8px;">
+            <svg viewBox="0 0 16 16" width="16" height="16"><path d="M 3.6,0 L 12.4,0 C 14.02,0 16,1.9800000000000002 16,3.6 L 16,12.4 C 16,14.02 14.02,16 12.4,16 L 3.6,16 C 1.9800000000000002,16 0,14.02 0,12.4 L 0,3.6 C 0,1.9800000000000002 1.9800000000000002,0 3.6,0 Z" fill="#0E0E10"/><circle cx="8" cy="3.4" r="0.6" fill="#FF5A1F"/><path d="M8 4.8 L12.5 9.3 L9.9 9.3 L9.9 12.6 L6.1 12.6 L6.1 9.3 L3.5 9.3 Z" fill="#FF5A1F"/></svg>
+          </div>
+          <div style="text-align: center;"><div style="font-size: 13px; font-weight: 600;">16 × 16</div><div class="mono" style="font-size: 10.5px; color: var(--ink-4);">favicon.ico</div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <div style="background: var(--bg-2); border: 1px solid var(--line); padding: 12px; border-radius: 8px;">
+            <svg viewBox="0 0 32 32" width="32" height="32"><path d="M 7.2,0 L 24.8,0 C 28.04,0 32,3.9600000000000004 32,7.2 L 32,24.8 C 32,28.04 28.04,32 24.8,32 L 7.2,32 C 3.9600000000000004,32 0,28.04 0,24.8 L 0,7.2 C 0,3.9600000000000004 3.9600000000000004,0 7.2,0 Z" fill="#0E0E10"/><circle cx="16" cy="6.7" r="1.12" fill="#FF5A1F"/><path d="M16 9.6 L24.96 18.56 L19.84 18.56 L19.84 25.28 L12.16 25.28 L12.16 18.56 L7.04 18.56 Z" fill="#FF5A1F"/></svg>
+          </div>
+          <div style="text-align: center;"><div style="font-size: 13px; font-weight: 600;">32 × 32</div><div class="mono" style="font-size: 10.5px; color: var(--ink-4);">favicon-32.png</div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <div style="background: var(--bg-2); border: 1px solid var(--line); padding: 16px; border-radius: 10px;">
+            <svg viewBox="0 0 64 64" width="64" height="64"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          </div>
+          <div style="text-align: center;"><div style="font-size: 13px; font-weight: 600;">64 × 64</div><div class="mono" style="font-size: 10.5px; color: var(--ink-4);">favicon-64.png</div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <div style="background: var(--bg-2); border: 1px solid var(--line); padding: 24px; border-radius: 14px;">
+            <svg viewBox="0 0 64 64" width="120" height="120"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          </div>
+          <div style="text-align: center;"><div style="font-size: 13px; font-weight: 600;">180 × 180</div><div class="mono" style="font-size: 10.5px; color: var(--ink-4);">apple-touch-icon</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 05 · CORES                                                   -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">05 · Cores</div>
+        <h2 style="margin-top: 16px;">Brasa<br/>e <span class="slash">·</span> tinta.</h2>
+      </div>
+      <p>Brasa (laranja #FF5A1F) é cor <strong style="font-weight: 600;">dominante</strong>, não acento. Aparece em container, CTA, cabeçalhos. Tinta para texto. Neutros formam respiração.</p>
+    </div>
+
+    <div class="swatches">
+      <div class="sw">
+        <div class="chip" style="background: #FF5A1F;"></div>
+        <div class="meta">
+          <span class="name">Brasa</span>
+          <span class="role">Dominante · container · CTA</span>
+          <div class="vals"><span>HEX · #FF5A1F</span><span>RGB · 255 90 31</span><span>OKLCH · 67 0.21 38</span></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background: #E64B14;"></div>
+        <div class="meta">
+          <span class="name">Brasa Dark</span>
+          <span class="role">Hover · ênfase ativa</span>
+          <div class="vals"><span>HEX · #E64B14</span><span>RGB · 230 75 20</span><span>OKLCH · 60 0.21 38</span></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background: #0E0E10;"></div>
+        <div class="meta">
+          <span class="name">Tinta</span>
+          <span class="role">Texto · estrutura</span>
+          <div class="vals"><span>HEX · #0E0E10</span><span>RGB · 14 14 16</span><span>OKLCH · 14 0 0</span></div>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background: #FAFAF7; border-bottom: 1px solid var(--line);"></div>
+        <div class="meta">
+          <span class="name">Papel</span>
+          <span class="role">Fundo principal</span>
+          <div class="vals"><span>HEX · #FAFAF7</span><span>RGB · 250 250 247</span><span>OKLCH · 98 .005 95</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="swatches" style="margin-top: 16px;">
+      <div class="sw">
+        <div class="chip" style="background: #F2F1EC; border-bottom: 1px solid var(--line);"></div>
+        <div class="meta"><span class="name">Papel 2</span><span class="role">Cards · sub-fundo</span><div class="vals"><span>HEX · #F2F1EC</span></div></div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background: #5A5A60;"></div>
+        <div class="meta"><span class="name">Tinta 3</span><span class="role">Texto secundário</span><div class="vals"><span>HEX · #5A5A60</span></div></div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background: #0A7B3F;"></div>
+        <div class="meta"><span class="name">Verde</span><span class="role">Sucesso · ROAS positivo</span><div class="vals"><span>HEX · #0A7B3F</span></div></div>
+      </div>
+      <div class="sw">
+        <div class="chip" style="background: #DC2626;"></div>
+        <div class="meta"><span class="name">Vermelho</span><span class="role">Erro · alerta</span><div class="vals"><span>HEX · #DC2626</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 06 · TIPOGRAFIA                                              -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">06 · Tipografia</div>
+        <h2 style="margin-top: 16px;">Inter<br/>+ <span class="slash">·</span> JetBrains Mono.</h2>
+      </div>
+      <p>Inter 600 carrega o peso operacional — wordmark, headlines, UI labels. JetBrains Mono aparece em rótulos técnicos, métricas, código. Sem serif italic.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <div class="ts-card">
+        <div class="kicker">DISPLAY · INTER 600</div>
+        <div style="font-size: clamp(48px, 6vw, 76px); line-height: 0.96; letter-spacing: -0.04em; font-weight: 600; margin-top: 24px;">
+          Marketing<span class="slash">·</span>vendas, finalmente juntos.
+        </div>
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); font-family: var(--font-mono); display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-3);">
+          <span><strong style="color: var(--ink); font-weight: 600;">família:</strong> Inter</span>
+          <span><strong style="color: var(--ink); font-weight: 600;">peso:</strong> 600 (Semibold)</span>
+          <span><strong style="color: var(--ink); font-weight: 600;">tracking:</strong> -0.04em</span>
+          <span><strong style="color: var(--ink); font-weight: 600;">line-height:</strong> 0.96</span>
+        </div>
+      </div>
+      <div class="ts-card">
+        <div class="kicker">RÓTULOS TÉCNICOS · JETBRAINS MONO 500</div>
+        <div class="mono" style="font-size: clamp(28px, 3.6vw, 44px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 500; margin-top: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <span>ROAS · CPL · LTV</span>
+          <span style="color: var(--ink-3);">pipeline.json</span>
+        </div>
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); font-family: var(--font-mono); display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-3);">
+          <span><strong style="color: var(--ink); font-weight: 600;">família:</strong> JetBrains Mono</span>
+          <span><strong style="color: var(--ink); font-weight: 600;">uso:</strong> métricas, código, labels técnicos</span>
+          <span><strong style="color: var(--ink); font-weight: 600;">tom:</strong> operacional, ferramenta, dado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hierarchy -->
+    <div class="stage" style="margin-top: 32px; padding: 56px; align-items: stretch;">
+      <span class="label">HIERARQUIA TIPOGRÁFICA</span>
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: baseline; padding-top: 32px; border-top: 1px solid var(--line);">
+        <span class="kicker">H1 · 88/0.98</span>
+        <span style="font-size: 56px; font-weight: 600; letter-spacing: -0.045em; line-height: 1;">Plataforma única</span>
+        <span class="mono" style="font-size: 11px; color: var(--ink-4); text-align: right;">Inter 600</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line);">
+        <span class="kicker">H2 · 56/1.02</span>
+        <span style="font-size: 36px; font-weight: 600; letter-spacing: -0.04em;">Operação inteira</span>
+        <span class="mono" style="font-size: 11px; color: var(--ink-4); text-align: right;">Inter 600</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line);">
+        <span class="kicker">H3 · 28/1.1</span>
+        <span style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em;">Subseção</span>
+        <span class="mono" style="font-size: 11px; color: var(--ink-4); text-align: right;">Inter 600</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line);">
+        <span class="kicker">Body · 16/1.55</span>
+        <span style="font-size: 16px; line-height: 1.55; color: var(--ink-2);">Corpo de texto, parágrafos, descrições. Inter 400.</span>
+        <span class="mono" style="font-size: 11px; color: var(--ink-4); text-align: right;">Inter 400</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line);">
+        <span class="kicker">Métrica · mono</span>
+        <span class="mono" style="font-size: 24px; font-weight: 500;">R$ 4.728 · ROAS 6.4×</span>
+        <span class="mono" style="font-size: 11px; color: var(--ink-4); text-align: right;">JBMono 500</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 110px 1fr 130px; gap: 24px; align-items: baseline; padding-top: 16px;">
+        <span class="kicker">Kicker · 11</span>
+        <span class="kicker">RÓTULO DE SEÇÃO</span>
+        <span class="mono" style="font-size: 11px; color: var(--ink-4); text-align: right;">Inter 600</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 07 · NEGATIVA E MONOCROMÁTICO                                -->
+<!-- ============================================================ -->
+<section class="brand dark">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">07 · Versões alternativas</div>
+        <h2 style="margin-top: 16px;">Quando<br/>laranja não cabe.</h2>
+      </div>
+      <p>Sobre fundo escuro, monocromático para impressão, e versões para situações onde a cor da marca não é permitida.</p>
+    </div>
+
+    <div class="stage-grid grid-3">
+      <div class="stage dark" style="padding: 64px;">
+        <span class="label">SOBRE FUNDO ESCURO</span>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="56" height="56">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+          </svg>
+          <span class="wm" style="font-size: 28px; color: #fff;">AdSales<span class="slash">·</span>Hub</span>
+        </div>
+      </div>
+      <div class="stage" style="padding: 64px;">
+        <span class="label">MONO PRETO</span>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="56" height="56">
+            <path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FFFFFF"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FFFFFF"/>
+          </svg>
+          <span class="wm" style="font-size: 28px; color: #0E0E10;"><span style="color: #0E0E10;">AdSales·Hub</span></span>
+        </div>
+      </div>
+      <div class="stage dark" style="padding: 64px;">
+        <span class="label">MONO BRANCO</span>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <svg viewBox="0 0 64 64" width="56" height="56">
+            <path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#FFFFFF"/><circle cx="32" cy="13.4" r="2.24" fill="#0E0E10"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#0E0E10"/>
+          </svg>
+          <span class="wm" style="font-size: 28px; color: #fff;"><span style="color: #fff;">AdSales·Hub</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 08 · DON'TS                                                  -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">08 · Não-pode</div>
+        <h2 style="margin-top: 16px;">Como <span class="slash">·</span> <strong style="font-weight: 600;">não</strong> aplicar.</h2>
+      </div>
+      <p>Oito situações que enfraquecem a marca. Em dúvida, volte para a versão primária.</p>
+    </div>
+
+    <div class="donts">
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <svg viewBox="0 0 64 64" width="80" height="56" preserveAspectRatio="none">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+          </svg>
+        </div>
+        <div class="why">Não distorça. Proporção 1:1 sempre.</div>
+      </div>
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <svg viewBox="0 0 64 64" width="56" height="56"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#1E40AF"/><circle cx="32" cy="13.4" r="2.24" fill="#FBBF24"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FBBF24"/></svg>
+        </div>
+        <div class="why">Não recolora. Brasa é a cor da marca.</div>
+      </div>
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <svg viewBox="0 0 64 64" width="56" height="56"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="none" stroke="#FF5A1F" stroke-width="2"/><circle cx="32" cy="13.4" r="2.24" fill="none" stroke="#FF5A1F" stroke-width="2"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="none" stroke="#FF5A1F" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="why">Não use só contorno. O símbolo é sólido.</div>
+      </div>
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <svg viewBox="0 0 64 64" width="56" height="56" style="transform: rotate(20deg);">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+          </svg>
+        </div>
+        <div class="why">Não rotacione. Seta aponta sempre para cima.</div>
+      </div>
+    </div>
+
+    <div class="donts" style="margin-top: 14px;">
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <svg viewBox="0 0 64 64" width="56" height="56" style="filter: drop-shadow(0 8px 12px rgba(0,0,0,.5));">
+<path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/>
+          </svg>
+        </div>
+        <div class="why">Não use sombras pesadas ou efeitos 3D.</div>
+      </div>
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1; background: #FF8A42; border-radius: 12px;">
+          <svg viewBox="0 0 64 64" width="56" height="56"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF8A42"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF8A42"/></svg>
+        </div>
+        <div class="why">Não use sobre fundo de baixo contraste.</div>
+      </div>
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <span style="font-family: 'Comic Sans MS', cursive; font-size: 22px; font-weight: 700; color: var(--ink);">AdSales·Hub</span>
+        </div>
+        <div class="why">Não troque a tipografia do wordmark.</div>
+      </div>
+      <div class="dont">
+        <div class="x">×</div>
+        <div style="display: grid; place-items: center; flex: 1;">
+          <span style="font-style: italic; font-family: serif; font-size: 22px; color: var(--ink);">AdSales · Hub</span>
+        </div>
+        <div class="why">Não use serif italic — fora do sistema.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 09 · APLICAÇÃO                                               -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">09 · Aplicação</div>
+        <h2 style="margin-top: 16px;">A marca <br/><span class="slash">·</span> no mundo.</h2>
+      </div>
+      <p>Três contextos comuns: aba do browser, assinatura de e-mail, avatar social.</p>
+    </div>
+
+    <div class="stage-grid grid-3">
+      <div class="stage bg2" style="padding: 32px;">
+        <span class="label">FAVICON · ABA</span>
+        <div style="background: var(--panel); border-radius: 10px 10px 0 0; padding: 8px 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 6px 18px -8px rgba(0,0,0,.12); width: 100%; max-width: 280px;">
+          <svg viewBox="0 0 32 32" width="16" height="16"><path d="M 7.2,0 L 24.8,0 C 28.04,0 32,3.9600000000000004 32,7.2 L 32,24.8 C 32,28.04 28.04,32 24.8,32 L 7.2,32 C 3.9600000000000004,32 0,28.04 0,24.8 L 0,7.2 C 0,3.9600000000000004 3.9600000000000004,0 7.2,0 Z" fill="#0E0E10"/><circle cx="16" cy="6.7" r="1.12" fill="#FF5A1F"/><path d="M16 9.6 L24.96 18.56 L19.84 18.56 L19.84 25.28 L12.16 25.28 L12.16 18.56 L7.04 18.56 Z" fill="#FF5A1F"/></svg>
+          <span style="font-size: 11px; color: var(--ink-2); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">AdSales·Hub — Marketing &amp; Vendas</span>
+          <span style="font-size: 13px; color: var(--ink-4);">×</span>
+        </div>
+      </div>
+      <div class="stage" style="padding: 32px;">
+        <span class="label">ASSINATURA E-MAIL</span>
+        <div style="background: var(--panel); padding: 18px; max-width: 300px; width: 100%; border-left: 3px solid var(--accent);">
+          <div style="font-size: 15px; font-weight: 600;">Camila Souza</div>
+          <div style="font-size: 12.5px; color: var(--ink-3);">Head of Customer Success</div>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 8px;">
+            <svg viewBox="0 0 64 64" width="20" height="20"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+            <span class="wm" style="font-size: 11px;">AdSales<span class="slash">·</span>Hub</span>
+          </div>
+        </div>
+      </div>
+      <div class="stage bg2" style="padding: 32px;">
+        <span class="label">AVATAR SOCIAL</span>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div style="width: 64px; height: 64px; border-radius: 999px; overflow: hidden; box-shadow: 0 0 0 2px var(--panel), 0 0 0 3px var(--accent);">
+            <svg viewBox="0 0 64 64" width="64" height="64"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 14px; font-weight: 600;">adsaleshub</div>
+            <div style="font-size: 11.5px; color: var(--ink-4);">Marketing/Vendas, juntos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 10 · DOWNLOADS                                               -->
+<!-- ============================================================ -->
+<section class="brand">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">10 · Arquivos</div>
+        <h2 style="margin-top: 16px;">SVG, PNG,<br/>ICO. Pronto.</h2>
+      </div>
+      <p>Pacote completo da identidade em construção. Coloque em produção quando for lançar.</p>
+    </div>
+
+    <div class="stage" style="padding: 56px; align-items: stretch; background: var(--ink); border-color: rgba(255,255,255,.08);">
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; width: 100%;">
+        <div>
+          <div class="kicker" style="color: rgba(255,255,255,.55);">PACOTE COMPLETO</div>
+          <h3 style="margin-top: 14px; color: #fff; font-size: 36px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.05;">
+            17 SVGs, 14 PNGs,<br/>favicon, app icon, README.
+          </h3>
+          <p style="margin-top: 18px; color: rgba(255,255,255,.6); font-size: 15px; line-height: 1.55; max-width: 38ch;">
+            Pacote completo. Squircle preto com seta laranja. Wordmark Inter 600 com separador "·". Pronto pra colar no projeto.
+          </p>
+          <button id="dl-all" style="margin-top: 32px; padding: 16px 26px; border-radius: 12px; border: none; background: var(--accent); color: #fff; font: inherit; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar pacote (.zip)
+          </button>
+        </div>
+        <div style="position: relative; height: 240px;">
+          <div style="position: absolute; left: 32%; top: 8%; transform: rotate(-6deg); padding: 12px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+            <svg viewBox="0 0 64 64" width="28" height="28"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+            <div><div style="font-size: 11px; color: #fff; font-weight: 600;">favicon.ico</div><div class="mono" style="font-size: 9.5px; color: rgba(255,255,255,.4);">multi-res</div></div>
+          </div>
+          <div style="position: absolute; left: 8%; top: 28%; transform: rotate(3deg); padding: 12px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+            <svg viewBox="0 0 64 64" width="28" height="28"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+            <div><div style="font-size: 11px; color: #fff; font-weight: 600;">symbol-512.png</div><div class="mono" style="font-size: 9.5px; color: rgba(255,255,255,.4);">512×512</div></div>
+          </div>
+          <div style="position: absolute; right: 5%; top: 50%; transform: rotate(8deg); padding: 12px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+            <svg viewBox="0 0 64 64" width="28" height="28"><path d="M 14.4,0 L 49.6,0 C 56.08,0 64,7.920000000000001 64,14.4 L 64,49.6 C 64,56.08 56.08,64 49.6,64 L 14.4,64 C 7.920000000000001,64 0,56.08 0,49.6 L 0,14.4 C 0,7.920000000000001 7.920000000000001,0 14.4,0 Z" fill="#0E0E10"/><circle cx="32" cy="13.4" r="2.24" fill="#FF5A1F"/><path d="M32 19.2 L49.92 37.12 L39.68 37.12 L39.68 50.56 L24.32 50.56 L24.32 37.12 L14.08 37.12 Z" fill="#FF5A1F"/></svg>
+            <div><div style="font-size: 11px; color: #fff; font-weight: 600;">lockup.svg</div><div class="mono" style="font-size: 9.5px; color: rgba(255,255,255,.4);">vetor</div></div>
+          </div>
+          <div style="position: absolute; left: 38%; bottom: 8%; transform: rotate(-3deg); padding: 12px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6.27px; background: #FF5A1F; display: grid; place-items: center;">
+              <svg viewBox="0 0 200 200" width="20" height="20"><path d="M100 56 L148 124 L120 124 L120 152 L80 152 L80 124 L52 124 Z" fill="#FFFFFF"/></svg>
+            </div>
+            <div><div style="font-size: 11px; color: #fff; font-weight: 600;">app-icon-1024</div><div class="mono" style="font-size: 9.5px; color: rgba(255,255,255,.4);">iOS</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <div class="kicker" style="margin-bottom: 18px;">OU BAIXE INDIVIDUALMENTE</div>
+      <div id="dl-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <span>AdSales·Hub · Brand book · Maio 2026</span>
+      <span>operacional · ferramenta · performance</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(function() {
+  const FILES = [
+    { path: 'favicon.ico',                    label: 'favicon.ico',           desc: 'multi-res · 16/32/48',         group: 'Favicon' },
+    { path: 'favicon-16x16.png',              label: 'favicon-16x16.png',     desc: '16 × 16',                      group: 'Favicon' },
+    { path: 'favicon-32x32.png',              label: 'favicon-32x32.png',     desc: '32 × 32',                      group: 'Favicon' },
+    { path: 'apple-touch-icon.png',           label: 'apple-touch-icon.png',  desc: '180 × 180 · iOS',              group: 'Favicon' },
+    { path: 'icon-512.png',                   label: 'icon-512.png',          desc: '512 × 512 · OG / PWA',         group: 'Favicon' },
+    { path: 'app-icon-ios-1024.png',          label: 'app-icon-ios-1024.png', desc: '1024 × 1024 · App Store',      group: 'Favicon' },
+    { path: 'svg/symbol-primary.svg',          label: 'symbol-primary.svg',          desc: 'laranja · 200×200',           group: 'SVG · Símbolo' },
+    { path: 'svg/symbol-solid.svg',            label: 'symbol-solid.svg',            desc: 'sólido · 64×64',              group: 'SVG · Símbolo' },
+    { path: 'svg/symbol-on-dark.svg',          label: 'symbol-on-dark.svg',          desc: 'sobre fundo escuro',          group: 'SVG · Símbolo' },
+    { path: 'svg/symbol-mono-black.svg',       label: 'symbol-mono-black.svg',       desc: 'mono preto',                  group: 'SVG · Símbolo' },
+    { path: 'svg/symbol-mono-white.svg',       label: 'symbol-mono-white.svg',       desc: 'mono branco',                 group: 'SVG · Símbolo' },
+    { path: 'svg/symbol-negative.svg',         label: 'symbol-negative.svg',         desc: 'contorno · negativa',         group: 'SVG · Símbolo' },
+    { path: 'svg/favicon.svg',                 label: 'favicon.svg',                 desc: 'sharp 16px',                  group: 'SVG · Símbolo' },
+    { path: 'svg/lockup-horizontal-primary.svg',  label: 'lockup-horizontal-primary.svg',  desc: 'principal',              group: 'SVG · Lockup' },
+    { path: 'svg/lockup-horizontal-on-dark.svg',  label: 'lockup-horizontal-on-dark.svg',  desc: 'sobre tinta',           group: 'SVG · Lockup' },
+    { path: 'svg/lockup-horizontal-on-white.svg', label: 'lockup-horizontal-on-white.svg', desc: 'sobre branco',          group: 'SVG · Lockup' },
+    { path: 'svg/lockup-horizontal-mono-black.svg',label: 'lockup-horizontal-mono-black.svg',desc: 'mono preto',          group: 'SVG · Lockup' },
+    { path: 'svg/lockup-horizontal-mono-white.svg',label: 'lockup-horizontal-mono-white.svg',desc: 'mono branco',         group: 'SVG · Lockup' },
+    { path: 'svg/lockup-stacked-primary.svg',     label: 'lockup-stacked-primary.svg',     desc: 'empilhado',              group: 'SVG · Lockup' },
+    { path: 'svg/lockup-stacked-on-dark.svg',     label: 'lockup-stacked-on-dark.svg',     desc: 'empilhado · escuro',     group: 'SVG · Lockup' },
+    { path: 'svg/lockup-stacked-mono-black.svg',  label: 'lockup-stacked-mono-black.svg',  desc: 'empilhado · mono',       group: 'SVG · Lockup' },
+    { path: 'svg/wordmark-dark.svg',              label: 'wordmark-dark.svg',              desc: 'só texto · tinta',       group: 'SVG · Wordmark' },
+    { path: 'svg/wordmark-white.svg',             label: 'wordmark-white.svg',             desc: 'só texto · branco',      group: 'SVG · Wordmark' },
+    { path: 'png/symbol-16.png',   label: 'symbol-16.png',   desc: '16 × 16',     group: 'PNG · Símbolo' },
+    { path: 'png/symbol-32.png',   label: 'symbol-32.png',   desc: '32 × 32',     group: 'PNG · Símbolo' },
+    { path: 'png/symbol-48.png',   label: 'symbol-48.png',   desc: '48 × 48',     group: 'PNG · Símbolo' },
+    { path: 'png/symbol-64.png',   label: 'symbol-64.png',   desc: '64 × 64',     group: 'PNG · Símbolo' },
+    { path: 'png/symbol-128.png',  label: 'symbol-128.png',  desc: '128 × 128',   group: 'PNG · Símbolo' },
+    { path: 'png/symbol-256.png',  label: 'symbol-256.png',  desc: '256 × 256',   group: 'PNG · Símbolo' },
+    { path: 'png/symbol-512.png',  label: 'symbol-512.png',  desc: '512 × 512',   group: 'PNG · Símbolo' },
+    { path: 'png/symbol-1024.png', label: 'symbol-1024.png', desc: '1024 × 1024', group: 'PNG · Símbolo' },
+    { path: 'png/lockup-horizontal-primary-2x.png', label: 'lockup-horizontal-primary-2x.png', desc: '1200 × 320 · @2x', group: 'PNG · Lockup' },
+    { path: 'png/lockup-horizontal-on-dark-2x.png', label: 'lockup-horizontal-on-dark-2x.png', desc: '1200 × 320 · @2x', group: 'PNG · Lockup' },
+    { path: 'png/lockup-horizontal-on-white-2x.png',label: 'lockup-horizontal-on-white-2x.png',desc: '1200 × 320 · @2x', group: 'PNG · Lockup' },
+    { path: 'png/lockup-stacked-primary-2x.png',    label: 'lockup-stacked-primary-2x.png',    desc: '800 × 760 · @2x',  group: 'PNG · Lockup' },
+    { path: 'png/wordmark-dark-2x.png',             label: 'wordmark-dark-2x.png',             desc: '960 × 200 · @2x',  group: 'PNG · Wordmark' },
+    { path: 'png/wordmark-white-2x.png',            label: 'wordmark-white-2x.png',            desc: '960 × 200 · @2x',  group: 'PNG · Wordmark' },
+    { path: 'README.md', label: 'README.md', desc: 'instruções', group: 'Docs' },
+  ];
+  const BASE = '/brand-assets/';
+  const grid = document.getElementById('dl-grid');
+  if (grid) {
+    const byGroup = {};
+    FILES.forEach(f => { (byGroup[f.group] ||= []).push(f); });
+    Object.entries(byGroup).forEach(([groupName, files]) => {
+      const card = document.createElement('div');
+      card.style.cssText = 'padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;';
+      card.innerHTML = `<div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-4); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; margin-bottom: 14px;">${groupName}</div><div style="display: flex; flex-direction: column; gap: 8px;"></div>`;
+      const list = card.lastElementChild;
+      files.forEach(f => {
+        const a = document.createElement('a');
+        a.href = BASE + f.path;
+        a.download = f.path.split('/').pop();
+        a.style.cssText = 'display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; background: var(--bg-2); border-radius: 10px; text-decoration: none;';
+        a.onmouseover = () => a.style.background = '#EAE9E2';
+        a.onmouseout  = () => a.style.background = 'var(--bg-2)';
+        a.innerHTML = `<div style="min-width: 0; flex: 1;"><div style="font-size: 12.5px; font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${f.label}</div><div class="mono" style="font-size: 10.5px; color: var(--ink-4); margin-top: 1px;">${f.desc}</div></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-3); flex-shrink: 0;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+        list.appendChild(a);
+      });
+      grid.appendChild(card);
+    });
+  }
+  const dlAll = document.getElementById('dl-all');
+  if (dlAll) {
+    dlAll.addEventListener('click', async () => {
+      const original = dlAll.innerHTML;
+      dlAll.innerHTML = `Empacotando…`;
+      try {
+        const zip = new JSZip();
+        const root = zip.folder('AdSalesHub-brand');
+        for (const f of FILES) {
+          const res = await fetch(BASE + f.path);
+          if (!res.ok) continue;
+          const isText = f.path.endsWith('.svg') || f.path.endsWith('.md');
+          const data = isText ? await res.text() : await res.blob();
+          root.file(f.path, data);
+        }
+        const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'AdSalesHub-brand.zip';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        dlAll.innerHTML = `✓ Baixado`;
+        setTimeout(() => { dlAll.innerHTML = original; }, 1800);
+      } catch (e) {
+        console.error(e);
+        dlAll.innerHTML = original;
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

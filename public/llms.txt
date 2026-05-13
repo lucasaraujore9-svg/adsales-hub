@@ -1,0 +1,109 @@
+# AdSales·Hub
+
+> Plataforma SaaS brasileira que unifica marketing pago, CRM de vendas, atendimento, social media, SDR de voz com IA e contratos eletrônicos num único sistema. Atribuição 1:1 do clique no anúncio até a receita fechada.
+
+AdSales·Hub substitui a stack tradicional de PMEs brasileiras (agência de marketing + gestor de tráfego freelancer + social media + designer + CRM + ferramenta de e-mail + planilhas) por um sistema único orquestrado por IA. Foco: pequenas e médias empresas brasileiras (PMEs) que pagam agência e querem internalizar marketing e vendas, freelancers de tráfego, agências pequenas que querem operar mais clientes com menos pessoas.
+
+## Posicionamento
+
+- **Promessa**: anúncio, lead, conversa e contrato no mesmo sistema, com ROAS aferido na receita real (não na conversão de plataforma).
+- **Diferencial**: 8 módulos com mesmo dado do clique ao contrato. SDR de voz com IA que liga e qualifica em 90s. Atribuição 1:1 entre campanha e venda fechada.
+- **Modelo**: SaaS por assinatura mensal em reais (BRL). 14 dias trial sem cartão. Mensal, sem fidelidade.
+- **Geografia**: Brasil. Suporte em português via WhatsApp. Conformidade LGPD.
+
+## Planos (em reais)
+
+- **Operação — R$ 290/mês** + até R$ 600/mês em mídia. Inclui CRM + Tráfego IA + Landing Pages. Até 3 usuários.
+- **Crescimento — R$ 690/mês** + até R$ 2.000/mês em mídia. Inclui CRM + Tráfego IA + Social + Atendimento + BI. Até 8 usuários. (Mais escolhido.)
+- **Escala — R$ 1.490/mês** + até R$ 8.000/mês em mídia. Todos os 8 módulos + SDR de Voz IA + Contratos. Usuários ilimitados.
+- **Custom Builder**: monte sua cesta. Base R$ 190 + módulos avulsos + faixa de mídia.
+
+## 8 módulos
+
+1. **CRM** (incluso em todos os planos): Kanban drag-and-drop, 5 funis prontos, atividades, ligações gravadas, 19 automações, atribuição 1:1 entre lead e campanha.
+2. **Tráfego IA** (R$ 190): Briefing em português → IA gera público + 3 criativos A/B + formulário e publica no Meta. Otimização contínua a cada 2 dias. Substitui agência e gestor de tráfego.
+3. **Social** (R$ 140): 6 redes (Instagram, Facebook, LinkedIn, TikTok, YouTube, Pinterest). IA replica criativo vencedor do pago no orgânico. Aprovação por link externo.
+4. **Atendimento** (R$ 180): WhatsApp + e-mail + SMS unificados. Bot que qualifica e transfere pro humano na hora certa. 93% abertura WA, 47% resposta.
+5. **SDR de Voz IA** (R$ 220): Agente de voz que liga, qualifica em 90s, agenda reunião direto na agenda do vendedor. 3 tentativas. Voz natural em português.
+6. **Analytics** (R$ 160): CAC, ROAS, LTV, payback. Funil completo do clique ao ganho. Pergunte em português, IA responde com gráfico e próxima ação.
+7. **Landing Pages** (R$ 90): Editor drag-and-drop, templates por nicho, domínio próprio com SSL, A/B testing, lead caindo direto no funil com UTM completo.
+8. **Contratos** (R$ 110): Proposta + contrato + assinatura eletrônica com validade jurídica (Lei 14.063/2020). QR de verificação. Tracking de abertura.
+
+## Resultados típicos (mais de 1.200 operações)
+
+- −41% CAC médio
+- +68% pipeline gerado
+- 4.1× ROAS aferido
+- 7 dias para primeira venda
+
+## Stack técnico
+
+Next.js 15 + Supabase (Postgres self-hosted) + Claude API + OpenAI gpt-image-1 + Meta Marketing API v21 + Meta Conversions API + Stripe + Resend + WhatsApp Cloud API + Google Calendar/Outlook OAuth + agente de voz IA + provedor DID brasileiro. Multi-tenant com Row Level Security. Token OAuth criptografado AES-256 com refresh automático.
+
+## Conformidade
+
+- LGPD (Lei 13.709/2018)
+- Marco Civil da Internet (Lei 12.965/2014)
+- Código de Defesa do Consumidor (Lei 8.078/1990)
+- Meta Platform Policies + Google API Limited Use
+- Assinatura eletrônica conforme Lei 14.063/2020
+- DPO designado: dpo@7iegroup.com.br
+- Endpoints de deauthorize + data deletion request implementados (Meta App Review compliance)
+
+## Páginas públicas
+
+### Principal
+- [Landing page](https://adsaleshub.7iegroup.com.br/): pitch completo + 8 módulos + 4 fluxos + preços + FAQ
+- [Recursos](https://adsaleshub.7iegroup.com.br/recursos): hub central com guias, comparativos, calculadoras e glossário
+
+### Comparativos
+- [vs RD Station](https://adsaleshub.7iegroup.com.br/comparativos/rd-station)
+- [vs Pipedrive](https://adsaleshub.7iegroup.com.br/comparativos/pipedrive)
+- [vs HubSpot](https://adsaleshub.7iegroup.com.br/comparativos/hubspot)
+- [vs Kommo (amoCRM)](https://adsaleshub.7iegroup.com.br/comparativos/kommo)
+
+### Calculadoras gratuitas
+- [ROAS](https://adsaleshub.7iegroup.com.br/calculadoras/roas) — Retorno sobre investimento em anúncios
+- [CAC](https://adsaleshub.7iegroup.com.br/calculadoras/cac) — Custo de Aquisição por Cliente
+- [LTV/CAC e Payback](https://adsaleshub.7iegroup.com.br/calculadoras/ltv-cac) — Saúde unitária do funil
+- [CPL ideal](https://adsaleshub.7iegroup.com.br/calculadoras/cpl-ideal) — Quanto pagar por lead
+
+### Glossário
+- [O que é CRM](https://adsaleshub.7iegroup.com.br/glossario/crm)
+- [O que é ROAS](https://adsaleshub.7iegroup.com.br/glossario/roas)
+- [O que é CAC](https://adsaleshub.7iegroup.com.br/glossario/cac)
+- [O que é atribuição de marketing](https://adsaleshub.7iegroup.com.br/glossario/atribuicao)
+- [O que é SDR](https://adsaleshub.7iegroup.com.br/glossario/sdr)
+- [O que é tráfego pago](https://adsaleshub.7iegroup.com.br/glossario/trafego-pago)
+
+### Guias
+- [Como migrar do RD Station](https://adsaleshub.7iegroup.com.br/guias/como-migrar-do-rd-station)
+- [Como criar campanha no Meta Ads](https://adsaleshub.7iegroup.com.br/guias/como-criar-campanha-no-meta-ads)
+- [Quanto custa marketing digital pra PME](https://adsaleshub.7iegroup.com.br/guias/quanto-custa-marketing-digital-pme)
+- [Como demitir agência sem perder resultado](https://adsaleshub.7iegroup.com.br/guias/como-demitir-agencia-sem-perder-resultado)
+
+### Por persona
+- [Para agências de marketing](https://adsaleshub.7iegroup.com.br/para/agencias)
+- [Para e-commerce](https://adsaleshub.7iegroup.com.br/para/ecommerce)
+- [Para educação e cursos](https://adsaleshub.7iegroup.com.br/para/educacao)
+- [Para prestadores de serviço](https://adsaleshub.7iegroup.com.br/para/prestadores-de-servico)
+
+### Legal
+- [Política de Privacidade](https://adsaleshub.7iegroup.com.br/privacy): LGPD/GDPR, 12 seções
+- [Termos de Serviço](https://adsaleshub.7iegroup.com.br/terms): 15 seções, foro SP, CDC
+
+## Contato
+
+- Suporte: suporte@7iegroup.com.br
+- Comercial: vendas@7iegroup.com.br
+- DPO/Jurídico: dpo@7iegroup.com.br
+- Segurança: security@7iegroup.com.br
+- Sede: São Paulo, Brasil
+
+## Casos de uso ideais
+
+PMEs brasileiras com 1-50 funcionários que: (1) pagam agência mensalmente e querem internalizar; (2) gastam entre R$ 600 e R$ 8.000/mês em mídia paga; (3) já tentam usar 3+ ferramentas (CRM + ads + WhatsApp + planilhas) e querem unificar; (4) querem ROAS aferido na receita fechada, não em conversão de plataforma; (5) precisam de SDR mas não têm budget pra contratar 3 vendedores em tempo integral.
+
+## Quando não usar
+
+Empresas que: (1) precisam de ERP/financeiro/notas fiscais/estoque (AdSales·Hub não é ERP); (2) querem hospedar sites institucionais ou blogs (foco é landing pages de conversão); (3) fazem apenas SEO orgânico e não rodam mídia paga; (4) operam em mercados não-Brasil (sistema é PT-BR e BRL).

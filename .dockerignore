@@ -1,0 +1,40 @@
+**/node_modules
+**/.next
+**/out
+**/build
+**/dist
+**/coverage
+**/.turbo
+**/.vercel
+**/.git
+**/.gitignore
+
+# Env files never go into the image. Runtime config comes from docker-compose
+# / docker run --env-file. NEXT_PUBLIC_* are injected at build time via --build-arg.
+.env
+.env.*
+!.env.example
+
+# Local Supabase artifacts
+supabase/.temp
+supabase/.branches
+
+# IDE / OS noise
+.DS_Store
+*.log
+.vscode
+.idea
+
+# Documentation / design assets not needed at runtime
+design/
+docs/
+issues/
+*.md
+!README.md
+SPEC.md
+CLAUDE.md
+
+# Test / dev artefacts
+coverage/
+*.tsbuildinfo
+.claude/
