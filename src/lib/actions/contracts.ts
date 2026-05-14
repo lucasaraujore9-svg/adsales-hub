@@ -73,8 +73,8 @@ export async function generateContractFromTemplate(
   ]);
   const deal = dealData as DealRow | null;
   const tpl = tplData as TemplateRow | null;
-  if (!deal) return { ok: false, error: "Deal nao encontrado" };
-  if (!tpl) return { ok: false, error: "Template nao encontrado" };
+  if (!deal) return { ok: false, error: "Deal não encontrado" };
+  if (!tpl) return { ok: false, error: "Template não encontrado" };
 
   let contact: ContactRow | null = null;
   if (deal.contact_id) {
@@ -109,6 +109,13 @@ export async function generateContractFromTemplate(
 
   const renderedContent = renderVariables(tpl.content, variables);
 
+  // Auditoria (issue 012): hash do conteúdo + token de verificação
+  const { hashContractContent, generateVerificationToken } = await import(
+    "@/lib/contracts/audit"
+  );
+  const contentHash = hashContractContent(renderedContent);
+  const verificationToken = generateVerificationToken();
+
   const { data: contractData, error: contractErr } = await sb
     .from("contracts")
     .insert({
@@ -121,6 +128,8 @@ export async function generateContractFromTemplate(
       variables,
       status: "pending_signature",
       expires_at: expires.toISOString(),
+      content_hash: contentHash,
+      verification_token: verificationToken,
     } as never)
     .select("id")
     .single();
@@ -186,9 +195,9 @@ export async function emailContractToSignatory(
     .eq("workspace_id", session.workspaceId)
     .maybeSingle();
   const sig = data as SignatoryWithContract | null;
-  if (!sig) return { ok: false, error: "Signatario nao encontrado" };
+  if (!sig) return { ok: false, error: "Signatario não encontrado" };
   if (sig.status === "signed") {
-    return { ok: false, error: "Signatario ja assinou" };
+    return { ok: false, error: "Signatario já assinou" };
   }
 
   const appUrl =
@@ -206,7 +215,7 @@ export async function emailContractToSignatory(
       </a>
     </p>
     <p style="color:#666; font-size:12px;">Ou copie o link: ${link}</p>
-    <p style="color:#666; font-size:12px;">Este link e pessoal — nao compartilhe.</p>
+    <p style="color:#666; font-size:12px;">Este link e pessoal — não compartilhe.</p>
   `.trim();
 
   const { sendEmailViaIntegration } = await import("@/lib/email/send");

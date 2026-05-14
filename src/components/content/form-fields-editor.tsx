@@ -72,7 +72,7 @@ export function FormFieldsEditor({
     const optionsRaw = String(form.get("options") ?? "").trim();
     if (!name || !label) return;
     if (fields.some((f) => f.name === name)) {
-      toast.error(`Campo "${name}" ja existe`);
+      toast.error(`Campo "${name}" já existe`);
       return;
     }
     const newField: Field = {

@@ -21,7 +21,7 @@ export async function listInsights(supabase: SB, workspaceId: string): Promise<I
   const { data } = await supabase
     .from("ai_insights")
     .select(
-      "id, area, type, title, description, severity, suggested_action, action_applied, created_at, valid_until",
+      "id, área, type, title, description, severity, suggested_action, action_applied, created_at, valid_until",
     )
     .eq("workspace_id", workspaceId)
     .order("created_at", { ascending: false })

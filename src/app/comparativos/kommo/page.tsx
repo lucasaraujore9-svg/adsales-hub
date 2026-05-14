@@ -5,14 +5,14 @@ const URL = "https://adsaleshub.7iegroup.com.br/comparativos/kommo";
 
 const COVER_TITLE = encodeURIComponent("AdSales·Hub vs Kommo");
 const COVER_SUBTITLE = encodeURIComponent(
-  "WhatsApp-first ou operacao completa? O comparativo honesto pra 2026"
+  "WhatsApp-first ou operação completa? O comparativo honesto pra 2026"
 );
 const COVER_IMAGE = `/api/og?title=${COVER_TITLE}&category=Comparativos&subtitle=${COVER_SUBTITLE}`;
 
 export const metadata = {
   title: "AdSales·Hub vs Kommo (amoCRM) — comparativo 2026",
   description:
-    "Kommo eh queridinho de quem vende por WhatsApp. AdSales·Hub vai alem: trafego pago, SDR de voz IA, atendimento omnichannel e contratos. Comparativo honesto.",
+    "Kommo eh queridinho de quem vende por WhatsApp. AdSales·Hub vai além: trafego pago, SDR de voz IA, atendimento omnichannel e contratos. Comparativo honesto.",
   alternates: { canonical: URL },
   openGraph: { url: URL, title: "AdSales·Hub vs Kommo — comparativo 2026" },
 };
@@ -20,19 +20,19 @@ export const metadata = {
 const FAQ = [
   {
     q: "Kommo realmente eh o melhor CRM pra WhatsApp no Brasil em 2026?",
-    a: "Pra quem vive dentro do WhatsApp e nao quer aprender mais nada, Kommo segue muito competente. O Salesbot eh maduro, a centralizacao de conversas funciona e a equipe brasileira entende o jogo de chat. Mas 'melhor' depende do recorte. Se sua operacao tem trafego pago, multiplos canais (e-mail, SMS, Instagram DM, telefone) e precisa amarrar receita ao anuncio que gerou o lead, voce vai sentir o limite. AdSales·Hub conecta WhatsApp Cloud API direto na Meta Business Platform, com a mesma profundidade de bot, e ainda cobre o que vem antes (campanha) e o que vem depois (contrato assinado).",
+    a: "Pra quem vive dentro do WhatsApp e não quer aprender mais nada, Kommo segue muito competente. O Salesbot eh maduro, a centralizacao de conversas funciona e a equipe brasileira entende o jogo de chat. Mas 'melhor' depende do recorte. Se sua operação tem trafego pago, multiplos canais (e-mail, SMS, Instagram DM, telefone) e precisa amarrar receita ao anuncio que gerou o lead, você vai sentir o limite. AdSales·Hub conecta WhatsApp Cloud API direto na Meta Business Platform, com a mesma profundidade de bot, e ainda cobre o que vem antes (campanha) e o que vem depois (contrato assinado).",
   },
   {
     q: "Quanto eu pago de verdade no Kommo, em real, com cambio considerado?",
-    a: "Kommo cobra em USD por usuario: Base US$ 15, Avancado US$ 25 e Empresarial US$ 45. Na pratica, com cambio R$ 5,30 e 5 vendedores no plano Avancado, sao R$ 662/mes — e voce nao tem trafego pago, nem SDR, nem landing page, nem assinatura eletronica nesse valor. AdSales·Hub Crescimento custa R$ 690/mes fixos, em real, com 8 usuarios e os modulos de CRM, Meta Ads, Social, Mensagens e BI inclusos. Conta a stack inteira que voce precisaria comprar junto do Kommo e a diferenca explode.",
+    a: "Kommo cobra em USD por usuário: Base US$ 15, Avancado US$ 25 e Empresarial US$ 45. Na pratica, com cambio R$ 5,30 e 5 vendedores no plano Avancado, sao R$ 662/mes — e você não tem trafego pago, nem SDR, nem landing page, nem assinatura eletronica nesse valor. AdSales·Hub Crescimento custa R$ 690/mes fixos, em real, com 8 usuários e os módulos de CRM, Meta Ads, Social, Mensagens e BI inclusos. Conta a stack inteira que você precisaria comprar junto do Kommo e a diferenca explode.",
   },
   {
     q: "Kommo cria campanha de Meta Ads ou apenas captura lead?",
-    a: "Apenas captura. O Kommo conecta com Facebook Lead Ads via integracao nativa e puxa o lead pra dentro do CRM em segundos — isso ele faz bem. Mas voce continua precisando do Gerenciador de Anuncios da Meta (ou de uma agencia) pra criar campanha, pensar publico, gerar criativo e otimizar verba. AdSales·Hub gera a campanha completa via Claude API a partir de um briefing escrito em portugues, publica direto na Meta Marketing API v21, dispara o motor de otimizacao a cada 48h e envia eventos pela Conversions API pra fechar o loop de atribuicao.",
+    a: "Apenas captura. O Kommo conecta com Facebook Lead Ads via integração nativa e puxa o lead pra dentro do CRM em segundos — isso ele faz bem. Mas você continua precisando do Gerenciador de Anuncios da Meta (ou de uma agencia) pra criar campanha, pensar público, gerar criativo e otimizar verba. AdSales·Hub gera a campanha completa via Claude API a partir de um briefing escrito em portugues, pública direto na Meta Marketing API v21, dispara o motor de otimização a cada 48h e envia eventos pela Conversions API pra fechar o loop de atribuição.",
   },
   {
-    q: "Vale a pena migrar do Kommo pro AdSales·Hub se ja estou rodando ha anos?",
-    a: "Vale se voce esta crescendo e o Kommo virou um silo: ele resolve a janela do WhatsApp, mas o resto da operacao (anuncio, qualificacao, atendimento em outros canais, contrato) vive em ferramentas separadas que nao conversam. Se voce contratou agencia, ferramenta de e-mail marketing, ferramenta de assinatura eletronica e tem planilha pra cruzar tudo, faz sentido consolidar. Agora, se sua operacao eh enxuta, 100% por chat e voce nao tem dor de atribuicao, ficar no Kommo eh decisao economica honesta. Nao migre por modinha.",
+    q: "Vale a pena migrar do Kommo pro AdSales·Hub se já estou rodando ha anos?",
+    a: "Vale se você esta crescendo e o Kommo virou um silo: ele resolve a janela do WhatsApp, mas o resto da operação (anuncio, qualificação, atendimento em outros canais, contrato) vive em ferramentas separadas que não conversam. Se você contratou agencia, ferramenta de e-mail marketing, ferramenta de assinatura eletronica e tem planilha pra cruzar tudo, faz sentido consolidar. Agora, se sua operação eh enxuta, 100% por chat e você não tem dor de atribuição, ficar no Kommo eh decisão economica honesta. Nao migre por modinha.",
   },
 ];
 
@@ -49,8 +49,8 @@ export default function ComparativoKommoPage() {
       <ComparisonJsonLd url={URL} productA="AdSales·Hub" productB="Kommo" description="Comparativo entre AdSales·Hub e Kommo (amoCRM)." />
       <ContentLayout
         kicker="Comparativo"
-        title="AdSales·Hub vs Kommo: WhatsApp-first ou operacao completa?"
-        description="Kommo (antigo amoCRM) virou queridinho de quem vende por WhatsApp no Brasil. AdSales·Hub tambem eh WhatsApp-nativo, mas nao para ali — vai do anuncio ao contrato assinado num sistema so. Veja qual cabe no seu caso, sem floreio."
+        title="AdSales·Hub vs Kommo: WhatsApp-first ou operação completa?"
+        description="Kommo (antigo amoCRM) virou queridinho de quem vende por WhatsApp no Brasil. AdSales·Hub também eh WhatsApp-nativo, mas não para ali — vai do anuncio ao contrato assinado num sistema so. Veja qual cabe no seu caso, sem floreio."
         updatedAt="01 de maio de 2026"
         coverImage={COVER_IMAGE}
         readingMinutes={8}
@@ -281,7 +281,7 @@ export default function ComparativoKommoPage() {
           coracao tranquilo. AdSales·Hub eh excelente em outra coisa: ser o sistema
           unico de uma empresa brasileira que vende online em 2026 — anuncio,
           captura, qualificacao, atendimento, fechamento e contrato. A pergunta nao
-          eh "qual eh melhor", eh "qual problema voce esta resolvendo agora". Se
+          eh "qual eh melhor", eh "qual problema você esta resolvendo agora". Se
           voce respondeu "tudo isso", o ponteiro pende pra ca.
         </p>
 

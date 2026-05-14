@@ -25,7 +25,7 @@ export async function duplicateLandingPage(id: string): Promise<ActionResult<{ i
     .eq("id", id)
     .eq("workspace_id", session.workspaceId)
     .maybeSingle();
-  if (!source) return { ok: false, error: "LP nao encontrada" };
+  if (!source) return { ok: false, error: "LP não encontrada" };
 
   const { data: existing } = await sb
     .from("landing_pages")
@@ -78,7 +78,7 @@ export async function duplicateForm(id: string): Promise<ActionResult<{ id: stri
     .eq("id", id)
     .eq("workspace_id", session.workspaceId)
     .maybeSingle();
-  if (!source) return { ok: false, error: "Formulario nao encontrado" };
+  if (!source) return { ok: false, error: "Formulario não encontrado" };
 
   const { data: existing } = await sb
     .from("forms")

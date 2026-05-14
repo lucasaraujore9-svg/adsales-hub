@@ -22,8 +22,8 @@ interface SdrConfig {
 
 const DEFAULT_QUESTIONS = [
   "Qual o tamanho da sua empresa?",
-  "Voce ja usa alguma ferramenta de CRM hoje?",
-  "Qual o orcamento mensal disponivel?",
+  "Voce já usa alguma ferramenta de CRM hoje?",
+  "Qual o orcamento mensal disponível?",
   "Quem decide a contratacao?",
   "Tem urgencia em comecar?",
 ];
@@ -207,7 +207,7 @@ export function SdrConfigForm({ config }: { config: SdrConfig }) {
       </div>
 
       <Button type="submit" disabled={pending}>
-        {pending ? "Salvando..." : "Salvar configuracao"}
+        {pending ? "Salvando..." : "Salvar configuração"}
       </Button>
     </form>
   );

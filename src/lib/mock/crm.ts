@@ -19,7 +19,7 @@ export interface MockDeal {
   title: string;
   value: number;
   currency: "BRL";
-  stage: "qualificacao" | "proposta" | "negociacao" | "fechamento" | "perdido";
+  stage: "qualificação" | "proposta" | "negociacao" | "fechamento" | "perdido";
   status: "open" | "won" | "lost";
   contactId: string;
   company: string | null;
@@ -53,7 +53,7 @@ export const OWNERS = [
 ];
 
 export const STAGES = [
-  { id: "qualificacao", label: "Qualificacao", probability: 10, color: "#6366F1" },
+  { id: "qualificação", label: "Qualificacao", probability: 10, color: "#6366F1" },
   { id: "proposta", label: "Proposta", probability: 40, color: "#F59E0B" },
   { id: "negociacao", label: "Negociacao", probability: 70, color: "#FF5E1A" },
   { id: "fechamento", label: "Fechamento", probability: 90, color: "#10B981" },
@@ -147,7 +147,7 @@ export const MOCK_CONTACTS: MockContact[] = Array.from({ length: 28 }).map((_, i
 
 export const MOCK_DEALS: MockDeal[] = Array.from({ length: 22 }).map((_, i) => {
   const contact = pick(MOCK_CONTACTS);
-  const stage = pick(["qualificacao", "qualificacao", "proposta", "proposta", "negociacao", "fechamento", "perdido"] as const);
+  const stage = pick(["qualificação", "qualificação", "proposta", "proposta", "negociacao", "fechamento", "perdido"] as const);
   const status: MockDeal["status"] = stage === "perdido" ? "lost" : stage === "fechamento" && rand() > 0.6 ? "won" : "open";
   const value = Math.round((rand() * 150 + 5) * 100) * 10;
   const stageMeta = STAGES.find((s) => s.id === stage)!;
@@ -172,10 +172,10 @@ export const MOCK_DEALS: MockDeal[] = Array.from({ length: 22 }).map((_, i) => {
 });
 
 const ACTIVITY_TITLES: Record<MockActivity["type"], string[]> = {
-  call: ["Ligar para follow-up", "Ligacao de qualificacao", "Confirmar reuniao por telefone"],
+  call: ["Ligar para follow-up", "Ligacao de qualificação", "Confirmar reuniao por telefone"],
   email: ["Enviar proposta", "Enviar material de apoio", "Resposta a pergunta tecnica"],
   whatsapp: ["Mensagem de bom dia", "Confirmar recebimento", "Enviar video explicativo"],
-  meeting: ["Reuniao de apresentacao", "Demo tecnica", "Kick-off do projeto"],
+  meeting: ["Reuniao de apresentação", "Demo tecnica", "Kick-off do projeto"],
   task: ["Atualizar CRM", "Preparar deck", "Enviar contrato"],
   note: ["Anotacao sobre call", "Resumo de reuniao"],
 };
@@ -213,7 +213,7 @@ export function formatRelative(iso: string): string {
   const minutes = Math.round(abs / 60000);
   const hours = Math.round(minutes / 60);
   const days = Math.round(hours / 24);
-  const suffix = diffMs >= 0 ? "" : " atras";
+  const suffix = diffMs >= 0 ? "" : " atrás";
   const prefix = diffMs >= 0 ? "em " : "";
   if (minutes < 1) return "agora";
   if (minutes < 60) return `${prefix}${minutes}min${suffix}`;

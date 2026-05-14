@@ -53,7 +53,7 @@ const META: Record<
   { label: string; icon: typeof Star; helper: string; hasCta?: boolean; hasForm?: boolean; hasBody?: boolean }
 > = {
   hero: { label: "Hero", icon: Sparkles, helper: "Headline + sub + CTA principal", hasCta: true },
-  problem: { label: "Problema", icon: HelpCircle, helper: "Dor que voce resolve", hasBody: true },
+  problem: { label: "Problema", icon: HelpCircle, helper: "Dor que você resolve", hasBody: true },
   benefits: { label: "Beneficios", icon: Star, helper: "3-5 bullets", hasBody: true },
   features: { label: "Features", icon: ListChecks, helper: "Detalhes funcionais", hasBody: true },
   testimonials: { label: "Depoimentos", icon: Quote, helper: "Social proof" },
@@ -316,7 +316,7 @@ export function LpBlocksEditor({
       <div className="flex justify-end border-t border-[color:var(--line)] pt-4">
         <Button onClick={handleSave} disabled={pending}>
           <Plus className="mr-1 h-4 w-4" />
-          {pending ? "Salvando..." : "Salvar pagina"}
+          {pending ? "Salvando..." : "Salvar página"}
         </Button>
       </div>
     </div>

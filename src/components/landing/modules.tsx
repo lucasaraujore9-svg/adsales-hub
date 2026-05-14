@@ -37,7 +37,7 @@ const MODULES: Module[] = [
     tag: "ANÚNCIOS",
     title: "Do briefing escrito à campanha publicada em 4 passos.",
     desc:
-      "Você escreve em português o que quer vender. A IA gera público, copy, 3 criativos A/B, formulário e publica direto no Meta. Otimização contínua a cada 2 dias.",
+      "Você escreve em português o que quer vender. A IA gera público, copy, 3 criativos A/B, formulário e pública direto no Meta. Otimização contínua a cada 2 dias.",
     metrics: [["Passos", "4"], ["Variantes", "3 A/B"]],
     what:
       "“Cria e gerencia seus anúncios no Instagram, Facebook e Google. Substitui agência e gestor de tráfego.”",
@@ -48,7 +48,7 @@ const MODULES: Module[] = [
     tag: "CONTEÚDO",
     title: "Calendário em 6 redes com IA replicando o que vende.",
     desc:
-      "Instagram, Facebook, LinkedIn, TikTok, YouTube e Pinterest. A IA sugere legenda, hashtag e horário, adapta o mesmo post para cada rede e publica automático.",
+      "Instagram, Facebook, LinkedIn, TikTok, YouTube e Pinterest. A IA sugere legenda, hashtag e horário, adapta o mesmo post para cada rede e pública automático.",
     metrics: [["Redes", "6"], ["Aprovação", "link externo"]],
     what:
       "“Posta e mantém suas redes sociais no ar. Substitui social media e designer.”",
@@ -469,7 +469,7 @@ export function LandingModules() {
   });
 
   return (
-    <section id="modulos" className="py-[120px] md:py-[140px]">
+    <section id="módulos" className="py-[120px] md:py-[140px]">
       <div className="mx-auto max-w-[1200px] px-6 md:px-8">
         <div className="mx-auto max-w-[860px] text-center">
           <div className="mb-6">

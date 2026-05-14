@@ -3,6 +3,7 @@ import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { requireServerEnv } from "@/lib/env";
 import { fetchLeadsForForm } from "@/lib/meta/lead-forms";
 import { getMetaToken } from "@/lib/meta/token-manager";
+import { checkMetaSignatureOrReject } from "@/lib/webhooks/verify";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -38,7 +39,21 @@ interface LeadgenChange {
 }
 
 export async function POST(request: NextRequest) {
-  const payload = await request.json().catch(() => null);
+  const rawBody = await request.text();
+  const reject = checkMetaSignatureOrReject(
+    rawBody,
+    request,
+    process.env.META_APP_SECRET,
+    "meta-leads",
+  );
+  if (reject) return reject;
+
+  let payload: { entry?: unknown } | null = null;
+  try {
+    payload = JSON.parse(rawBody);
+  } catch {
+    return NextResponse.json({ error: "invalid_json" }, { status: 400 });
+  }
   if (!payload?.entry) {
     return NextResponse.json({ error: "invalid_payload" }, { status: 400 });
   }
@@ -119,6 +134,43 @@ async function handleLeadRow(
     fields[fd.name] = (fd.values ?? [])[0] ?? "";
   }
 
+  // Carrega mapeamentos custom do form (issue 041)
+  type Mapping = {
+    source_field: string;
+    target_type: "contact_field" | "custom_field" | "ignore" | "tag" | "metadata";
+    target_field: string | null;
+    target_custom_field_id: string | null;
+  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const adminAny = admin as any;
+  const { data: mappingRows } = await adminAny
+    .from("lead_form_field_mappings")
+    .select("source_field, target_type, target_field, target_custom_field_id")
+    .eq("lead_form_id", leadForm.id);
+  const mappings = (mappingRows ?? []) as unknown as Mapping[];
+
+  // Aplica mapeamentos: campos contact_field sobrescrevem o default,
+  // custom_fields acumulam pra inserir depois, metadata acumula em JSONB.
+  const contactPatch: Record<string, string> = {};
+  const customFieldValues: Array<{ id: string; value: unknown }> = [];
+  const metadataExtra: Record<string, unknown> = {};
+  const tagsToAdd: string[] = [];
+
+  for (const m of mappings) {
+    const value = fields[m.source_field];
+    if (value == null || value === "") continue;
+    if (m.target_type === "ignore") continue;
+    if (m.target_type === "contact_field" && m.target_field) {
+      contactPatch[m.target_field] = value;
+    } else if (m.target_type === "custom_field" && m.target_custom_field_id) {
+      customFieldValues.push({ id: m.target_custom_field_id, value });
+    } else if (m.target_type === "metadata") {
+      metadataExtra[m.source_field] = value;
+    } else if (m.target_type === "tag") {
+      tagsToAdd.push(value);
+    }
+  }
+
   // Create or find contact by email
   let contactId: string | null = null;
   if (fields.email) {
@@ -131,20 +183,42 @@ async function handleLeadRow(
     if ((existing as unknown as { id: string } | null)?.id) {
       contactId = (existing as unknown as { id: string }).id;
     } else {
+      const baseContact: Record<string, unknown> = {
+        workspace_id: leadForm.workspace_id,
+        name: fields.full_name ?? fields.name ?? fields.email,
+        email: fields.email,
+        phone: fields.phone_number ?? null,
+        whatsapp: fields.phone_number ?? null,
+        source: "meta_ads",
+        lifecycle_stage: "lead",
+        ...contactPatch,
+      };
+      if (Object.keys(metadataExtra).length > 0) {
+        baseContact.metadata = metadataExtra;
+      }
       const { data: created } = await admin
         .from("contacts")
-        .insert({
-          workspace_id: leadForm.workspace_id,
-          name: fields.full_name ?? fields.name ?? fields.email,
-          email: fields.email,
-          phone: fields.phone_number ?? null,
-          whatsapp: fields.phone_number ?? null,
-          source: "meta_ads",
-          lifecycle_stage: "lead",
-        } as never)
+        .insert(baseContact as never)
         .select("id")
         .single();
       contactId = (created as unknown as { id: string })?.id ?? null;
+    }
+
+    // Custom field values (issue 041)
+    if (contactId && customFieldValues.length > 0) {
+      try {
+        await admin.from("custom_field_values").upsert(
+          customFieldValues.map((v) => ({
+            workspace_id: leadForm.workspace_id,
+            custom_field_id: v.id,
+            entity_id: contactId,
+            value: v.value,
+          })) as never,
+          { onConflict: "custom_field_id,entity_id" },
+        );
+      } catch (err) {
+        console.error("[meta-leads] custom field values failed", err);
+      }
     }
   }
 

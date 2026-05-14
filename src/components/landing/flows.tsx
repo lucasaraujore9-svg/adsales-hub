@@ -32,7 +32,7 @@ const FLOWS: Flow[] = [
     time: "4 min de setup · lead chega em < 5s",
     steps: [
       { t: "00:00", who: "Você", l: 'Escreve em 1 parágrafo: "quero vender curso de Excel pra contador, R$ 20/dia".' },
-      { t: "00:04", who: "IA", l: "Gera público, 3 variações de anúncio com imagem, formulário e publica no Instagram." },
+      { t: "00:04", who: "IA", l: "Gera público, 3 variações de anúncio com imagem, formulário e pública no Instagram." },
       { t: "02:17", who: "Meta", l: "Lead preenche o formulário. Webhook entrega na plataforma em 3 segundos." },
       { t: "02:17", who: "CRM", l: "Cria o negócio no funil “Tráfego Pago” com campanha, custo e anúncio vinculados." },
       { t: "02:18", who: "Vendedor", l: "Recebe push + WhatsApp: “Mariana acabou de virar lead — R$ 12 de custo”." },

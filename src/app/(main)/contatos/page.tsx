@@ -13,6 +13,7 @@ import {
 } from "@/lib/queries/crm";
 import { NewContactButton } from "@/components/contacts/new-contact-button";
 import { ImportExportButtons } from "@/components/contacts/import-export-buttons";
+import { ContactsActiveFilters } from "@/components/contacts/contacts-active-filters";
 
 export const metadata = { title: "Contatos · AdSales Hub" };
 
@@ -31,9 +32,9 @@ function formatRelative(iso: string | null) {
   if (!iso) return "—";
   const days = Math.round((Date.now() - new Date(iso).getTime()) / 864e5);
   if (days < 1) return "hoje";
-  if (days < 7) return `${days}d atras`;
-  if (days < 30) return `${Math.round(days / 7)}sem atras`;
-  return `${Math.round(days / 30)}mes atras`;
+  if (days < 7) return `${days}d atrás`;
+  if (days < 30) return `${Math.round(days / 7)}sem atrás`;
+  return `${Math.round(days / 30)}mes atrás`;
 }
 
 export default async function ContactsPage({
@@ -130,6 +131,8 @@ export default async function ContactsPage({
           </>
         }
       />
+
+      <ContactsActiveFilters q={q} life={life} src={src} />
 
       <form className="mb-6 flex flex-wrap items-center gap-2">
         <div className="relative min-w-[260px] flex-1 max-w-md">

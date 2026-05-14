@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/auth/guards";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { PricingMatrix } from "@/components/billing/pricing-matrix";
 
 interface PageProps {
   searchParams: Promise<{ module?: string; from?: string }>;
@@ -16,7 +17,7 @@ const MODULE_COPY: Record<string, { title: string; description: string }> = {
   social: {
     title: "Social Media",
     description:
-      "Calendario, criador de post, aprovacao por link e publicacao automatica em Instagram, Facebook, LinkedIn, TikTok, YouTube e Pinterest.",
+      "Calendario, criador de post, aprovação por link e publicação automatica em Instagram, Facebook, LinkedIn, TikTok, YouTube e Pinterest.",
   },
   msg: {
     title: "Mensagens",
@@ -88,12 +89,12 @@ export default async function UpgradePage({ searchParams }: PageProps) {
     <div className="mx-auto max-w-4xl px-6 py-12">
       <span className="kicker">Upgrade necessario</span>
       <h1 className="mt-3 text-4xl font-medium tracking-tighter2">
-        {copy?.title ?? moduleRow?.display_name ?? "Modulo nao contratado"}
+        {copy?.title ?? moduleRow?.display_name ?? "Modulo não contratado"}
       </h1>
       <p className="mt-4 max-w-2xl text-[color:var(--ink-3)]">
         {copy?.description ??
           moduleRow?.description ??
-          "Este modulo nao esta incluido na sua cesta atual. Contrate o modulo individualmente ou mude para uma cesta que o inclua."}
+          "Este módulo não esta incluido na sua cesta atual. Contrate o módulo individualmente ou mude para uma cesta que o inclua."}
       </p>
       {from && (
         <p className="mt-2 text-xs text-[color:var(--ink-4)]">
@@ -128,37 +129,55 @@ export default async function UpgradePage({ searchParams }: PageProps) {
 
       <div className="mt-12">
         <h2 className="text-2xl font-medium tracking-tighter2">
-          Ou escolha uma cesta
+          Compare os planos
         </h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {(baskets ?? []).map((b) => (
-            <div
-              key={b.name}
-              className={`rounded-card border p-5 ${
-                b.is_featured
-                  ? "border-[color:var(--accent)] bg-[color:var(--panel)]"
-                  : "border-[color:var(--line)] bg-[color:var(--panel)]"
-              }`}
-            >
-              <div className="kicker">{b.is_featured ? "Recomendado" : "Cesta"}</div>
-              <div className="mt-2 text-lg font-medium">{b.display_name}</div>
-              <div className="mt-2 text-2xl font-medium">
-                R$ {(b.price_monthly / 100).toFixed(0)}
-                <span className="text-sm font-normal text-[color:var(--ink-3)]">/mes</span>
-              </div>
-              <ul className="mt-4 space-y-1 text-sm text-[color:var(--ink-3)]">
-                {((b.module_ids ?? []) as string[]).map((m) => (
-                  <li key={m}>— {m}</li>
-                ))}
-              </ul>
-              <Button asChild variant={b.is_featured ? "default" : "outline"} className="mt-6 w-full">
-                <Link href={`/configuracoes/billing?basket=${b.name}`}>
-                  Escolher {b.display_name}
-                </Link>
-              </Button>
-            </div>
-          ))}
+        <p className="mt-2 text-sm text-[color:var(--ink-3)]">
+          Veja exatamente o que está incluído em cada cesta antes de escolher.
+        </p>
+        <div className="mt-6">
+          <PricingMatrix />
         </div>
+
+        {(baskets ?? []).length > 0 && (
+          <details className="mt-8">
+            <summary className="cursor-pointer text-sm text-[color:var(--ink-3)] hover:text-[color:var(--ink)]">
+              Custom Builder — montar cesta personalizada
+            </summary>
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              {(baskets ?? []).map((b) => (
+                <div
+                  key={b.name}
+                  className={`rounded-card border p-5 ${
+                    b.is_featured
+                      ? "border-[color:var(--accent)] bg-[color:var(--panel)]"
+                      : "border-[color:var(--line)] bg-[color:var(--panel)]"
+                  }`}
+                >
+                  <div className="kicker">{b.is_featured ? "Recomendado" : "Cesta"}</div>
+                  <div className="mt-2 text-lg font-medium">{b.display_name}</div>
+                  <div className="mt-2 text-2xl font-medium">
+                    R$ {(b.price_monthly / 100).toFixed(0)}
+                    <span className="text-sm font-normal text-[color:var(--ink-3)]">/mês</span>
+                  </div>
+                  <ul className="mt-4 space-y-1 text-sm text-[color:var(--ink-3)]">
+                    {((b.module_ids ?? []) as string[]).map((m) => (
+                      <li key={m}>— {m}</li>
+                    ))}
+                  </ul>
+                  <Button
+                    asChild
+                    variant={b.is_featured ? "default" : "outline"}
+                    className="mt-6 w-full"
+                  >
+                    <Link href={`/configuracoes/billing?basket=${b.name}`}>
+                      Escolher {b.display_name}
+                    </Link>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </details>
+        )}
       </div>
 
       <p className="mt-8 text-xs text-[color:var(--ink-4)]">

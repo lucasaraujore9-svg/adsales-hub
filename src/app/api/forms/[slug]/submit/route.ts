@@ -51,14 +51,14 @@ export async function POST(
     .maybeSingle();
   const form = data as FormRow | null;
   if (!form || !form.is_active) {
-    return NextResponse.json({ ok: false, error: "Formulario nao encontrado" }, { status: 404 });
+    return NextResponse.json({ ok: false, error: "Formulario não encontrado" }, { status: 404 });
   }
 
   let body: Record<string, unknown>;
   try {
     body = (await req.json()) as Record<string, unknown>;
   } catch {
-    return NextResponse.json({ ok: false, error: "JSON invalido" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
   }
 
   const fields = (Array.isArray(form.fields) ? form.fields : [])

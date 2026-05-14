@@ -203,7 +203,7 @@ export async function generateSocialImage(
     if (charge.error === "insufficient_credits") {
       return {
         ok: false,
-        error: `Voce nao tem creditos suficientes. Necessario: ${charge.required ?? 0}, disponivel: ${charge.balance ?? 0}.`,
+        error: `Voce não tem creditos suficientes. Necessario: ${charge.required ?? 0}, disponível: ${charge.balance ?? 0}.`,
         reason: "insufficient_credits",
         required: charge.required,
         balance: charge.balance,
@@ -256,7 +256,7 @@ export async function generateSocialImage(
     await refundCredits(charge.transaction_id, "provider_failed");
     return {
       ok: false,
-      error: "Nao foi possivel gerar a imagem agora. Os creditos foram devolvidos.",
+      error: "Nao foi possível gerar a imagem agora. Os creditos foram devolvidos.",
       reason: "generation_failed",
     };
   }

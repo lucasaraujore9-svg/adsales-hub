@@ -74,7 +74,7 @@ export default async function SdrPage() {
       />
 
       <section className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-        <MetricCard label="Na fila" value={String(queue.length)} hint="aguardando qualificacao" />
+        <MetricCard label="Na fila" value={String(queue.length)} hint="aguardando qualificação" />
         <MetricCard label="Ligacoes 30d" value={String(calls.length)} />
         <MetricCard label="Qualificados" value={String(qualified)} emphasis="inverse" />
         <MetricCard
@@ -144,7 +144,7 @@ export default async function SdrPage() {
             </div>
             <div>
               <div className="kicker">Numero BR</div>
-              <div className="mt-1 text-sm">{config?.phone_number ?? "nao configurado"}</div>
+              <div className="mt-1 text-sm">{config?.phone_number ?? "não configurado"}</div>
             </div>
           </div>
           <p className="mt-4 text-xs text-[color:var(--ink-4)]">

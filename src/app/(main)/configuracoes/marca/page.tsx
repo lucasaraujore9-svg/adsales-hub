@@ -11,40 +11,22 @@ export default async function BrandingPage() {
   const branding = await getBranding(session.supabase, session.workspaceId);
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-6 py-8">
+    <div className="mx-auto w-full max-w-6xl px-6 py-8">
       <PageHeader
-        kicker="Personalizacao"
+        kicker="Personalização"
         title="Marca do workspace"
-        description="Accent color + logo aplicados em todo o sistema e nos relatorios white-label. Mudancas sao refletidas em tempo real."
+        description="Cor de destaque e logo aplicados em todo o sistema, emails e relatórios white-label. Veja o preview ao vivo enquanto edita."
       />
 
-      <WidgetCard kicker="Visual" title="Identidade visual">
+      <WidgetCard kicker="Identidade visual" title="Edite e veja o resultado em tempo real">
         <BrandingForm
           accentColor={branding.accent_color}
           accentColorLight={branding.accent_color_light}
           logoUrl={branding.logo_url}
           logoIconUrl={branding.logo_icon_url}
+          workspaceName={session.workspaceName}
         />
       </WidgetCard>
-
-      <div className="mt-6 rounded-card border border-[color:var(--line)] bg-[color:var(--panel)] p-5">
-        <div className="kicker">Preview</div>
-        <div className="mt-3 flex items-center gap-3">
-          <div
-            className="inline-block h-10 w-10 rounded-md"
-            style={{ background: branding.accent_color }}
-          />
-          <div>
-            <div className="text-sm font-medium">Botao primario</div>
-            <button
-              className="mt-2 rounded-pill px-4 py-2 text-xs font-medium text-white"
-              style={{ background: branding.accent_color }}
-            >
-              Ver relatorio
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

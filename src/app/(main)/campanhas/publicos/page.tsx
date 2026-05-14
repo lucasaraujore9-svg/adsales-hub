@@ -30,8 +30,8 @@ function formatSize(n: number | null): string {
 function formatRelative(iso: string | null) {
   if (!iso) return "—";
   const h = Math.round((Date.now() - new Date(iso).getTime()) / 36e5);
-  if (h < 24) return `${h}h atras`;
-  return `${Math.round(h / 24)}d atras`;
+  if (h < 24) return `${h}h atrás`;
+  return `${Math.round(h / 24)}d atrás`;
 }
 
 export default async function AudiencesPage() {
@@ -43,7 +43,7 @@ export default async function AudiencesPage() {
       <PageHeader
         kicker="Meta Ads"
         title="Publicos"
-        description="Salvos, lookalikes, retargeting e customizados. Sync CRM↔Meta disponivel."
+        description="Salvos, lookalikes, retargeting e customizados. Sync CRM↔Meta disponível."
         actions={<AudienceActions />}
       />
 

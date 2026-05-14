@@ -10,7 +10,7 @@ import { updateWorkspaceSettings } from "@/lib/actions/workspace";
 
 const MODELS = [
   { key: "claude-sonnet-4-6", label: "Claude Sonnet 4.6 (recomendado)" },
-  { key: "claude-haiku-4-5", label: "Claude Haiku 4.5 (rapido + barato)" },
+  { key: "claude-haiku-4-5", label: "Claude Haiku 4.5 (rápido + barato)" },
   { key: "claude-opus-4-7", label: "Claude Opus 4.7 (mais profundo)" },
   { key: "gpt-4o", label: "OpenAI GPT-4o" },
   { key: "gpt-4o-mini", label: "OpenAI GPT-4o-mini" },
@@ -115,7 +115,7 @@ export function AiSettingsForm({
       </div>
 
       <Button type="submit" disabled={pending}>
-        {pending ? "Salvando..." : "Salvar configuracao"}
+        {pending ? "Salvando..." : "Salvar configuração"}
       </Button>
     </form>
   );

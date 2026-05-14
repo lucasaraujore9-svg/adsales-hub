@@ -16,7 +16,7 @@ export function ReportRowActions({
   function handleDownload() {
     if (!pdfUrl) {
       toast.error(
-        status === "generating" ? "Relatorio ainda gerando..." : "PDF nao disponivel",
+        status === "generating" ? "Relatorio ainda gerando..." : "PDF não disponível",
       );
       return;
     }
@@ -25,7 +25,7 @@ export function ReportRowActions({
 
   function handleShare() {
     if (!pdfUrl) {
-      toast.error("PDF nao disponivel para compartilhar");
+      toast.error("PDF não disponível para compartilhar");
       return;
     }
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -36,7 +36,7 @@ export function ReportRowActions({
       navigator.clipboard
         .writeText(pdfUrl)
         .then(() => toast.success("Link copiado"))
-        .catch(() => toast.error("Nao foi possivel copiar"));
+        .catch(() => toast.error("Nao foi possível copiar"));
     }
   }
 

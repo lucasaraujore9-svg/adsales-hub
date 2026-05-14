@@ -45,7 +45,7 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ ok: false, error: "JSON invalido" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
   }
   const parsed = updateSchema.safeParse(body);
   if (!parsed.success) {

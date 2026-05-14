@@ -45,10 +45,10 @@ export function LandingNav() {
           <Wordmark size={17} />
         </Link>
         <nav className="hidden gap-8 text-[13.5px] font-normal text-[color:var(--ink-3)] md:flex">
-          <Link href={anchor("modulos")} className="hover:text-[color:var(--ink)]">
+          <Link href={anchor("módulos")} className="hover:text-[color:var(--ink)]">
             Plataforma
           </Link>
-          <Link href={anchor("modulos")} className="hover:text-[color:var(--ink)]">
+          <Link href={anchor("módulos")} className="hover:text-[color:var(--ink)]">
             Módulos
           </Link>
           <Link href={anchor("como")} className="hover:text-[color:var(--ink)]">

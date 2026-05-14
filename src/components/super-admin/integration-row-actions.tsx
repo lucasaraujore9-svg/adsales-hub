@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { disconnectIntegration } from "@/lib/actions/super-admin";
+import { useConfirm } from "@/components/ui/confirm-provider";
 
 interface Props {
   scope: "ad_account" | "social_account";
@@ -13,10 +14,17 @@ interface Props {
 
 export function IntegrationRowActions({ scope, id }: Props) {
   const router = useRouter();
+  const confirm = useConfirm();
   const [pending, start] = useTransition();
 
-  function handleDisconnect() {
-    if (!confirm("Desconectar esta integracao? Tokens serao apagados.")) return;
+  async function handleDisconnect() {
+    const ok = await confirm({
+      title: "Desconectar integração?",
+      description: "Os tokens armazenados serão apagados. O cliente precisará reconectar para usar novamente.",
+      confirmLabel: "Desconectar",
+      variant: "destructive",
+    });
+    if (!ok) return;
     start(async () => {
       const r = await disconnectIntegration({ scope, id });
       if (r.ok) {

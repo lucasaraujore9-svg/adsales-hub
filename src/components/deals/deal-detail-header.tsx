@@ -12,7 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteDeal, updateDeal } from "@/lib/actions/deals";
+import { deleteDeal, reopenDeal, updateDeal } from "@/lib/actions/deals";
+import { useConfirm } from "@/components/ui/confirm-provider";
+import { DuplicateDealButton } from "@/components/deals/duplicate-deal-button";
 import type { DealRow, StageRow } from "@/lib/queries/crm";
 
 interface Props {
@@ -22,6 +24,7 @@ interface Props {
 
 export function DealDetailHeader({ deal, stages }: Props) {
   const router = useRouter();
+  const confirm = useConfirm();
   const [pending, start] = useTransition();
   const [editingValue, setEditingValue] = useState(false);
   const [value, setValue] = useState(Number(deal.value || 0));
@@ -142,23 +145,35 @@ export function DealDetailHeader({ deal, stages }: Props) {
           <Button
             variant="outline"
             size="sm"
-            onClick={() =>
-              doAction(
-                () => updateDeal({ id: deal.id, status: "open" }),
-                "Reaberto",
-              )
-            }
+            onClick={async () => {
+              const wasLost = deal.status === "lost";
+              const ok = await confirm({
+                title: wasLost ? "Reabrir negócio perdido?" : "Reabrir negócio fechado?",
+                description: wasLost
+                  ? "O negócio voltará para 'Em andamento' e o motivo de perda será removido."
+                  : "O negócio voltará para 'Em andamento' e a data de fechamento será removida.",
+                confirmLabel: "Reabrir",
+              });
+              if (ok) doAction(() => reopenDeal(deal.id), "Negócio reaberto");
+            }}
             disabled={pending}
           >
             <TrendingUp className="mr-1 h-4 w-4" /> Reabrir
           </Button>
         )}
+        <DuplicateDealButton dealId={deal.id} dealTitle={deal.title} />
         <Button
           variant="outline"
           size="sm"
-          onClick={() => {
-            if (confirm("Excluir este negocio?")) {
-              doAction(() => deleteDeal(deal.id), "Excluido");
+          onClick={async () => {
+            const ok = await confirm({
+              title: "Excluir negócio?",
+              description: "Esta ação não pode ser desfeita. Atividades e notas vinculadas serão arquivadas.",
+              confirmLabel: "Excluir",
+              variant: "destructive",
+            });
+            if (ok) {
+              doAction(() => deleteDeal(deal.id), "Negócio excluído");
               router.push("/pipeline");
             }
           }}

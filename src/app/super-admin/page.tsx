@@ -43,7 +43,7 @@ export default async function SuperAdminOverview() {
           <MetricCard
             label="Agendados"
             value={String(data.scheduledPostCount)}
-            hint="rodara no proximo cron"
+            hint="rodara no próximo cron"
           />
         </div>
       </section>

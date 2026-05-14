@@ -332,7 +332,7 @@ export function LandingHero() {
           </Link>
           <a
             ref={ctaGhostRef}
-            href="#modulos"
+            href="#módulos"
             className="inline-flex items-center rounded-full border border-[color:var(--line-2)] bg-transparent px-6 py-4 text-[15px] font-medium text-[color:var(--ink)]"
           >
             Ver demo de 90s

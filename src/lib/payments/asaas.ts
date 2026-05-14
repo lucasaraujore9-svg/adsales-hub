@@ -13,7 +13,7 @@ function asaasBase(): string {
 
 function asaasKey(): string {
   const key = serverEnv().ASAAS_API_KEY;
-  if (!key) throw new Error("ASAAS_API_KEY nao configurado");
+  if (!key) throw new Error("ASAAS_API_KEY não configurado");
   return key;
 }
 
@@ -140,7 +140,7 @@ export async function createCheckoutLink(opts: {
     billingType: "UNDEFINED",
   });
   if (!payment.invoiceUrl) {
-    throw new Error("Asaas nao retornou invoiceUrl");
+    throw new Error("Asaas não retornou invoiceUrl");
   }
   return { invoiceUrl: payment.invoiceUrl, paymentId: payment.id };
 }

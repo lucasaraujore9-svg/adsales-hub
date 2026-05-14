@@ -24,7 +24,7 @@ export function CreditPackButtons({ packs }: { packs: CreditPack[] }) {
         return;
       }
       window.open(result.data.invoice_url, "_blank", "noopener,noreferrer");
-      toast.success("Pagamento aberto em nova aba. Os creditos sao adicionados apos confirmacao.");
+      toast.success("Pagamento aberto em nova aba. Os creditos sao adicionados após confirmacao.");
     });
   }
 

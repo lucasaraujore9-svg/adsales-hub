@@ -47,7 +47,7 @@ export function WhatsappTemplatesManager({ templates }: { templates: WaTemplate[
     start(async () => {
       const result = await createWhatsappTemplate(body);
       if (result.ok) {
-        toast.success("Template criado (rascunho — submeta a Meta para aprovacao)");
+        toast.success("Template criado (rascunho — submeta a Meta para aprovação)");
         setShowForm(false);
         router.refresh();
       } else {

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { deleteContact, updateContact } from "@/lib/actions/contacts";
+import { useConfirm } from "@/components/ui/confirm-provider";
 import type { CompanyRow, ContactRow } from "@/lib/queries/crm";
 
 const LIFECYCLE: { key: string; label: string }[] = [
@@ -27,6 +28,7 @@ export function ContactEditPanel({
   companies: CompanyRow[];
 }) {
   const router = useRouter();
+  const confirm = useConfirm();
   const [editing, setEditing] = useState(false);
   const [pending, start] = useTransition();
 
@@ -52,12 +54,19 @@ export function ContactEditPanel({
     });
   }
 
-  function handleDelete() {
-    if (!confirm("Excluir este contato? Negocios vinculados ficarao sem contato.")) return;
+  async function handleDelete() {
+    const ok = await confirm({
+      title: "Excluir contato?",
+      description:
+        "Negócios vinculados ficarão sem contato associado. Esta ação não pode ser desfeita.",
+      confirmLabel: "Excluir",
+      variant: "destructive",
+    });
+    if (!ok) return;
     start(async () => {
       const result = await deleteContact(contact.id);
       if (result.ok) {
-        toast.success("Contato excluido");
+        toast.success("Contato excluído");
         router.push("/contatos");
       } else {
         toast.error(result.error ?? "Erro ao excluir");

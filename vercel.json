@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/cron/run?task=metrics_collect",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/run?task=ai_optimize",
+      "schedule": "0 3 */2 * *"
+    },
+    {
+      "path": "/api/cron/run?task=ai_insights",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/cron/run?task=trial_expiry",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/run?task=social_publish",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/run?task=goals_recalc",
+      "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/run?task=proposal_reminders",
+      "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/cron/run?task=email_dispatch",
+      "schedule": "*/2 * * * *"
+    },
+    {
+      "path": "/api/cron/run?task=recording_purge",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/run?task=weekly_digest",
+      "schedule": "0 11 * * 1"
+    }
+  ]
+}

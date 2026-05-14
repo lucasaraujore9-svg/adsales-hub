@@ -44,7 +44,7 @@ const SECTIONS: { title: string; items: Item[] }[] = [
       { href: "/configuracoes/perfil", label: "Meu perfil", description: "Nome, avatar, senha, preferencias", icon: Users },
       { href: "/configuracoes/empresa", label: "Dados da empresa", description: "CNPJ, endereco, razao social", icon: Building2 },
       { href: "/configuracoes/marca", label: "Marca", description: "Accent color, logo, white-label", icon: Palette },
-      { href: "/configuracoes/usuarios", label: "Usuarios e permissoes", description: "Admin, gestor, vendedor, media buyer, visualizador", icon: ShieldCheck },
+      { href: "/configuracoes/usuários", label: "Usuarios e permissoes", description: "Admin, gestor, vendedor, media buyer, visualizador", icon: ShieldCheck },
       { href: "/configuracoes/billing", label: "Plano e faturamento", description: "Cesta atual, faturas, dados de pagamento", icon: CreditCard, badge: { label: "Trial 14d", tone: "accent" } },
     ],
   },
@@ -72,7 +72,7 @@ const SECTIONS: { title: string; items: Item[] }[] = [
     items: [
       { href: "/configuracoes/meta-ads", label: "Meta Ads", description: "Conta conectada, pixel, Conversions API", icon: Target, badge: { label: "Conectado", tone: "good" } },
       { href: "/configuracoes/pixel", label: "Pixel e tracking", description: "Meta Pixel + GA4 + GTM", icon: Sparkles },
-      { href: "/configuracoes/ia-ciclo", label: "Motor de IA", description: "Nivel de automacao do otimizador", icon: Workflow },
+      { href: "/configuracoes/ia-ciclo", label: "Motor de IA", description: "Nivel de automação do otimizador", icon: Workflow },
       { href: "/configuracoes/dominio", label: "Dominio custom", description: "Hospedar landing pages em lp.seu-dominio", icon: Globe },
       { href: "/configuracoes/social", label: "Redes sociais", description: "Conectar Instagram, Facebook, LinkedIn, TikTok, YouTube", icon: ImageIcon },
     ],
@@ -87,7 +87,7 @@ const SECTIONS: { title: string; items: Item[] }[] = [
   {
     title: "SDR + Contratos",
     items: [
-      { href: "/configuracoes/sdr-ia", label: "SDR + Agente de voz IA", description: "Script, voz, horarios, numero BR", icon: Headphones },
+      { href: "/configuracoes/sdr-ia", label: "SDR + Agente de voz IA", description: "Script, voz, horarios, número BR", icon: Headphones },
       { href: "/configuracoes/contratos", label: "Contratos", description: "Templates de proposta e contrato", icon: FileSignature },
     ],
   },
@@ -96,7 +96,7 @@ const SECTIONS: { title: string; items: Item[] }[] = [
     items: [
       { href: "/configuracoes/whatsapp", label: "WhatsApp Cloud API", description: "Phone number, token, webhook", icon: MessageCircle, badge: { label: "Conectado", tone: "good" } },
       { href: "/configuracoes/gmail", label: "Gmail / SMTP", description: "Envio de emails do time comercial", icon: Mail },
-      { href: "/configuracoes/telefone", label: "Telefonia", description: "Motor de voz IA + numero DID BR", icon: Phone },
+      { href: "/configuracoes/telefone", label: "Telefonia", description: "Motor de voz IA + número DID BR", icon: Phone },
       { href: "/configuracoes/calendario", label: "Calendario", description: "Google Calendar, Outlook, iCal", icon: CalendarClock },
     ],
   },
@@ -116,7 +116,7 @@ export default function SettingsIndexPage() {
       <PageHeader
         kicker="Workspace"
         title="Configuracoes"
-        description="Tudo que voce precisa para personalizar, integrar e escalar."
+        description="Tudo que você precisa para personalizar, integrar e escalar."
       />
 
       <div className="space-y-10">

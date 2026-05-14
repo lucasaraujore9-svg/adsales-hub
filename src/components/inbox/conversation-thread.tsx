@@ -220,7 +220,7 @@ export function ConversationThread({ conversation, messages: initial, currentUse
           rows={2}
           placeholder={
             mode === "note"
-              ? "Anotacao privada — nao e enviada pro cliente"
+              ? "Anotacao privada — não e enviada pro cliente"
               : "Digite sua resposta... (Enter envia, Shift+Enter quebra linha)"
           }
           className="resize-none border-transparent bg-transparent focus-visible:border-transparent focus-visible:ring-0"

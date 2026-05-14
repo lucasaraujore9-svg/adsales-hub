@@ -4,6 +4,7 @@ import {
   processWhatsAppWebhook,
   verifyWhatsAppSubscription,
 } from "@/lib/whatsapp/webhooks";
+import { checkMetaSignatureOrReject } from "@/lib/webhooks/verify";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -24,12 +25,27 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const payload = await request.json().catch(() => null);
-  if (!payload || payload.object !== "whatsapp_business_account") {
+  const rawBody = await request.text();
+  const reject = checkMetaSignatureOrReject(
+    rawBody,
+    request,
+    process.env.META_APP_SECRET,
+    "whatsapp",
+  );
+  if (reject) return reject;
+
+  let payload: unknown = null;
+  try {
+    payload = JSON.parse(rawBody);
+  } catch {
+    return NextResponse.json({ error: "invalid_json" }, { status: 400 });
+  }
+  const p = payload as { object?: string; entry?: unknown } | null;
+  if (!p || p.object !== "whatsapp_business_account" || !p.entry) {
     return NextResponse.json({ error: "invalid_payload" }, { status: 400 });
   }
   try {
-    await processWhatsAppWebhook(payload);
+    await processWhatsAppWebhook(p as Parameters<typeof processWhatsAppWebhook>[0]);
   } catch (err) {
     console.error("[whatsapp/webhook] handler failed", err);
     // Always return 200 to prevent Meta from retrying en masse

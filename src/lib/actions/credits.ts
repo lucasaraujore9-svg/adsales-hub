@@ -40,14 +40,14 @@ export async function startCreditPurchase(
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   const session = await getSession();
   const pack = findCreditPack(parsed.data.pack_id);
-  if (!pack) return { ok: false, error: "Pacote invalido" };
+  if (!pack) return { ok: false, error: "Pacote inválido" };
 
   const env = serverEnv();
   const gateway = env.PAYMENT_GATEWAY ?? (env.ASAAS_API_KEY ? "asaas" : env.MERCADO_PAGO_ACCESS_TOKEN ? "mercadopago" : null);
   if (!gateway) {
     return {
       ok: false,
-      error: "Gateway de pagamento nao configurado. Configure ASAAS_API_KEY ou MERCADO_PAGO_ACCESS_TOKEN.",
+      error: "Gateway de pagamento não configurado. Configure ASAAS_API_KEY ou MERCADO_PAGO_ACCESS_TOKEN.",
     };
   }
 
@@ -74,7 +74,7 @@ export async function startCreditPurchase(
         returnUrl: parsed.data.return_url,
       });
     }
-    return { ok: false, error: "Gateway nao suportado para compra de creditos" };
+    return { ok: false, error: "Gateway não suportado para compra de creditos" };
   } catch (err) {
     console.error("[credits] startPurchase falhou", err);
     return {
@@ -178,7 +178,7 @@ async function startMercadoPagoPurchase(opts: {
   }
   const json = (await res.json()) as { id?: string; init_point?: string };
   if (!json.id || !json.init_point) {
-    return { ok: false, error: "Resposta invalida do Mercado Pago" };
+    return { ok: false, error: "Resposta inválida do Mercado Pago" };
   }
 
   await adm().from("credit_purchases").insert({

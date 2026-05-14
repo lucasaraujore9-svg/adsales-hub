@@ -50,7 +50,7 @@ async function downloadToBuffer(
 ): Promise<{ data: Uint8Array; contentType: string }> {
   if (source.startsWith("data:")) {
     const match = source.match(/^data:([^;,]+)(;base64)?,(.*)$/);
-    if (!match) throw new Error("data URI invalido");
+    if (!match) throw new Error("data URI inválido");
     const ct = match[1] || "application/octet-stream";
     const payload = decodeURIComponent(match[3]);
     const buf = match[2]

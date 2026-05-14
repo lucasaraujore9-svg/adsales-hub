@@ -277,7 +277,7 @@ export function LandingProblem() {
           </div>
           <Link
             ref={ctaButtonRef}
-            href="#modulos"
+            href="#módulos"
             className="inline-flex items-center gap-2 rounded-full border border-[color:var(--ink)] bg-[color:var(--ink)] px-5 py-3 text-sm font-medium text-[color:var(--bg)]"
           >
             Conhecer a plataforma <Arrow style={{ width: 14, height: 14 }} />

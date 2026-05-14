@@ -35,7 +35,7 @@ export default function LoginPage() {
             type="email"
             autoComplete="email"
             required
-            placeholder="voce@empresa.com"
+            placeholder="você@empresa.com"
           />
           {state?.fieldErrors?.email && (
             <p className="text-xs text-[color:var(--bad)]">{state.fieldErrors.email}</p>

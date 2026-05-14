@@ -52,7 +52,7 @@ export function ResolveActivityDialog({
         router.refresh();
         onClose();
       } catch {
-        toast.error("Nao foi possivel resolver");
+        toast.error("Nao foi possível resolver");
       }
     });
   }

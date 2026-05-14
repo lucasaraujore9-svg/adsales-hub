@@ -201,7 +201,7 @@ export const MOCK_CAMPAIGNS: MockCampaign[] = [
 export const MOCK_AUDIENCES: MockAudience[] = [
   { id: "aud_1", name: "Clientes ativos (customer file)", type: "custom", size: 8432, platform: "meta", updatedAt: new Date(Date.now() - 12 * 36e5).toISOString(), used_in_campaigns: 2, source: "CRM export" },
   { id: "aud_2", name: "Lookalike 1% Clientes SaaS BR", type: "lookalike", size: 2_100_000, platform: "meta", updatedAt: new Date(Date.now() - 2 * 864e5).toISOString(), used_in_campaigns: 3 },
-  { id: "aud_3", name: "Visitantes do site ultimos 30d", type: "retargeting", size: 42_800, platform: "meta", updatedAt: new Date(Date.now() - 4 * 36e5).toISOString(), used_in_campaigns: 2, source: "Pixel Meta" },
+  { id: "aud_3", name: "Visitantes do site últimos 30d", type: "retargeting", size: 42_800, platform: "meta", updatedAt: new Date(Date.now() - 4 * 36e5).toISOString(), used_in_campaigns: 2, source: "Pixel Meta" },
   { id: "aud_4", name: "Gestores de Marketing BR", type: "saved", size: 820_000, platform: "meta", updatedAt: new Date(Date.now() - 6 * 864e5).toISOString(), used_in_campaigns: 1 },
   { id: "aud_5", name: "Compradores abandonaram carrinho", type: "retargeting", size: 5_640, platform: "meta", updatedAt: new Date(Date.now() - 1 * 864e5).toISOString(), used_in_campaigns: 1 },
   { id: "aud_6", name: "CEOs empresas 50-500 func", type: "saved", size: 120_000, platform: "meta", updatedAt: new Date(Date.now() - 10 * 864e5).toISOString(), used_in_campaigns: 0 },
@@ -209,7 +209,7 @@ export const MOCK_AUDIENCES: MockAudience[] = [
 
 export const MOCK_CREATIVES: MockCreative[] = [
   { id: "cr_1", name: "Hero Escala — Ana apresentando", type: "image", format: "1x1", thumbnail: "grad-1", tags: ["hero", "autoridade"], ctr: 3.8, cpl: 9.2, impressions: 84000, createdBy: "u1", aiGenerated: true, status: "active" },
-  { id: "cr_2", name: "Reel 30s — Demo rapida", type: "video", format: "9x16", thumbnail: "grad-2", tags: ["reel", "demo"], ctr: 4.2, cpl: 7.8, impressions: 62000, createdBy: "u2", aiGenerated: true, status: "active" },
+  { id: "cr_2", name: "Reel 30s — Demo rápida", type: "video", format: "9x16", thumbnail: "grad-2", tags: ["reel", "demo"], ctr: 4.2, cpl: 7.8, impressions: 62000, createdBy: "u2", aiGenerated: true, status: "active" },
   { id: "cr_3", name: "Carrossel — 3 dores comuns", type: "carousel", format: "1x1", thumbnail: "grad-3", tags: ["carrossel", "dor"], ctr: 2.9, cpl: 12.5, impressions: 48000, createdBy: "u1", aiGenerated: false, status: "active" },
   { id: "cr_4", name: "Story UGC — depoimento", type: "video", format: "9x16", thumbnail: "grad-4", tags: ["story", "prova-social"], ctr: 5.1, cpl: 6.2, impressions: 38000, createdBy: "u3", aiGenerated: false, status: "active" },
   { id: "cr_5", name: "Banner Awareness v2", type: "image", format: "16x9", thumbnail: "grad-5", tags: ["awareness"], ctr: 1.1, cpl: 28.0, impressions: 92000, createdBy: "u2", aiGenerated: true, status: "archived" },
@@ -221,7 +221,7 @@ export const MOCK_AI_SUGGESTIONS: MockAiSuggestion[] = [
     id: "sug_1",
     action: "increase_budget",
     target: { scope: "campaign", id: "camp_5", name: "Lookalike 1% Clientes SaaS" },
-    rationale: "CPL 8.98 (30% abaixo da media) com crescimento de conversao estavel nos ultimos 5 dias.",
+    rationale: "CPL 8.98 (30% abaixo da media) com crescimento de conversão estavel nos últimos 5 dias.",
     expectedImpact: "+32% leads/dia mantendo CPL < 12",
     priority: "high",
     status: "pending",

@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import { friendlyError } from "@/lib/errors/friendly";
 
 const schema = z.object({
   workspace_name: z.string().min(2, "Informe o nome da empresa"),
@@ -35,7 +36,7 @@ export async function createWorkspaceForCurrentUser(
   const supabase = await createServerSupabaseClient();
   const { data: authData } = await supabase.auth.getUser();
   if (!authData.user) {
-    return { ok: false, error: "Nao autenticado." };
+    return { ok: false, error: "Sessão expirou. Faça login novamente." };
   }
 
   const admin = createAdminSupabaseClient();
@@ -43,7 +44,7 @@ export async function createWorkspaceForCurrentUser(
     (authData.user.user_metadata?.name as string | undefined) ??
     (authData.user.user_metadata?.full_name as string | undefined) ??
     authData.user.email?.split("@")[0] ??
-    "Novo usuario";
+    "Novo usuário";
 
   const slugBase = parsed.data.workspace_name
     .toLowerCase()
@@ -57,7 +58,7 @@ export async function createWorkspaceForCurrentUser(
     .select("id")
     .single();
   if (wErr || !workspace) {
-    return { ok: false, error: wErr?.message ?? "Falha ao criar workspace." };
+    return { ok: false, error: friendlyError(wErr ?? new Error("Falha ao criar workspace"), "crud") };
   }
 
   const { error: uErr } = await admin.from("users").insert({
@@ -69,7 +70,7 @@ export async function createWorkspaceForCurrentUser(
     joined_at: new Date().toISOString(),
   });
   if (uErr) {
-    return { ok: false, error: uErr.message };
+    return { ok: false, error: friendlyError(uErr, "crud") };
   }
 
   await admin

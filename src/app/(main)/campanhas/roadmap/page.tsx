@@ -17,7 +17,7 @@ export default function RoadmapPage() {
       <PageHeader
         kicker="Bloco B · Roadmap"
         title="Mais plataformas em breve"
-        description="Estamos expandindo para alem de Meta. Mesmo fluxo de briefing IA aplicado em cada rede."
+        description="Estamos expandindo para além de Meta. Mesmo fluxo de briefing IA aplicado em cada rede."
       />
 
       <div className="grid grid-cols-1 gap-3">

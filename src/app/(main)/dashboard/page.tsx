@@ -303,7 +303,7 @@ export default async function DashboardPage({
           label="Investimento em midia"
           value={formatBRL(totalSpend)}
           hint={`${campaigns.filter((c) => c.status === "active").length} campanhas ativas`}
-          delta={{ value: spendDelta, label: "vs. periodo anterior" }}
+          delta={{ value: spendDelta, label: "vs. período anterior" }}
           icon={<DollarSign className="h-3.5 w-3.5" />}
         />
         <MetricCard
@@ -330,7 +330,7 @@ export default async function DashboardPage({
         <MetricCard
           label="MRR estimado"
           value={formatBRL(mrr)}
-          hint={`${wonCurrent.length} vendas no periodo`}
+          hint={`${wonCurrent.length} vendas no período`}
           delta={{ value: mrrDelta }}
         />
       </section>

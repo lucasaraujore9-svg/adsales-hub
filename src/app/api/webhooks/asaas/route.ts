@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { isPaidEvent, verifyAsaasWebhook, type AsaasWebhookEvent } from "@/lib/payments/asaas";
 import { recordCreditPurchase } from "@/lib/billing/credits";
+import { isAlreadyProcessed, markProcessed } from "@/lib/webhooks/idempotency";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -21,6 +22,11 @@ export async function POST(req: NextRequest) {
 
   if (!isPaidEvent(evt) || !evt.payment) {
     return NextResponse.json({ ok: true, ignored: true });
+  }
+
+  // Idempotência: Asaas pode reentregar o mesmo evento de pagamento
+  if (await isAlreadyProcessed("asaas", evt.payment.id)) {
+    return NextResponse.json({ ok: true, duplicate: true });
   }
 
   const admin = createAdminSupabaseClient() as unknown as {
@@ -76,6 +82,10 @@ export async function POST(req: NextRequest) {
         paid_at: new Date().toISOString(),
       })
       .eq("id", row.id);
+    await markProcessed("asaas", evt.payment.id, {
+      eventType: evt.event,
+      workspaceId: row.workspace_id,
+    });
   }
 
   return NextResponse.json({ ok: result.ok, balance: result.balance });

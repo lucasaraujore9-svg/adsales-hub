@@ -12,7 +12,7 @@ export default async function AcceptInvitePage({
     <div className="space-y-4">
       <span className="kicker">Convite</span>
       <h2 className="text-3xl font-medium tracking-tighter2">
-        {errorMsg ? "Convite invalido" : "Confirme seu convite"}
+        {errorMsg ? "Convite inválido" : "Confirme seu convite"}
       </h2>
       {errorMsg ? (
         <p className="text-sm text-[color:var(--bad)]">{errorMsg}</p>

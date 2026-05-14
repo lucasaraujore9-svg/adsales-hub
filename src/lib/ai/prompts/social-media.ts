@@ -7,7 +7,7 @@ Regras por plataforma:
 - facebook: pode ser mais longo, tom conversacional
 - linkedin: profissional, foque em aprendizado/insight, max 3000 caracteres
 - tiktok: hook forte nas primeiras 2 linhas, CTA direto no comentario
-- youtube: foco em descricao SEO-friendly, use capitulos se video longo
+- youtube: foco em descrição SEO-friendly, use capitulos se video longo
 - pinterest: keyword-rich, foque no titulo
 - threads: conversacional, max 500 caracteres
 - x: max 280 caracteres, sem hashtags excessivas

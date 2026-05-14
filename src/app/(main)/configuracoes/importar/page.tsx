@@ -26,7 +26,7 @@ const SOURCES = [
   },
   {
     title: "Prospeccao por CNAE / cidade",
-    description: "Base oficial brasileira. Aguardando integracao com Receita Federal (issue 069).",
+    description: "Base oficial brasileira. Aguardando integração com Receita Federal (issue 069).",
     href: "/prospeccao",
     cta: "Configurar busca",
     icon: Search,
@@ -75,7 +75,7 @@ export default function ImportHubPage() {
       <PageHeader
         kicker="CRM"
         title="Importar dados"
-        description="Hub de importacao para popular seu workspace rapido."
+        description="Hub de importacao para popular seu workspace rápido."
       />
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -118,7 +118,7 @@ export default function ImportHubPage() {
         kicker="API"
         title="Importacao via API"
         className="mt-6"
-        description="Para volumes acima de 10k registros ou integracao continua."
+        description="Para volumes acima de 10k registros ou integração continua."
       >
         <p className="text-sm text-[color:var(--ink-2)]">
           Use os endpoints REST com sua API key:

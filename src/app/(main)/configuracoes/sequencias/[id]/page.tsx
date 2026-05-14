@@ -91,7 +91,7 @@ export default async function SequenceDetailPage({
         }
       />
 
-      <WidgetCard kicker="Passos" title="Sequencia de execucao">
+      <WidgetCard kicker="Passos" title="Sequencia de execução">
         <SequenceStepsEditor
           sequenceId={sequence.id}
           steps={steps}

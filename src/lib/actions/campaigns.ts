@@ -39,7 +39,7 @@ export async function createCampaign(input: unknown): Promise<ActionResult<{ id:
   const session = await getSession();
   const access = await getWorkspaceAccess(session.workspaceId);
   if (!access || !canAccess(access, "ads")) {
-    return { ok: false, error: "Modulo Trafego Pago IA nao contratado." };
+    return { ok: false, error: "Modulo Trafego Pago IA não contratado." };
   }
 
   const body = {

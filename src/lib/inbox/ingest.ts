@@ -2,6 +2,62 @@ import "server-only";
 
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 
+/**
+ * Tenta encontrar contato existente no workspace por phone/whatsapp/email.
+ * Retorna o ID do contato mais recente ou null.
+ */
+async function findContactByChannel(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  admin: any,
+  workspaceId: string,
+  channel: InboundMessage["channel"],
+  channelIdentifier: string,
+): Promise<string | null> {
+  const value = channelIdentifier.trim();
+  if (!value) return null;
+
+  // Normaliza phone: só dígitos
+  const normalizedPhone = value.replace(/\D/g, "");
+
+  if (channel === "whatsapp_cloud" || channel === "whatsapp_unofficial") {
+    const filters = [`whatsapp.eq.${normalizedPhone}`];
+    if (normalizedPhone.length >= 10) filters.push(`phone.eq.${normalizedPhone}`);
+    const { data } = await admin
+      .from("contacts")
+      .select("id")
+      .eq("workspace_id", workspaceId)
+      .or(filters.join(","))
+      .order("last_activity_at", { ascending: false, nullsFirst: false })
+      .limit(1);
+    return (data?.[0]?.id as string | undefined) ?? null;
+  }
+
+  if (channel === "sms") {
+    if (!normalizedPhone) return null;
+    const { data } = await admin
+      .from("contacts")
+      .select("id")
+      .eq("workspace_id", workspaceId)
+      .eq("phone", normalizedPhone)
+      .order("last_activity_at", { ascending: false, nullsFirst: false })
+      .limit(1);
+    return (data?.[0]?.id as string | undefined) ?? null;
+  }
+
+  if (channel === "email") {
+    const { data } = await admin
+      .from("contacts")
+      .select("id")
+      .eq("workspace_id", workspaceId)
+      .eq("email", value.toLowerCase())
+      .order("last_activity_at", { ascending: false, nullsFirst: false })
+      .limit(1);
+    return (data?.[0]?.id as string | undefined) ?? null;
+  }
+
+  return null;
+}
+
 export interface InboundMessage {
   workspaceId: string;
   channel:
@@ -49,17 +105,31 @@ export async function ingestInboundMessage(msg: InboundMessage): Promise<{
     unread_count: number;
   } | null;
 
+  // Auto-vincular contato (issue 026)
+  let resolvedContactId = msg.contactId ?? null;
+  if (!resolvedContactId) {
+    resolvedContactId = await findContactByChannel(
+      admin,
+      msg.workspaceId,
+      msg.channel,
+      msg.channelIdentifier,
+    );
+  }
+
   let conversationId: string;
   if (existing) {
     conversationId = existing.id;
+    const updatePayload: Record<string, unknown> = {
+      last_message_at: new Date().toISOString(),
+      last_message_preview: msg.content.slice(0, 160),
+      unread_count: existing.unread_count + 1,
+      status: "open",
+    };
+    // Vincula contato se ainda não estiver vinculado
+    if (resolvedContactId) updatePayload.contact_id = resolvedContactId;
     await admin
       .from("conversations")
-      .update({
-        last_message_at: new Date().toISOString(),
-        last_message_preview: msg.content.slice(0, 160),
-        unread_count: existing.unread_count + 1,
-        status: "open",
-      } as never)
+      .update(updatePayload as never)
       .eq("id", existing.id);
   } else {
     const { data: created } = await admin
@@ -69,7 +139,7 @@ export async function ingestInboundMessage(msg: InboundMessage): Promise<{
         channel: msg.channel,
         channel_identifier: msg.channelIdentifier,
         external_conversation_id: msg.externalConversationId,
-        contact_id: msg.contactId ?? null,
+        contact_id: resolvedContactId,
         status: "open",
         priority: "normal",
         unread_count: 1,

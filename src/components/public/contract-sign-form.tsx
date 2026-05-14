@@ -77,7 +77,7 @@ export function ContractSignForm({
     setError(null);
     if (action === "sign") {
       if (!agreed) {
-        setError("Confirme que voce leu e concorda.");
+        setError("Confirme que você leu e concorda.");
         return;
       }
       const sigData = type === "type" ? typedSignature : drawnData;

@@ -52,8 +52,137 @@ async function handle(request: NextRequest) {
   if (task === "social_publish" || task === "all") {
     results.social_publish = await runSocialPublish();
   }
+  if (task === "recording_purge" || task === "all") {
+    results.recording_purge = await runRecordingPurge();
+  }
+  if (task === "goals_recalc" || task === "all") {
+    results.goals_recalc = await runGoalsRecalc();
+  }
+  if (task === "proposal_reminders" || task === "all") {
+    results.proposal_reminders = await runProposalReminders();
+  }
+  if (task === "email_dispatch" || task === "all") {
+    results.email_dispatch = await runEmailDispatch();
+  }
+  if (task === "weekly_digest") {
+    // Apenas via task=weekly_digest (rodar 1x/semana no schedule externo).
+    results.weekly_digest = await runWeeklyDigest();
+  }
 
   return NextResponse.json({ ok: true, task, results });
+}
+
+async function runWeeklyDigest() {
+  try {
+    const { sendWeeklyDigests } = await import("@/lib/digest/weekly");
+    return await sendWeeklyDigests();
+  } catch (err) {
+    console.error("[cron/weekly_digest]", err);
+    return { error: err instanceof Error ? err.message : "Falha desconhecida" };
+  }
+}
+
+async function runEmailDispatch() {
+  try {
+    const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
+    const { dispatchEmailCampaign } = await import("@/lib/email/dispatcher");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const admin = createAdminSupabaseClient() as any;
+    const now = new Date().toISOString();
+    const { data: rows } = await admin
+      .from("email_campaigns")
+      .select("id")
+      .eq("status", "scheduled")
+      .lte("scheduled_at", now)
+      .limit(10);
+    const ids = ((rows ?? []) as { id: string }[]).map((r) => r.id);
+    const results: Array<unknown> = [];
+    for (const id of ids) {
+      try {
+        results.push({ id, ...(await dispatchEmailCampaign(id)) });
+      } catch (e) {
+        results.push({ id, error: String(e) });
+      }
+    }
+    return { scheduled: ids.length, results };
+  } catch (err) {
+    console.error("[cron/email_dispatch]", err);
+    return {
+      error: err instanceof Error ? err.message : "Falha desconhecida",
+    };
+  }
+}
+
+async function runProposalReminders() {
+  try {
+    const { sendProposalReminders } = await import("@/lib/contracts/reminders");
+    return await sendProposalReminders();
+  } catch (err) {
+    console.error("[cron/proposal_reminders]", err);
+    return {
+      error: err instanceof Error ? err.message : "Falha desconhecida",
+    };
+  }
+}
+
+async function runGoalsRecalc() {
+  try {
+    const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
+    const { recalculateAllActiveGoals } = await import("@/lib/goals/recalculate");
+    return await recalculateAllActiveGoals(createAdminSupabaseClient());
+  } catch (err) {
+    console.error("[cron/goals_recalc] erro", err);
+    return {
+      error: err instanceof Error ? err.message : "Falha desconhecida",
+    };
+  }
+}
+
+async function runRecordingPurge() {
+  try {
+    const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
+    const admin = createAdminSupabaseClient() as unknown as {
+      from: (t: string) => {
+        select: (cols: string) => {
+          lt: (col: string, val: string) => {
+            not: (col: string, op: string, val: unknown) => {
+              is: (col: string, val: unknown) => Promise<{
+                data: Array<{ id: string; recording_url: string }> | null;
+              }>;
+            };
+          };
+        };
+        update: (body: Record<string, unknown>) => {
+          eq: (col: string, val: unknown) => Promise<{ error: { message?: string } | null }>;
+        };
+      };
+    };
+    const now = new Date().toISOString();
+    const { data: expired } = await admin
+      .from("sdr_calls")
+      .select("id, recording_url")
+      .lt("recording_retention_until", now)
+      .not("recording_url", "is", null)
+      .is("recording_purged_at", null);
+    const rows = expired ?? [];
+    let purged = 0;
+    for (const row of rows) {
+      const { error } = await admin
+        .from("sdr_calls")
+        .update({
+          recording_url: null,
+          recording_purged_at: now,
+        })
+        .eq("id", row.id);
+      if (!error) purged += 1;
+    }
+    return { found: rows.length, purged };
+  } catch (err) {
+    console.error("[cron/recording_purge] erro", err);
+    return {
+      error: err instanceof Error ? err.message : "Falha desconhecida",
+    };
+  }
 }
 
 async function runSocialPublish() {

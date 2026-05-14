@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "node:crypto";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import { getRequestMeta } from "@/lib/server/request-meta";
+import { recordContractEvent } from "@/lib/contracts/audit";
 
 interface SignatoryRow {
   id: string;
@@ -20,12 +22,6 @@ interface ContractRow {
   deal_id: string | null;
 }
 
-function pickIp(req: NextRequest): string | null {
-  const xfwd = req.headers.get("x-forwarded-for");
-  if (xfwd) return xfwd.split(",")[0].trim();
-  return req.headers.get("x-real-ip");
-}
-
 export async function POST(
   req: NextRequest,
   ctx: { params: Promise<{ token: string }> },
@@ -41,7 +37,7 @@ export async function POST(
   try {
     body = (await req.json()) as typeof body;
   } catch {
-    return NextResponse.json({ ok: false, error: "JSON invalido" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
   }
 
   const action = body.action ?? "sign";
@@ -53,7 +49,7 @@ export async function POST(
     .maybeSingle();
   const signatory = sigData as SignatoryRow | null;
   if (!signatory) {
-    return NextResponse.json({ ok: false, error: "Token invalido" }, { status: 404 });
+    return NextResponse.json({ ok: false, error: "Token inválido" }, { status: 404 });
   }
 
   if (signatory.status === "signed" || signatory.status === "declined") {
@@ -70,7 +66,7 @@ export async function POST(
     .maybeSingle();
   const contract = contractData as ContractRow | null;
   if (!contract) {
-    return NextResponse.json({ ok: false, error: "Contrato nao encontrado" }, { status: 404 });
+    return NextResponse.json({ ok: false, error: "Contrato não encontrado" }, { status: 404 });
   }
 
   if (contract.status === "canceled" || contract.status === "signed") {
@@ -103,12 +99,21 @@ export async function POST(
   }
 
   const now = new Date().toISOString();
-  const ip = pickIp(req);
+  const meta = await getRequestMeta();
+  const ip = meta.ip;
+  const userAgent = meta.userAgent;
+  const geo = meta.geo;
 
   if (action === "decline") {
     const { error } = await sb
       .from("contract_signatories")
-      .update({ status: "declined" } as never)
+      .update({
+        status: "declined",
+        declined_at: now,
+        ip_address: ip,
+        user_agent: userAgent,
+        geolocation: geo,
+      } as never)
       .eq("id", signatory.id);
     if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
 
@@ -116,6 +121,16 @@ export async function POST(
       .from("contracts")
       .update({ status: "canceled" } as never)
       .eq("id", contract.id);
+
+    await recordContractEvent(sb, {
+      contractId: contract.id,
+      workspaceId: contract.workspace_id,
+      eventType: "declined",
+      signatoryId: signatory.id,
+      ip,
+      userAgent,
+      geolocation: geo,
+    });
 
     return NextResponse.json({ ok: true });
   }
@@ -138,9 +153,22 @@ export async function POST(
       signature_type: sigType,
       signature_data: sigData2,
       ip_address: ip,
+      user_agent: userAgent,
+      geolocation: geo,
     } as never)
     .eq("id", signatory.id);
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+
+  await recordContractEvent(sb, {
+    contractId: contract.id,
+    workspaceId: contract.workspace_id,
+    eventType: "signed",
+    signatoryId: signatory.id,
+    ip,
+    userAgent,
+    geolocation: geo,
+    metadata: { signature_type: sigType },
+  });
 
   // Check se todos assinaram
   const { data: allSigsRaw } = await sb
@@ -171,18 +199,58 @@ export async function POST(
       } as never)
       .eq("id", contract.id);
 
-    // Auto-progride deal se tem
+    await recordContractEvent(sb, {
+      contractId: contract.id,
+      workspaceId: contract.workspace_id,
+      eventType: "fully_signed",
+      metadata: { hash, signers_count: allSigs.length },
+    });
+
+    // Auto-progride deal vinculado ao contrato (issue 062)
     if (contract.deal_id) {
-      const { data: wonStage } = await sb
-        .from("pipeline_stages")
-        .select("id")
-        .eq("is_won", true)
-        .limit(1)
+      const { data: dealRow } = await sb
+        .from("deals")
+        .select("id, pipeline_id, status, workspace_id")
+        .eq("id", contract.deal_id)
         .maybeSingle();
-      const wonStageId = (wonStage as { id?: string } | null)?.id;
-      const dealUpdate: Record<string, unknown> = { status: "won", closed_at: now };
-      if (wonStageId) dealUpdate.stage_id = wonStageId;
-      await sb.from("deals").update(dealUpdate as never).eq("id", contract.deal_id);
+      const deal = dealRow as
+        | { id: string; pipeline_id: string; status: string; workspace_id: string }
+        | null;
+
+      if (deal && deal.status !== "won") {
+        // Estágio "ganho" do pipeline do próprio deal (não de outro)
+        const { data: wonStage } = await sb
+          .from("pipeline_stages")
+          .select("id")
+          .eq("pipeline_id", deal.pipeline_id)
+          .eq("is_won", true)
+          .order("position", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        const wonStageId = (wonStage as { id?: string } | null)?.id;
+
+        const dealUpdate: Record<string, unknown> = {
+          status: "won",
+          closed_at: now,
+          stage_entered_at: now,
+        };
+        if (wonStageId) dealUpdate.stage_id = wonStageId;
+
+        await sb.from("deals").update(dealUpdate as never).eq("id", deal.id);
+
+        // Webhook deal.won (async, non-blocking)
+        void (async () => {
+          try {
+            const { dispatchWebhook } = await import("@/lib/webhooks/dispatch");
+            await dispatchWebhook(deal.workspace_id, "deal.won", {
+              deal_id: deal.id,
+              won_via_contract: contract.id,
+            });
+          } catch (e) {
+            console.error("[contract/sign] failed to dispatch deal.won", e);
+          }
+        })();
+      }
     }
   } else if (anyPartial) {
     await sb

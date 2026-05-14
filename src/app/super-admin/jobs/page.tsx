@@ -96,8 +96,8 @@ export default async function SuperAdminJobsPage() {
         </h2>
         <div className="rounded-card border border-[color:var(--line)] bg-[color:var(--panel)] p-5 text-sm text-[color:var(--ink-3)]">
           {runs.length === 0
-            ? "Nenhuma execucao listada (precisa do helper RPC e da extensao pg_cron com job_run_details)."
-            : `${runs.length} execucoes mais recentes carregadas.`}
+            ? "Nenhuma execução listada (precisa do helper RPC e da extensao pg_cron com job_run_details)."
+            : `${runs.length} execuções mais recentes carregadas.`}
         </div>
       </section>
     </div>

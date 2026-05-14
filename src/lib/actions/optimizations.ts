@@ -97,7 +97,7 @@ export async function runOptimizationCycle(): Promise<
         action: "decrease_budget",
         priority: "high",
         target: c.name,
-        rationale: `ROAS ${c.roas.toFixed(2)}x — reduzir orcamento ate ajustar criativos/publico.`,
+        rationale: `ROAS ${c.roas.toFixed(2)}x — reduzir orcamento ate ajustar criativos/público.`,
       });
     }
     if (c.status === "paused" && c.roas >= 3 && c.spend > 50) {

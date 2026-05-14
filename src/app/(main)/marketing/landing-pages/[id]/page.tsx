@@ -7,6 +7,8 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { getSession } from "@/lib/auth/guards";
 import { LpBlocksEditor } from "@/components/content/lp-blocks-editor";
 import { LpSettingsForm } from "@/components/content/lp-settings-form";
+import { LpPreviewFrame } from "@/components/marketing/lp-preview-frame";
+import { publicEnv } from "@/lib/env";
 
 export const metadata = { title: "Editar landing page · AdSales Hub" };
 
@@ -103,11 +105,19 @@ export default async function LandingPageDetailPage({
       />
 
       <div className="space-y-6">
-        <WidgetCard kicker="Blocos" title="Estrutura da pagina">
+        <WidgetCard kicker="Blocos" title="Estrutura da página">
           <LpBlocksEditor pageId={lp.id} initialBlocks={blocks} forms={forms} />
         </WidgetCard>
 
-        <WidgetCard kicker="Configuracao" title="Publicacao + tracking">
+        {lp.published && (
+          <WidgetCard kicker="Preview" title="Como sua LP aparece em cada dispositivo">
+            <LpPreviewFrame
+              url={`${publicEnv.NEXT_PUBLIC_APP_URL}/p/${lp.slug}`}
+            />
+          </WidgetCard>
+        )}
+
+        <WidgetCard kicker="Configuração" title="Publicação + tracking">
           <LpSettingsForm
             pageId={lp.id}
             initialName={lp.name}

@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { serverEnv } from "@/lib/env";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { recordCreditPurchase } from "@/lib/billing/credits";
+import { isAlreadyProcessed, markProcessed } from "@/lib/webhooks/idempotency";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -29,6 +30,11 @@ export async function POST(req: NextRequest) {
   const paymentId = payload.data?.id;
   if (!isPaymentEvent || !paymentId) {
     return NextResponse.json({ ok: true, ignored: true });
+  }
+
+  // Idempotência: MP pode reentregar o mesmo evento de pagamento
+  if (await isAlreadyProcessed("mercadopago", paymentId)) {
+    return NextResponse.json({ ok: true, duplicate: true });
   }
 
   // Lookup the payment from Mercado Pago to get external_reference + status
@@ -106,6 +112,10 @@ export async function POST(req: NextRequest) {
         paid_at: new Date().toISOString(),
       })
       .eq("id", purchase.id);
+    await markProcessed("mercadopago", paymentId, {
+      eventType: payload.action ?? payload.type ?? "payment",
+      workspaceId: purchase.workspace_id,
+    });
   }
 
   return NextResponse.json({ ok: result.ok });

@@ -31,7 +31,7 @@ export const MOCK_INSIGHTS: MockInsight[] = [
     area: "unified",
     type: "correlation",
     title: "Leads vindos de 'Lookalike 1%' convertem 3.2x mais",
-    description: "Nos ultimos 30 dias, leads dessa audiencia fecharam a uma taxa de 14.2% vs 4.4% da media geral. O ticket medio tambem e 22% maior.",
+    description: "Nos últimos 30 dias, leads dessa audiencia fecharam a uma taxa de 14.2% vs 4.4% da media geral. O ticket medio também e 22% maior.",
     severity: "opportunity",
     suggested_action: "Realocar 40% do budget de campanhas de awareness para essa audiencia lookalike.",
     createdAt: new Date(Date.now() - 12 * 36e5).toISOString(),
@@ -50,8 +50,8 @@ export const MOCK_INSIGHTS: MockInsight[] = [
     id: "ins_3",
     area: "sales",
     type: "trend",
-    title: "Taxa de conversao SQL -> Proposta subiu 12pp no mes",
-    description: "Em marco estava em 47%, agora em 59%. A melhoria coincide com a introducao do novo script de qualificacao.",
+    title: "Taxa de conversão SQL -> Proposta subiu 12pp no mes",
+    description: "Em marco estava em 47%, agora em 59%. A melhoria coincide com a introducao do novo script de qualificação.",
     severity: "info",
     createdAt: new Date(Date.now() - 1 * 864e5).toISOString(),
   },
@@ -62,7 +62,7 @@ export const MOCK_INSIGHTS: MockInsight[] = [
     title: "Reels com UGC geram 3x mais engajamento",
     description: "Seus reels em 9x16 com depoimentos reais tem engagement rate medio de 7.2% vs 2.1% dos posts em feed 1x1.",
     severity: "opportunity",
-    suggested_action: "Aumentar a producao para 2 reels UGC por semana.",
+    suggested_action: "Aumentar a produção para 2 reels UGC por semana.",
     createdAt: new Date(Date.now() - 2 * 864e5).toISOString(),
   },
   {
@@ -70,7 +70,7 @@ export const MOCK_INSIGHTS: MockInsight[] = [
     area: "unified",
     type: "forecast",
     title: "Projecao: +38% de leads em abril mantendo budget atual",
-    description: "Com base no crescimento dos ultimos 4 meses e sazonalidade Q2, esperamos ~1.040 leads em abril (vs 750 em marco).",
+    description: "Com base no crescimento dos últimos 4 meses e sazonalidade Q2, esperamos ~1.040 leads em abril (vs 750 em marco).",
     severity: "info",
     createdAt: new Date(Date.now() - 3 * 864e5).toISOString(),
   },
@@ -91,9 +91,9 @@ export function last14DaysMetric(seed: number, amplitude = 1, base = 100): { dat
 }
 
 export const QUICK_PROMPTS = [
-  "Qual publico tem melhor ROAS nos ultimos 30 dias?",
+  "Qual público tem melhor ROAS nos últimos 30 dias?",
   "Quais campanhas estao com CPL acima de R$ 20?",
-  "Projete meu faturamento para o proximo trimestre",
-  "Quais vendedores tem taxa de conversao acima da media?",
+  "Projete meu faturamento para o próximo trimestre",
+  "Quais vendedores tem taxa de conversão acima da media?",
   "Qual post social teve mais engajamento?",
 ];

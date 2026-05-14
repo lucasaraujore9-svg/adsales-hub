@@ -54,7 +54,7 @@ export function SidebarItem({ item, collapsed, activeModules }: Props) {
       <TooltipTrigger asChild>{content}</TooltipTrigger>
       <TooltipContent side="right">
         {locked
-          ? `${item.label} · disponivel no modulo ${MODULE_LABELS[item.module!] ?? item.module}`
+          ? `${item.label} · disponível no módulo ${MODULE_LABELS[item.module!] ?? item.module}`
           : item.label}
       </TooltipContent>
     </Tooltip>

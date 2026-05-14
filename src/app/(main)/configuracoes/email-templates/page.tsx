@@ -37,7 +37,7 @@ export default async function EmailTemplatesPage() {
       <PageHeader
         kicker="Comunicacao"
         title="Email templates"
-        description="Templates reutilizaveis com variaveis. Usados em automacoes, sequencias e disparos manuais."
+        description="Templates reutilizaveis com variaveis. Usados em automações, sequencias e disparos manuais."
       />
 
       <EmailTemplatesManager templates={templates} />

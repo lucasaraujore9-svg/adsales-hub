@@ -113,11 +113,11 @@ export function LandingFooter() {
       [
         { label: "CRM de vendas", href: "/glossario/crm" },
         { label: "Tráfego pago IA", href: "/glossario/trafego-pago" },
-        { label: "Social", href: "/#modulos" },
+        { label: "Social", href: "/#módulos" },
         { label: "SDR de voz IA", href: "/glossario/sdr" },
-        { label: "Analytics", href: "/glossario/atribuicao" },
-        { label: "Landing pages", href: "/#modulos" },
-        { label: "Contratos", href: "/#modulos" },
+        { label: "Analytics", href: "/glossario/atribuição" },
+        { label: "Landing pages", href: "/#módulos" },
+        { label: "Contratos", href: "/#módulos" },
       ],
     ],
     [

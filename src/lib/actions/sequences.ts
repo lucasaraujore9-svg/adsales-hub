@@ -86,7 +86,7 @@ export async function createSequenceStep(input: unknown): Promise<ActionResult<{
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   const session = await getSession();
   if (!(await ownsSequence(session.supabase, session.workspaceId, parsed.data.sequence_id))) {
-    return { ok: false, error: "Sequencia nao encontrada" };
+    return { ok: false, error: "Sequencia não encontrada" };
   }
 
   const { data: existingSteps } = await session.supabase
@@ -127,9 +127,9 @@ export async function deleteSequenceStep(stepId: string): Promise<ActionResult> 
     .eq("id", stepId)
     .maybeSingle();
   const seq = step as { id: string; sequence_id: string } | null;
-  if (!seq) return { ok: false, error: "Passo nao encontrado" };
+  if (!seq) return { ok: false, error: "Passo não encontrado" };
   if (!(await ownsSequence(session.supabase, session.workspaceId, seq.sequence_id))) {
-    return { ok: false, error: "Sequencia nao encontrada" };
+    return { ok: false, error: "Sequencia não encontrada" };
   }
   const { error } = await session.supabase
     .from("sequence_steps")
@@ -146,7 +146,7 @@ export async function reorderSequenceSteps(
 ): Promise<ActionResult> {
   const session = await getSession();
   if (!(await ownsSequence(session.supabase, session.workspaceId, sequenceId))) {
-    return { ok: false, error: "Sequencia nao encontrada" };
+    return { ok: false, error: "Sequencia não encontrada" };
   }
   for (let i = 0; i < stepIds.length; i++) {
     await session.supabase

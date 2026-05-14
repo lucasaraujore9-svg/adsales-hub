@@ -39,7 +39,7 @@ export function WhatsappUnofficialForm({
     const body = {
       provider: "whatsapp_unofficial",
       display_name:
-        PROVIDERS.find((p) => p.key === providerName)?.label ?? "WhatsApp nao oficial",
+        PROVIDERS.find((p) => p.key === providerName)?.label ?? "WhatsApp não oficial",
       credentials: {
         provider_name: providerName,
         base_url: String(form.get("base_url") ?? "").trim(),
@@ -61,7 +61,7 @@ export function WhatsappUnofficialForm({
   }
 
   function handleDisconnect() {
-    if (!confirm("Desconectar WhatsApp nao oficial?")) return;
+    if (!confirm("Desconectar WhatsApp não oficial?")) return;
     start(async () => {
       const result = await deleteIntegration("whatsapp_unofficial");
       if (result.ok) {

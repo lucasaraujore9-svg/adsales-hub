@@ -73,7 +73,7 @@ export function TrackingForm({
         </div>
       </div>
       <Button type="submit" disabled={pending}>
-        {pending ? "Salvando..." : "Salvar configuracao"}
+        {pending ? "Salvando..." : "Salvar configuração"}
       </Button>
     </form>
   );

@@ -32,7 +32,7 @@ export default async function ReportsBrandingPage() {
       <PageHeader
         kicker="Relatorios"
         title="Relatorios white-label"
-        description="Personalizacao visual dos PDFs gerados. Aplica em todos os relatorios exportados via /relatorios."
+        description="Personalizacao visual dos PDFs gerados. Aplica em todos os relatórios exportados via /relatorios."
       />
 
       <WidgetCard kicker="Branding" title="Visual do PDF">

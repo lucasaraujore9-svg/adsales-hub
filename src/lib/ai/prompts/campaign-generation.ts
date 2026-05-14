@@ -1,5 +1,5 @@
 export const CAMPAIGN_GENERATION_PROMPT = `Voce e um especialista em Meta Ads (Facebook/Instagram) atuando como copiloto do
-usuario no AdSales Hub. Recebe um briefing em linguagem natural e retorna uma
+usuário no AdSales Hub. Recebe um briefing em linguagem natural e retorna uma
 campanha COMPLETA pronta para ser publicada na Meta Marketing API.
 
 Contexto do sistema:

@@ -143,13 +143,13 @@ const COMPOSITION_DESC: Record<string, string> = {
   diagonal: "dynamic diagonal composition that leads the eye through the frame",
   symmetric: "symmetric composition with mirrored elements",
   "negative-space":
-    "leave the entire bottom 35% of the frame as clean, low-contrast negative space (sky, wall or out-of-focus area) for typography overlay",
+    "leave the entire bottom 35% of the frame as clean, low-contrast negative space (sky, wall or out-of-focus área) for typography overlay",
 };
 
 const NEGATIVE_SPACE_BY_POSITION: Record<string, string> = {
   top: "leave the top 30% of the frame as clean, low-contrast negative space for typography overlay",
   bottom:
-    "leave the bottom 35% of the frame as clean, low-contrast negative space (floor, wall or out-of-focus area) for typography overlay",
+    "leave the bottom 35% of the frame as clean, low-contrast negative space (floor, wall or out-of-focus área) for typography overlay",
   center: "leave a clear horizontal band across the center of the frame as low-contrast negative space for typography overlay",
   left: "leave the left third of the frame as clean, low-contrast negative space for typography overlay",
   right: "leave the right third of the frame as clean, low-contrast negative space for typography overlay",
@@ -227,15 +227,15 @@ const POSITION_TO_TEXT_LOCATION: Record<string, string> = {
   right: "aligned to the right side",
 };
 
-// When the model is rendering text itself, ensure the chosen area is a deep
+// When the model is rendering text itself, ensure the chosen área is a deep
 // dark surface so white type pops. These directives must come BEFORE the
 // lighting block in the assembled prompt, otherwise the model commits to a
 // light direction first and ignores the darkening hint.
 const POSITION_DIMMING: Record<string, string> = {
   top:
-    "The top third of the frame must be a deep dark surface (dark sky, dark ceiling, deep shadow or dark gradient) — keep any bright lighting away from this area.",
+    "The top third of the frame must be a deep dark surface (dark sky, dark ceiling, deep shadow or dark gradient) — keep any bright lighting away from this área.",
   bottom:
-    "The bottom third of the frame must be a deep dark surface (dark floor, deep shadow, dark cloth or dark vignette) — keep any bright lighting away from this area.",
+    "The bottom third of the frame must be a deep dark surface (dark floor, deep shadow, dark cloth or dark vignette) — keep any bright lighting away from this área.",
   center:
     "The center of the frame must have a soft dark scrim or naturally darkened backdrop behind the text.",
   left:
@@ -288,7 +288,7 @@ export function buildSocialAdPrompt(brief: CreativeBrief): string {
     parts.push(`${paletteText}.`);
   }
 
-  // CRITICAL ordering: the text-area darkening directive must come BEFORE the
+  // CRITICAL ordering: the text-área darkening directive must come BEFORE the
   // lighting line. Otherwise the model commits to a light direction first and
   // refuses to darken the text region.
   if (useModelText && textPosition) {
@@ -306,8 +306,8 @@ export function buildSocialAdPrompt(brief: CreativeBrief): string {
     parts.push(`${negSpaceText.charAt(0).toUpperCase()}${negSpaceText.slice(1)}.`);
   } else if (useModelText) {
     const loc = textPosition
-      ? (POSITION_TO_TEXT_LOCATION[textPosition] ?? "in a clearly readable area")
-      : "in a clearly readable area";
+      ? (POSITION_TO_TEXT_LOCATION[textPosition] ?? "in a clearly readable área")
+      : "in a clearly readable área";
     const headline = brief.headline!.trim();
     const sub = brief.subheadline?.trim();
     const headlineSpelled = describeDiacritics(headline);

@@ -71,7 +71,21 @@ export function ActivitiesList({
     start(async () => {
       const result = await toggleActivityComplete(id, !current);
       if (result.ok) {
-        toast.success(!current ? "Concluida" : "Reaberta");
+        const wasCompleted = !current;
+        toast.success(wasCompleted ? "Atividade concluída" : "Atividade reaberta", {
+          action: {
+            label: "Desfazer",
+            onClick: () => {
+              start(async () => {
+                const undo = await toggleActivityComplete(id, current);
+                if (undo.ok) {
+                  toast.message("Ação desfeita");
+                  router.refresh();
+                }
+              });
+            },
+          },
+        });
         router.refresh();
       } else {
         toast.error(result.error ?? "Erro ao atualizar");

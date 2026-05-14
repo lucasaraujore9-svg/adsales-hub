@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/shared/page-header";
 import { MetricCard } from "@/components/shared/metric-card";
 import { WidgetCard } from "@/components/shared/widget-card";
 import { getSession } from "@/lib/auth/guards";
+import { MergeGroupButton } from "@/components/contacts/merge-group-button";
 
 export const metadata = { title: "Duplicatas · AdSales Hub" };
 
@@ -54,6 +55,7 @@ export default async function DuplicatesPage() {
     .from("contacts")
     .select("id, name, email, phone, whatsapp, created_at")
     .eq("workspace_id", session.workspaceId)
+    .is("merged_into_contact_id", null)
     .order("created_at", { ascending: true });
   const contacts = (data ?? []) as unknown as ContactRow[];
 
@@ -91,7 +93,7 @@ export default async function DuplicatesPage() {
         <MetricCard
           label="Contatos duplicados"
           value={String(totalDups)}
-          hint="alem do mais antigo"
+          hint="além do mais antigo"
         />
         <MetricCard label="Por email" value={String(byEmail.length)} />
         <MetricCard label="Por telefone/WA" value={String(byPhone.length + byWhatsapp.length)} />
@@ -111,9 +113,12 @@ export default async function DuplicatesPage() {
                     {g.type}
                   </span>
                   <span className="font-mono text-xs text-[color:var(--ink-2)]">{g.value}</span>
-                  <span className="ml-auto text-xs text-[color:var(--ink-4)]">
+                  <span className="text-xs text-[color:var(--ink-4)]">
                     {g.contacts.length} contatos
                   </span>
+                  <div className="ml-auto">
+                    <MergeGroupButton group={g.contacts} />
+                  </div>
                 </div>
                 <ul className="mt-3 space-y-1">
                   {g.contacts.map((c, i) => (
@@ -144,8 +149,8 @@ export default async function DuplicatesPage() {
       </WidgetCard>
 
       <p className="mt-4 text-xs text-[color:var(--ink-4)]">
-        Nota: merge automatico (juntar deals/atividades das duplicatas) chega na proxima iteracao. Por
-        enquanto abra o detalhe e decida.
+        O merge consolida deals, atividades, notas, ligações e conversas no contato principal.
+        Os secundários são arquivados (não deletados) e ficam acessíveis no log de auditoria.
       </p>
     </div>
   );

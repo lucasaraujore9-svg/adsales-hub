@@ -45,7 +45,7 @@ export async function generateCampaign(
   context: { accountCurrency?: string; accountTimezone?: string; hint?: string },
   opts: CallOpts,
 ): Promise<GeneratedCampaign> {
-  const userMessage = `Briefing do usuario:\n\n${briefing}\n\nContexto da conta:\n${JSON.stringify(context)}`;
+  const userMessage = `Briefing do usuário:\n\n${briefing}\n\nContexto da conta:\n${JSON.stringify(context)}`;
   const result = await generateJSON({
     systemPrompt: CAMPAIGN_GENERATION_PROMPT,
     userMessage,

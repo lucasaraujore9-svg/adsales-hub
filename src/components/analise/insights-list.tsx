@@ -22,7 +22,7 @@ export function InsightsList({ insights }: { insights: InsightRow[] }) {
     <WidgetCard
       kicker={`${insights.length} insights`}
       title="Descobertas automaticas"
-      description="A IA revisa os dados a cada 48h e destaca o que voce deveria ver"
+      description="A IA revisa os dados a cada 48h e destaca o que você deveria ver"
       padding="none"
     >
       {insights.length === 0 ? (

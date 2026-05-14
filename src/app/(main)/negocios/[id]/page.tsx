@@ -31,6 +31,7 @@ import { DealDetailHeader } from "@/components/deals/deal-detail-header";
 import { DealTitleHeader } from "@/components/deals/deal-title-header";
 import { DealNotesTab } from "@/components/deals/deal-notes-tab";
 import { DealChannelTab } from "@/components/deals/deal-channel-tab";
+import { DealHistoryTab } from "@/components/deals/deal-history-tab";
 import { GenerateProposalButton } from "@/components/deals/generate-proposal-button";
 import { GenerateContractButton } from "@/components/deals/generate-contract-button";
 import {
@@ -63,9 +64,9 @@ function formatRelative(iso: string | null): string {
   if (!iso) return "";
   const days = Math.round((Date.now() - new Date(iso).getTime()) / 864e5);
   if (days < 1) return "hoje";
-  if (days < 7) return `${days}d atras`;
-  if (days < 30) return `${Math.round(days / 7)}sem atras`;
-  return `${Math.round(days / 30)}mes atras`;
+  if (days < 7) return `${days}d atrás`;
+  if (days < 30) return `${Math.round(days / 7)}sem atrás`;
+  return `${Math.round(days / 30)}mes atrás`;
 }
 
 export default async function DealDetailPage({
@@ -185,10 +186,12 @@ export default async function DealDetailPage({
   }[];
 
   const stageMeta = stages.find((s) => s.id === deal.stage_id);
-  const [timeline, dealNotes, dealCalls] = await Promise.all([
+  const { getDealHistory } = await import("@/lib/queries/deal-history");
+  const [timeline, dealNotes, dealCalls, auditEntries] = await Promise.all([
     tab === "historico" ? dealTimeline(sb, deal, stageMeta?.name ?? null) : Promise.resolve([]),
     tab === "notas" ? listDealNotes(sb, deal.id) : Promise.resolve([]),
     tab === "ligacoes" ? listDealCalls(sb, deal.id) : Promise.resolve([]),
+    tab === "historico" ? getDealHistory(sb, deal.id).catch(() => []) : Promise.resolve([]),
   ]);
   const company = deal.company_id ? companies.find((c) => c.id === deal.company_id) : null;
   const owner = deal.owner_user_id ? wsUsers.find((u) => u.id === deal.owner_user_id) : null;
@@ -600,7 +603,7 @@ export default async function DealDetailPage({
                             <div className="text-xs text-[color:var(--ink-3)]">
                               {formatBRL(Number(p.total))}
                               {p.validity_date
-                                ? ` · valida ate ${new Date(p.validity_date).toLocaleDateString("pt-BR")}`
+                                ? ` · válida ate ${new Date(p.validity_date).toLocaleDateString("pt-BR")}`
                                 : ""}
                             </div>
                           </div>
@@ -755,6 +758,14 @@ export default async function DealDetailPage({
                 </li>
               )}
             </ul>
+          )}
+          {tab === "historico" && auditEntries.length > 0 && (
+            <div className="mt-6">
+              <p className="mb-2 text-xs font-medium uppercase tracking-kicker text-[color:var(--ink-4)]">
+                Mudanças no negócio (audit log)
+              </p>
+              <DealHistoryTab entries={auditEntries} />
+            </div>
           )}
         </div>
 

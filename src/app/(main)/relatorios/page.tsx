@@ -51,7 +51,7 @@ export default async function ReportsPage() {
     <div className="mx-auto w-full max-w-7xl px-6 py-8">
       <PageHeader
         kicker="Bloco D"
-        title="Central de relatorios"
+        title="Central de relatórios"
         description="Gerador com IA, templates white-label, PDF, agendamento"
         actions={
           <>
@@ -98,7 +98,7 @@ export default async function ReportsPage() {
         </WidgetCard>
       </section>
 
-      <WidgetCard kicker="Gerados" title="Ultimos relatorios" padding="none">
+      <WidgetCard kicker="Gerados" title="Ultimos relatórios" padding="none">
         {reports.length === 0 ? (
           <p className="px-5 py-10 text-center text-sm text-[color:var(--ink-3)]">
             Nenhum relatorio ainda. Gere um a partir de um template.

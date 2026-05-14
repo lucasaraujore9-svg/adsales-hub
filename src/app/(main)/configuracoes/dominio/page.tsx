@@ -39,7 +39,7 @@ export default async function DomainPage() {
         description="Hospede landing pages e o app em subdominio proprio + dominio customizado."
       />
 
-      <WidgetCard kicker="Subdomain + dominio" title="Onde voce sera publicado">
+      <WidgetCard kicker="Subdomain + dominio" title="Onde você será publicado">
         <DomainForm
           initialSubdomain={ws.subdomain ?? ""}
           initialDomain={ws.domain ?? ""}

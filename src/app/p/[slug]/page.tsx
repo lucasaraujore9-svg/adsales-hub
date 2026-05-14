@@ -37,7 +37,7 @@ export async function generateMetadata({
     .eq("published", true)
     .maybeSingle();
   const lp = data as { name?: string; seo?: { title?: string; description?: string } | null } | null;
-  if (!lp) return { title: "Pagina nao encontrada" };
+  if (!lp) return { title: "Pagina não encontrada" };
   const seo = lp.seo ?? null;
   return {
     title: seo?.title ?? lp.name,

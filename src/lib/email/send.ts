@@ -56,7 +56,7 @@ export async function sendEmailViaIntegration(
   if (!integration || integration.status !== "active") {
     return {
       ok: false,
-      error: "Integracao de email nao configurada. Configure em /configuracoes/gmail.",
+      error: "Integracao de email não configurada. Configure em /configuracoes/gmail.",
     };
   }
   const creds = integration.credentials ?? {};
@@ -65,7 +65,7 @@ export async function sendEmailViaIntegration(
   const fromName = creds.from_name;
   const fromHeader = fromName ? `${fromName} <${fromEmail}>` : fromEmail ?? "";
   if (!fromEmail) {
-    return { ok: false, error: "Email do remetente nao configurado" };
+    return { ok: false, error: "Email do remetente não configurado" };
   }
 
   const recipients = Array.isArray(params.to) ? params.to : [params.to];

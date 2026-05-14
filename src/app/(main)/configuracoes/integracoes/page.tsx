@@ -101,7 +101,7 @@ export default async function IntegrationsPage() {
     },
     {
       key: "whatsapp_unofficial",
-      title: "WhatsApp nao oficial (QR Code)",
+      title: "WhatsApp não oficial (QR Code)",
       description: "Via Baileys / WPPConnect. Sem limite de templates mas maior risco de ban. Use providers como Z-API, UAZAPI ou self-hosted.",
       status: integrations.find((i) => i.provider === "whatsapp_unofficial")?.status ?? "disconnected",
       connectHref: "/configuracoes/whatsapp-unofficial",
@@ -129,7 +129,7 @@ export default async function IntegrationsPage() {
     {
       key: "email",
       title: "Email transacional (Resend)",
-      description: "Send + inbound routing. Webhooks de open/click ja estao configurados.",
+      description: "Send + inbound routing. Webhooks de open/click já estao configurados.",
       status: integrations.find((i) => i.provider === "resend")?.status ?? "disconnected",
       connectHref: "/configuracoes/gmail",
       webhookUrl: `${host}/api/webhooks/resend`,
@@ -167,7 +167,7 @@ export default async function IntegrationsPage() {
     {
       key: "voice-engine",
       title: "Motor de voz IA (SDR)",
-      description: "Ligacoes IA inbound/outbound. Requer numero DID BR configurado.",
+      description: "Ligacoes IA inbound/outbound. Requer número DID BR configurado.",
       status: integrations.find((i) => i.provider === "voice-engine")?.status ?? "disconnected",
       connectHref: "/configuracoes/telefone",
       webhookUrl: `${host}/api/webhooks/voice-engine`,
@@ -202,7 +202,7 @@ export default async function IntegrationsPage() {
       <PageHeader
         kicker="Workspace · Configuracoes"
         title="Integracoes"
-        description="Conecte canais de comunicacao, plataformas de ads e automacoes externas."
+        description="Conecte canais de comunicacao, plataformas de ads e automações externas."
       />
 
       {/* === Canais de comunicacao === */}
@@ -374,7 +374,7 @@ export default async function IntegrationsPage() {
         <WidgetCard
           kicker="Avancado"
           title="API & Webhooks"
-          description="Para integrar qualquer coisa que nao esta listada acima."
+          description="Para integrar qualquer coisa que não esta listada acima."
           action={{ label: "Ver API keys", href: "/configuracoes/api" }}
         >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

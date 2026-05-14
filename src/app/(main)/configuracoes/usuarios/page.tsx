@@ -1,13 +1,15 @@
-import { ArrowLeft, UserPlus } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { PageHeader } from "@/components/shared/page-header";
 import { WidgetCard } from "@/components/shared/widget-card";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { getSession } from "@/lib/auth/guards";
 import { listWorkspaceUsers } from "@/lib/queries/crm";
+import { listPendingInvites } from "@/lib/queries/invites";
 import { InviteUserButton } from "@/components/settings/invite-user-button";
+import { PendingInvitesTable } from "@/components/settings/pending-invites-table";
 
-export const metadata = { title: "Usuarios · AdSales Hub" };
+export const metadata = { title: "Usuários · AdSales Hub" };
 
 const ROLE_LABELS: Record<string, string> = {
   admin: "Admin",
@@ -27,21 +29,42 @@ const ROLE_TONES = {
 
 export default async function UsersPage() {
   const session = await getSession();
-  const users = await listWorkspaceUsers(session.supabase, session.workspaceId);
+  const [users, pendingInvites] = await Promise.all([
+    listWorkspaceUsers(session.supabase, session.workspaceId),
+    listPendingInvites(session.workspaceId).catch(() => []),
+  ]);
 
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-8">
-      <Link href="/configuracoes" className="inline-flex items-center gap-1 text-xs text-[color:var(--ink-3)] hover:text-[color:var(--ink)]">
-        <ArrowLeft className="h-3 w-3" /> Configuracoes
+      <Link
+        href="/configuracoes"
+        className="inline-flex items-center gap-1 text-xs text-[color:var(--ink-3)] hover:text-[color:var(--ink)]"
+      >
+        <ArrowLeft className="h-3 w-3" /> Configurações
       </Link>
       <PageHeader
         kicker="Workspace"
-        title="Usuarios e permissoes"
-        description={`${users.length} usuarios no workspace`}
+        title="Usuários e permissões"
+        description={
+          pendingInvites.length > 0
+            ? `${users.length} ativos · ${pendingInvites.length} pendente${pendingInvites.length === 1 ? "" : "s"}`
+            : `${users.length} usuários no workspace`
+        }
         actions={<InviteUserButton />}
       />
 
-      <WidgetCard kicker="Equipe" title="Todos os membros" padding="none">
+      {pendingInvites.length > 0 && (
+        <WidgetCard
+          kicker={`Pendentes (${pendingInvites.length})`}
+          title="Convites aguardando aceite"
+          padding="none"
+          className="mb-6"
+        >
+          <PendingInvitesTable invites={pendingInvites} />
+        </WidgetCard>
+      )}
+
+      <WidgetCard kicker="Equipe" title="Membros ativos" padding="none">
         <table className="w-full text-sm">
           <thead className="border-b border-[color:var(--line)] text-xs uppercase tracking-kicker text-[color:var(--ink-4)]">
             <tr>
@@ -62,7 +85,7 @@ export default async function UsersPage() {
                     <StatusBadge label={ROLE_LABELS[u.role] ?? u.role} tone={tone} />
                   </td>
                   <td className="px-5 py-3 text-right text-xs text-[color:var(--ink-4)]">
-                    {u.id === session.user.id ? "voce" : ""}
+                    {u.id === session.user.id ? "você" : ""}
                   </td>
                 </tr>
               );

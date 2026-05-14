@@ -40,7 +40,7 @@ export function MetaConnectedAccounts({ accounts }: Props) {
   const router = useRouter();
 
   function handleDisconnect(id: string, name: string) {
-    if (!confirm(`Desconectar "${name}"? O token sera removido.`)) return;
+    if (!confirm(`Desconectar "${name}"? O token será removido.`)) return;
     start(async () => {
       const res = await disconnectMetaAdAccount(id);
       if (res.ok) {

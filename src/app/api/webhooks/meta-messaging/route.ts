@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { ingestInboundMessage } from "@/lib/inbox/ingest";
 import { requireServerEnv } from "@/lib/env";
+import { checkMetaSignatureOrReject } from "@/lib/webhooks/verify";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -51,9 +52,21 @@ interface MessagingEntry {
 }
 
 export async function POST(request: NextRequest) {
-  const payload = (await request.json().catch(() => null)) as
-    | { object: "instagram" | "page"; entry: MessagingEntry[] }
-    | null;
+  const rawBody = await request.text();
+  const reject = checkMetaSignatureOrReject(
+    rawBody,
+    request,
+    process.env.META_APP_SECRET,
+    "meta-messaging",
+  );
+  if (reject) return reject;
+
+  let payload: { object?: "instagram" | "page"; entry?: MessagingEntry[] } | null = null;
+  try {
+    payload = JSON.parse(rawBody);
+  } catch {
+    return NextResponse.json({ error: "invalid_json" }, { status: 400 });
+  }
   if (!payload?.entry) {
     return NextResponse.json({ error: "invalid_payload" }, { status: 400 });
   }

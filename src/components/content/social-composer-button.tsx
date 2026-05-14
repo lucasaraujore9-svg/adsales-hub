@@ -142,7 +142,7 @@ export function SocialComposerButton({
   function handleGenerateImage() {
     const fallbackPrompt = imagePrompt.trim() || topic.trim() || content.trim().slice(0, 200);
     if (fallbackPrompt.length < 3) {
-      toast.error("Descreva a imagem que voce quer gerar.");
+      toast.error("Descreva a imagem que você quer gerar.");
       return;
     }
     startImg(async () => {
@@ -326,7 +326,7 @@ export function SocialComposerButton({
                     title={
                       connected
                         ? "Conta conectada"
-                        : "Conta nao conectada — sera salvo, mas nao publica"
+                        : "Conta não conectada — será salvo, mas não pública"
                     }
                   >
                     {p.label}
@@ -350,7 +350,7 @@ export function SocialComposerButton({
                   id="ai-topic"
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
-                  placeholder="Ex: lancamento do modulo de SDR com voz IA"
+                  placeholder="Ex: lancamento do módulo de SDR com voz IA"
                 />
               </div>
               <div>
@@ -414,7 +414,7 @@ export function SocialComposerButton({
                   rows={6}
                   maxLength={limit}
                   className="mt-1 w-full rounded-md border border-[color:var(--line-2)] bg-[color:var(--bg)] px-3 py-2 text-sm"
-                  placeholder="O que voce vai postar?"
+                  placeholder="O que você vai postar?"
                 />
               </div>
 

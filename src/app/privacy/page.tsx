@@ -12,13 +12,13 @@ const sections: { id: string; title: string }[] = [
   { id: "dados-que-coletamos", title: "2. Dados que coletamos" },
   { id: "como-usamos", title: "3. Como usamos seus dados" },
   { id: "compartilhamento", title: "4. Compartilhamento com terceiros" },
-  { id: "integracoes", title: "5. Integracoes (Meta, Google, WhatsApp)" },
+  { id: "integrações", title: "5. Integracoes (Meta, Google, WhatsApp)" },
   { id: "armazenamento", title: "6. Armazenamento e seguranca" },
   { id: "retencao", title: "7. Retencao de dados" },
   { id: "seus-direitos", title: "8. Seus direitos (LGPD)" },
   { id: "cookies", title: "9. Cookies e rastreamento" },
   { id: "menores", title: "10. Menores de idade" },
-  { id: "alteracoes", title: "11. Alteracoes nesta politica" },
+  { id: "alteracoes", title: "11. Alteracoes nesta política" },
   { id: "contato", title: "12. Contato e Encarregado (DPO)" },
 ];
 
@@ -199,7 +199,7 @@ export default function PrivacyPage() {
         </p>
       </section>
 
-      <section id="integracoes">
+      <section id="integrações">
         <h2 className="text-xl font-medium tracking-tighter2 text-[color:var(--ink)]">
           5. Integracoes com Meta, Google e WhatsApp
         </h2>

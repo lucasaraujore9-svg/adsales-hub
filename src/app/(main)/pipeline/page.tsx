@@ -7,11 +7,13 @@ import {
   listContacts,
   listPipelinesAndStages,
   listActivities,
+  listWorkspaceUsers,
 } from "@/lib/queries/crm";
 import { KanbanBoard } from "@/components/pipeline/kanban-board";
 import { DealsTable } from "@/components/pipeline/deals-table";
 import { NewDealButton } from "@/components/pipeline/new-deal-button";
 import { PipelineExportButton } from "@/components/pipeline/export-button";
+import { ReassignFromUserDialog } from "@/components/pipeline/reassign-from-user-dialog";
 
 export const metadata = { title: "Pipeline · AdSales Hub" };
 
@@ -33,11 +35,14 @@ export default async function PipelinePage({
   const session = await getSession();
   const sb = session.supabase;
 
-  const [deals, contacts, { pipelines, stages }, activities] = await Promise.all([
+  const canManage = ["admin", "gestor"].includes(session.role);
+
+  const [deals, contacts, { pipelines, stages }, activities, members] = await Promise.all([
     listDeals(sb, session.workspaceId),
     listContacts(sb, session.workspaceId),
     listPipelinesAndStages(sb, session.workspaceId),
     listActivities(sb, session.workspaceId, { limit: 1000 }),
+    canManage ? listWorkspaceUsers(sb, session.workspaceId) : Promise.resolve([]),
   ]);
 
   const selectedPipeline =
@@ -104,6 +109,15 @@ export default async function PipelinePage({
         actions={
           selectedPipeline && (
             <>
+              {canManage && members.length >= 2 && (
+                <ReassignFromUserDialog
+                  members={members.map((m) => ({
+                    id: m.id,
+                    name: m.name,
+                    email: m.email,
+                  }))}
+                />
+              )}
               <PipelineExportButton
                 deals={pipelineDeals}
                 stages={pipelineStages}

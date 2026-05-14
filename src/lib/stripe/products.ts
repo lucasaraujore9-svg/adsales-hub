@@ -7,10 +7,10 @@ import { serverEnv } from "@/lib/env";
  * environment variables — populate them via the Stripe dashboard or via
  * scripts/stripe-seed-products.ts (to be added) after creating products.
  */
-export function basketPriceId(basket: "operacao" | "crescimento" | "escala"): string | null {
+export function basketPriceId(basket: "operação" | "crescimento" | "escala"): string | null {
   const env = serverEnv();
   switch (basket) {
-    case "operacao":
+    case "operação":
       return env.STRIPE_PRICE_OPERACAO ?? null;
     case "crescimento":
       return env.STRIPE_PRICE_CRESCIMENTO ?? null;

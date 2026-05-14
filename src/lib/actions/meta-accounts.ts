@@ -10,7 +10,7 @@ const idSchema = z.string().uuid();
 
 export async function disconnectMetaAdAccount(adAccountId: string): Promise<ActionResult> {
   const parsed = idSchema.safeParse(adAccountId);
-  if (!parsed.success) return { ok: false, error: "ID invalido" };
+  if (!parsed.success) return { ok: false, error: "ID inválido" };
 
   const session = await getSession();
 
@@ -35,7 +35,7 @@ export async function disconnectMetaAdAccount(adAccountId: string): Promise<Acti
 
 export async function deleteMetaAdAccount(adAccountId: string): Promise<ActionResult> {
   const parsed = idSchema.safeParse(adAccountId);
-  if (!parsed.success) return { ok: false, error: "ID invalido" };
+  if (!parsed.success) return { ok: false, error: "ID inválido" };
 
   const session = await getSession();
   const { error } = await session.supabase

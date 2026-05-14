@@ -72,7 +72,7 @@ export async function generateJSON<S extends z.ZodTypeAny>(params: {
   maxTokens?: number;
   model?: string;
 }): Promise<z.output<S>> {
-  const systemPrompt = `${params.systemPrompt}\n\nResponda EXCLUSIVAMENTE com JSON valido. Sem comentarios, sem texto antes ou depois. O JSON deve corresponder exatamente ao schema fornecido.`;
+  const systemPrompt = `${params.systemPrompt}\n\nResponda EXCLUSIVAMENTE com JSON válido. Sem comentarios, sem texto antes ou depois. O JSON deve corresponder exatamente ao schema fornecido.`;
   const raw = await generate({
     systemPrompt,
     userMessage: params.userMessage,

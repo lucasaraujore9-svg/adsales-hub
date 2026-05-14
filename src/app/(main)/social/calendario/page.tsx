@@ -66,7 +66,7 @@ export default async function SocialCalendarPage({
           label="Agendados"
           value={String(scheduled.length)}
           emphasis="inverse"
-          hint="aguardam publicacao"
+          hint="aguardam publicação"
         />
         <MetricCard label="Publicados" value={String(published.length)} />
         <MetricCard label="Rascunhos" value={String(drafts.length)} />

@@ -23,7 +23,7 @@ function formatRelative(iso: string | null) {
   const d = new Date(iso);
   const days = Math.round((d.getTime() - Date.now()) / 864e5);
   if (Math.abs(days) < 1) return "hoje";
-  return days > 0 ? `em ${days}d` : `${Math.abs(days)}d atras`;
+  return days > 0 ? `em ${days}d` : `${Math.abs(days)}d atrás`;
 }
 
 interface Props {

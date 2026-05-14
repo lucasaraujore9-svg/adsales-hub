@@ -14,7 +14,7 @@ const ROLE_LABEL: Record<string, string> = {
 
 const ROLE_DESC: Record<string, string> = {
   admin: "Acesso total ao painel interno (exceto promover super admins).",
-  engineering: "Visualiza tudo + ajusta integracoes e cron.",
+  engineering: "Visualiza tudo + ajusta integrações e cron.",
   customer_success: "Concede creditos, muda planos, edita workspaces.",
   support: "Apenas leitura: investigacao e triagem.",
   sales: "Edita workspaces de demo e cria contas.",

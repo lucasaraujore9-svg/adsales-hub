@@ -23,7 +23,7 @@ const STATIC_PATHS: { path: string; priority: number; freq: MetadataRoute.Sitema
   { path: "/glossario/crm", priority: 0.7, freq: "monthly" },
   { path: "/glossario/roas", priority: 0.7, freq: "monthly" },
   { path: "/glossario/cac", priority: 0.7, freq: "monthly" },
-  { path: "/glossario/atribuicao", priority: 0.7, freq: "monthly" },
+  { path: "/glossario/atribuição", priority: 0.7, freq: "monthly" },
   { path: "/glossario/sdr", priority: 0.7, freq: "monthly" },
   { path: "/glossario/trafego-pago", priority: 0.7, freq: "monthly" },
 

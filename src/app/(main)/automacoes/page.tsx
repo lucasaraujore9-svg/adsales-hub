@@ -54,7 +54,7 @@ export default async function AutomationsPage() {
       <PageHeader
         kicker="CRM + Marketing"
         title="Automacoes"
-        description="Triggers → condicoes → acoes cruzando Meta Ads, WhatsApp, email, pipeline"
+        description="Triggers → condicoes → ações cruzando Meta Ads, WhatsApp, email, pipeline"
         actions={null}
       />
 
@@ -69,7 +69,7 @@ export default async function AutomationsPage() {
         <MetricCard
           label="Falhas"
           value={String(logs.filter((l) => l.status === "failed").length)}
-          hint="ultimas 20"
+          hint="últimas 20"
         />
       </section>
 

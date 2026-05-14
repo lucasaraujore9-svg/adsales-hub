@@ -18,8 +18,8 @@ function formatBRL(value: number) {
 }
 
 const BASKETS = [
-  { name: "operacao", label: "Operacao", price: 29000, users: "3 usuarios", modules: ["CRM", "Trafego IA", "Landing Pages"], featured: false },
-  { name: "crescimento", label: "Crescimento", price: 69000, users: "8 usuarios", modules: ["CRM", "Trafego IA", "Social", "Mensagens", "BI"], featured: true },
+  { name: "operação", label: "Operacao", price: 29000, users: "3 usuários", modules: ["CRM", "Trafego IA", "Landing Pages"], featured: false },
+  { name: "crescimento", label: "Crescimento", price: 69000, users: "8 usuários", modules: ["CRM", "Trafego IA", "Social", "Mensagens", "BI"], featured: true },
   { name: "escala", label: "Escala", price: 149000, users: "Usuarios ilimitados", modules: ["CRM", "Trafego IA", "Social", "Mensagens", "SDR IA", "BI", "Landing Pages", "Contratos"], featured: false },
 ] as const;
 

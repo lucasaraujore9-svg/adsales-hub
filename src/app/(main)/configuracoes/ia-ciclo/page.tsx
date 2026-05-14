@@ -39,10 +39,10 @@ export default async function OptimizationCyclePage() {
       <PageHeader
         kicker="Marketing"
         title="Motor de IA"
-        description="Define o quanto o otimizador IA pode agir sozinho. O motor analisa campanhas a cada 48h e gera sugestoes ou aplica acoes conforme o nivel."
+        description="Define o quanto o otimizador IA pode agir sozinho. O motor analisa campanhas a cada 48h e gera sugestões ou aplica ações conforme o nível."
       />
 
-      <WidgetCard kicker="Nivel de automacao" title="Quanto a IA pode decidir por voce">
+      <WidgetCard kicker="Nivel de automação" title="Quanto a IA pode decidir por você">
         <OptimizationLevelForm
           initialLevel={level}
           initialMaxDailyBudget={maxBudget}

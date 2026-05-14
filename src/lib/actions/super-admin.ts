@@ -104,7 +104,7 @@ export async function toggleSuperAdmin(
 
   // Prevent self-demotion to avoid lockout
   if (parsed.data.user_id === session.user.id && !parsed.data.is_super_admin) {
-    return { ok: false, error: "Voce nao pode remover seu proprio status de super admin." };
+    return { ok: false, error: "Voce não pode remover seu proprio status de super admin." };
   }
 
   const { error } = await adm()
@@ -119,7 +119,7 @@ export async function toggleSuperAdmin(
 
 const setBasketSchema = z.object({
   workspace_id: z.string().uuid(),
-  basket_name: z.enum(["operacao", "crescimento", "escala", "custom", "master"]),
+  basket_name: z.enum(["operação", "crescimento", "escala", "custom", "master"]),
 });
 
 export async function setWorkspaceBasket(
@@ -157,7 +157,7 @@ export async function setWorkspaceBasket(
       .maybeSingle();
     basketId = (data as { id?: string } | null)?.id ?? null;
   }
-  if (!basketId) return { ok: false, error: "Basket nao encontrado" };
+  if (!basketId) return { ok: false, error: "Basket não encontrado" };
 
   const { error } = await supa.from("subscriptions").upsert(
     {
@@ -187,7 +187,7 @@ const slugRe = /^[a-z0-9](?:[a-z0-9-]{0,40}[a-z0-9])?$/;
 const updateWorkspaceSchema = z.object({
   workspace_id: z.string().uuid(),
   name: z.string().min(2).max(80),
-  slug: z.string().min(2).max(42).regex(slugRe, "slug invalido"),
+  slug: z.string().min(2).max(42).regex(slugRe, "slug inválido"),
   domain: z.string().max(120).optional().nullable(),
   timezone: z.string().min(2).max(60),
   locale: z.string().min(2).max(10),
@@ -213,7 +213,7 @@ export async function updateWorkspace(input: unknown): Promise<ActionResult> {
     .eq("id", parsed.data.workspace_id);
   if (error) {
     if (error.message?.includes("workspaces_slug_key")) {
-      return { ok: false, error: "Slug ja em uso." };
+      return { ok: false, error: "Slug já em uso." };
     }
     return { ok: false, error: error.message };
   }
@@ -308,7 +308,7 @@ export async function disconnectIntegration(input: unknown): Promise<ActionResul
   if (!parsed.success) return { ok: false, error: parsed.error.message };
   const session = await requireStaff();
   if (!staffCan(session, "manage_integrations")) {
-    return { ok: false, error: "Sem permissao para gerenciar integracoes." };
+    return { ok: false, error: "Sem permissao para gerenciar integrações." };
   }
 
   const table = parsed.data.scope === "ad_account" ? "ad_accounts" : "social_accounts";

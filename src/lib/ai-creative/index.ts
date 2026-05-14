@@ -136,7 +136,7 @@ async function callLocalAI(opts: {
   };
   const first = json.data?.[0];
   if (!first?.url && !first?.b64_json) {
-    throw new Error("Local AI nao retornou imagem");
+    throw new Error("Local AI não retornou imagem");
   }
   const url = first.url ?? `data:image/png;base64,${first.b64_json}`;
   return { url, model: json.model };

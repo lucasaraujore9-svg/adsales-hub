@@ -37,7 +37,7 @@ export default async function WhatsappTemplatesPage() {
       <PageHeader
         kicker="Comunicacao"
         title="WhatsApp templates"
-        description="Templates Meta WhatsApp Business — categoria, idioma, variaveis no padrao {{1}}, {{2}}. Submeta para aprovacao da Meta antes de usar em disparos."
+        description="Templates Meta WhatsApp Business — categoria, idioma, variaveis no padrao {{1}}, {{2}}. Submeta para aprovação da Meta antes de usar em disparos."
       />
 
       <WhatsappTemplatesManager templates={templates} />

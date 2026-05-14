@@ -60,8 +60,8 @@ export async function generateProposalFromTemplate(
   ]);
   const deal = dealData as DealRow | null;
   const tpl = tplData as TemplateRow | null;
-  if (!deal) return { ok: false, error: "Deal nao encontrado" };
-  if (!tpl) return { ok: false, error: "Template nao encontrado" };
+  if (!deal) return { ok: false, error: "Deal não encontrado" };
+  if (!tpl) return { ok: false, error: "Template não encontrado" };
 
   let products: ProductRow[] = [];
   if (parsed.data.product_ids && parsed.data.product_ids.length > 0) {
@@ -166,7 +166,7 @@ export async function emailProposalLink(
     .eq("workspace_id", session.workspaceId)
     .maybeSingle();
   const proposal = data as ProposalWithContact | null;
-  if (!proposal) return { ok: false, error: "Proposta nao encontrada" };
+  if (!proposal) return { ok: false, error: "Proposta não encontrada" };
   if (!proposal.contact_id) {
     return { ok: false, error: "Proposta sem contato vinculado" };
   }
@@ -191,7 +191,7 @@ export async function emailProposalLink(
 
   const html = `
     <p>Ola ${contact.name ?? ""},</p>
-    <p>Sua proposta <strong>${proposal.title}</strong> esta pronta para revisao.</p>
+    <p>Sua proposta <strong>${proposal.title}</strong> esta pronta para revisão.</p>
     <p>Valor total: <strong>${totalFmt}</strong></p>
     <p style="margin: 24px 0;">
       <a href="${link}"

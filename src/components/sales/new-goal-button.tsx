@@ -25,8 +25,8 @@ const METRICS: { key: string; label: string }[] = [
   { key: "calls", label: "Ligacoes" },
   { key: "meetings", label: "Reunioes" },
   { key: "leads", label: "Leads" },
-  { key: "cpl", label: "CPL maximo (R$)" },
-  { key: "roas", label: "ROAS minimo (x)" },
+  { key: "cpl", label: "CPL máximo (R$)" },
+  { key: "roas", label: "ROAS mínimo (x)" },
   { key: "spend", label: "Investimento (R$)" },
 ];
 

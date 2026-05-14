@@ -52,7 +52,7 @@ const SECTIONS: { title: string; kicker: string; items: ResourceLink[] }[] = [
       { href: "/glossario/crm", title: "O que é CRM", desc: "Definição, evolução e quando vale ter um." },
       { href: "/glossario/roas", title: "O que é ROAS", desc: "Como calcular e o que separa um ROAS bom de medíocre." },
       { href: "/glossario/cac", title: "O que é CAC", desc: "Custo de aquisição: o número que define se você cresce ou afunda." },
-      { href: "/glossario/atribuicao", title: "O que é atribuição de marketing", desc: "Modelos de atribuição e por que first-touch mente." },
+      { href: "/glossario/atribuição", title: "O que é atribuição de marketing", desc: "Modelos de atribuição e por que first-touch mente." },
       { href: "/glossario/sdr", title: "O que é SDR", desc: "Função, métricas e quando vale ter (humano ou IA)." },
       { href: "/glossario/trafego-pago", title: "O que é tráfego pago", desc: "Meta, Google, TikTok: quando faz sentido e quanto custa." },
     ],

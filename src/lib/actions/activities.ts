@@ -67,6 +67,17 @@ export async function toggleActivityComplete(id: string, completed: boolean): Pr
       await dispatchWebhook(session.workspaceId, "activity.completed", {
         activity_id: id,
       });
+      // Auto-recalc metas que dependem de atividades (issue 027)
+      try {
+        const { triggerGoalRecalcForMetrics } = await import("@/lib/goals/recalculate");
+        const { createAdminSupabaseClient } = await import("@/lib/supabase/admin");
+        await triggerGoalRecalcForMetrics(createAdminSupabaseClient(), session.workspaceId, [
+          "activities",
+          "meetings",
+        ]);
+      } catch (e) {
+        console.error("[activities.toggleComplete] goal recalc failed", e);
+      }
     })();
   }
 

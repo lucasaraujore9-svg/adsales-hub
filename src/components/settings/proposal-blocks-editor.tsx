@@ -60,7 +60,7 @@ const BLOCK_META: Record<
     label: "Solucao",
     icon: Lightbulb,
     defaultTitle: "Nossa solucao",
-    helper: "Como voce resolve esse problema.",
+    helper: "Como você resolve esse problema.",
   },
   products: {
     label: "Produtos",

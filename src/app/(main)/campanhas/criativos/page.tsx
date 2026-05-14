@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { getSession } from "@/lib/auth/guards";
 import { listCreatives } from "@/lib/queries/marketing";
+import { CreativePreviewButton } from "@/components/creatives/creative-preview-button";
 
 export const metadata = { title: "Criativos · AdSales Hub" };
 
@@ -82,6 +83,11 @@ export default async function CreativesPage() {
                 </div>
                 <div className="p-4">
                   <h3 className="truncate text-sm font-medium">{c.name}</h3>
+                  {previewUrl && c.type === "image" && (
+                    <div className="mt-2">
+                      <CreativePreviewButton imageUrl={previewUrl} name={c.name} />
+                    </div>
+                  )}
                   <div className="mt-2 flex flex-wrap gap-1">
                     {(c.tags ?? []).slice(0, 3).map((t) => (
                       <span

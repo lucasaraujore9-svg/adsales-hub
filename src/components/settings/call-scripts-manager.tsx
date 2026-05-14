@@ -100,7 +100,7 @@ export function CallScriptsManager({ scripts }: { scripts: CallScript[] }) {
               required
               rows={10}
               className="mt-1 w-full rounded-md border border-[color:var(--line-2)] bg-[color:var(--bg)] px-3 py-2 text-sm"
-              placeholder={"1. Apresentacao: 'Oi {{contact_name}}, aqui é {{user_name}} da {{workspace_name}}...'\n2. Pergunta de qualificacao\n3. ..."}
+              placeholder={"1. Apresentacao: 'Oi {{contact_name}}, aqui é {{user_name}} da {{workspace_name}}...'\n2. Pergunta de qualificação\n3. ..."}
             />
           </div>
           <div className="flex justify-end gap-2">

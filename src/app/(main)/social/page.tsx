@@ -62,7 +62,7 @@ export default async function SocialPage() {
       <PageHeader
         kicker="Bloco C · Social"
         title="Social Media"
-        description="Calendario, criador de post, aprovacao externa, publicacao automatica multi-rede"
+        description="Calendario, criador de post, aprovação externa, publicação automatica multi-rede"
         actions={
           <>
             <Button asChild variant="outline" size="sm">
@@ -88,7 +88,7 @@ export default async function SocialPage() {
         <MetricCard label="Contas ativas" value={String(accounts.filter((a) => a.status === "active").length)} hint={`${accounts.length} conectadas`} />
         <MetricCard label="Posts publicados" value={String(published.length)} />
         <MetricCard label="Agendados" value={String(scheduled.length)} emphasis="inverse" />
-        <MetricCard label="Aprovacao" value={String(pending.length)} hint="aguardam revisao" />
+        <MetricCard label="Aprovacao" value={String(pending.length)} hint="aguardam revisão" />
       </section>
 
       <section className="mb-8">

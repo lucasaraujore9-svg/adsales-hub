@@ -4,7 +4,7 @@ export function channelLabel(channel: string): string {
   return (
     {
       whatsapp_cloud: "WhatsApp",
-      whatsapp_unofficial: "WhatsApp (nao oficial)",
+      whatsapp_unofficial: "WhatsApp (não oficial)",
       instagram_dm: "Instagram DM",
       messenger: "Messenger",
       email: "Email",

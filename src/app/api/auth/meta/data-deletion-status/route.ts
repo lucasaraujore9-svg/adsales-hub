@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse(
       `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Status de exclusao</title></head>` +
         `<body style="font-family:system-ui;max-width:560px;margin:60px auto;padding:0 20px;line-height:1.6">` +
-        `<h1>Codigo invalido</h1><p>O codigo de confirmacao informado nao foi encontrado.</p>` +
+        `<h1>Codigo inválido</h1><p>O código de confirmacao informado não foi encontrado.</p>` +
         `</body></html>`,
       { status: 404, headers: { "content-type": "text/html; charset=utf-8" } },
     );
@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse(
       `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Status de exclusao</title></head>` +
         `<body style="font-family:system-ui;max-width:560px;margin:60px auto;padding:0 20px;line-height:1.6">` +
-        `<h1>Codigo nao encontrado</h1><p>Verifique se o codigo foi copiado corretamente.</p>` +
+        `<h1>Codigo não encontrado</h1><p>Verifique se o código foi copiado corretamente.</p>` +
         `</body></html>`,
       { status: 404, headers: { "content-type": "text/html; charset=utf-8" } },
     );
@@ -90,7 +90,7 @@ export async function GET(req: NextRequest) {
   </div>
 
   <p style="margin-top:24px;font-size:13px;color:#666">
-    Duvidas? Envie um email para <a href="mailto:dpo@7iegroup.com.br">dpo@7iegroup.com.br</a> citando o codigo de confirmacao.
+    Duvidas? Envie um email para <a href="mailto:dpo@7iegroup.com.br">dpo@7iegroup.com.br</a> citando o código de confirmacao.
   </p>
 </body>
 </html>`;

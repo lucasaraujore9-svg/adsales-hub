@@ -1,61 +1,51 @@
 import { PageHeader } from "@/components/shared/page-header";
 import { WidgetCard } from "@/components/shared/widget-card";
 import { getSession } from "@/lib/auth/guards";
+import { CallAnalysisCard, type CallAnalysisRow } from "@/components/calls/call-analysis-card";
 
-export const metadata = { title: "Analise de Calls · AdSales Hub" };
-
-interface CallAnalysisRow {
-  id: string;
-  score: number;
-  summary: string | null;
-  sentiment: string | null;
-  created_at: string;
-  call_id: string;
-}
+export const metadata = { title: "Análise de Calls · AdSales Hub" };
 
 export default async function CallAnalysisPage() {
   const session = await getSession();
   const sb = session.supabase;
-  const { data } = await sb
-    .from("call_analyses")
-    .select("id, score, summary, sentiment, created_at, call_id")
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sbAny = sb as any;
+  const { data } = await sbAny
+    .from("sdr_calls")
+    .select(
+      "id, duration_seconds, ai_summary, ai_sentiment, qualification_result, wants, objections, strengths, improvements, next_action, sentiment_timeline, recording_url, transcript, started_at",
+    )
     .eq("workspace_id", session.workspaceId)
-    .order("created_at", { ascending: false })
+    .not("ai_summary", "is", null)
+    .order("started_at", { ascending: false })
     .limit(20);
-  const analyses = (data ?? []) as unknown as CallAnalysisRow[];
+
+  const analyses = ((data ?? []) as Array<CallAnalysisRow & { started_at: string | null }>) ?? [];
 
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-8">
       <PageHeader
         kicker="CRM · IA"
-        title="Analise de Calls"
-        description="IA avalia gravacoes e gera nota + feedback. Integra com o motor de telefonia e upload manual."
+        title="Análise de Calls"
+        description="IA avalia gravações e gera sumário acionável: o que o lead quer, objeções, próxima ação e coaching para o vendedor."
       />
 
-      <WidgetCard kicker="Ultimas analises" title={`${analyses.length} calls analisadas`} padding="none">
+      <WidgetCard
+        kicker="Últimas análises"
+        title={`${analyses.length} ${analyses.length === 1 ? "call analisada" : "calls analisadas"}`}
+        padding="none"
+      >
         {analyses.length === 0 ? (
           <p className="px-5 py-10 text-center text-sm text-[color:var(--ink-3)]">
-            Nenhuma analise ainda. Suba uma gravacao ou deixe o SDR IA rodar.
+            Nenhuma análise ainda. Suba uma gravação ou deixe o SDR IA rodar uma fila de leads.
           </p>
         ) : (
-          <ul className="divide-y divide-[color:var(--line)]">
+          <div className="space-y-4 p-5">
             {analyses.map((a) => (
-              <li key={a.id} className="flex items-start gap-4 px-5 py-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--accent)] text-sm font-medium text-white">
-                  {a.score}
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-medium">Call #{a.call_id.slice(0, 8)}</div>
-                  <p className="mt-1 text-xs text-[color:var(--ink-2)] line-clamp-2">{a.summary}</p>
-                  <div className="mt-2 flex items-center gap-2 text-[10px] text-[color:var(--ink-4)]">
-                    <span>{a.sentiment ?? "—"}</span>
-                    <span>·</span>
-                    <span>{new Date(a.created_at).toLocaleDateString("pt-BR")}</span>
-                  </div>
-                </div>
-              </li>
+              <CallAnalysisCard key={a.id} call={a} />
             ))}
-          </ul>
+          </div>
         )}
       </WidgetCard>
     </div>

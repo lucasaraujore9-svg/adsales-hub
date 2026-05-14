@@ -28,18 +28,18 @@ export default async function OptimizerPage() {
       <PageHeader
         kicker="Motor de IA"
         title="Otimizador com IA"
-        description="Analisa campanhas a cada 48h. Sugere ou aplica acoes conforme o nivel configurado."
+        description="Analisa campanhas a cada 48h. Sugere ou aplica ações conforme o nível configurado."
         actions={<RunOptimizationButton />}
       />
 
       <section className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-        <MetricCard label="Pendentes" value={String(pending)} hint="aguardam sua revisao" />
-        <MetricCard label="Aprovadas" value={String(approved)} hint="na proxima execucao" />
-        <MetricCard label="Aplicadas" value={String(applied)} hint="nos ultimos 30 dias" />
+        <MetricCard label="Pendentes" value={String(pending)} hint="aguardam sua revisão" />
+        <MetricCard label="Aprovadas" value={String(approved)} hint="na próxima execução" />
+        <MetricCard label="Aplicadas" value={String(applied)} hint="nos últimos 30 dias" />
         <MetricCard label="Total" value={String(logs.length)} emphasis="inverse" />
       </section>
 
-      <WidgetCard kicker="Sugestoes" title={`${pending} acoes aguardando revisao`} padding="none">
+      <WidgetCard kicker="Sugestoes" title={`${pending} ações aguardando revisão`} padding="none">
         {logs.length === 0 ? (
           <p className="px-5 py-10 text-center text-sm text-[color:var(--ink-3)]">
             Nenhuma sugestao ainda. O ciclo roda automaticamente quando cron_jobs estiverem configurados.

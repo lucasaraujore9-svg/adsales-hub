@@ -6,7 +6,7 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { getSession } from "@/lib/auth/guards";
 import { WhatsappUnofficialForm } from "@/components/settings/whatsapp-unofficial-form";
 
-export const metadata = { title: "WhatsApp nao oficial · AdSales Hub" };
+export const metadata = { title: "WhatsApp não oficial · AdSales Hub" };
 
 interface IntegrationRow {
   display_name: string | null;
@@ -43,7 +43,7 @@ export default async function WhatsappUnofficialPage() {
 
       <PageHeader
         kicker="Canais"
-        title="WhatsApp nao oficial"
+        title="WhatsApp não oficial"
         description="Conecte providers como Z-API, UAZAPI, Evolution ou WPPConnect self-hosted."
         actions={
           integration && (

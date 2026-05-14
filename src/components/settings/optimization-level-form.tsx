@@ -27,7 +27,7 @@ const LEVELS: {
     key: "semi",
     label: "Semi-Auto",
     description:
-      "IA aplica otimizacoes pequenas automaticamente (ajuste de lance, pausar anuncio ruim) e pede aprovacao para decisoes maiores (orcamento, publico).",
+      "IA aplica otimizações pequenas automaticamente (ajuste de lance, pausar anuncio ruim) e pede aprovação para decisões maiores (orcamento, público).",
     badge: "Equilibrio",
     badgeTone: "var(--accent)",
   },
@@ -35,7 +35,7 @@ const LEVELS: {
     key: "full",
     label: "Full Auto",
     description:
-      "IA gerencia tudo dentro dos limites configurados. Voce so revisa relatorio semanal.",
+      "IA gerencia tudo dentro dos limites configurados. Voce so revisa relatório semanal.",
     badge: "Maxima alavancagem",
     badgeTone: "var(--good)",
   },
@@ -168,7 +168,7 @@ export function OptimizationLevelForm({
 
       <div>
         <Button type="submit" disabled={pending}>
-          {pending ? "Salvando..." : "Salvar configuracao"}
+          {pending ? "Salvando..." : "Salvar configuração"}
         </Button>
       </div>
     </form>

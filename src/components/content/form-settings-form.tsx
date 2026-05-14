@@ -65,7 +65,7 @@ export function FormSettingsForm({
           id="fs-thanks"
           name="thank_you_message"
           defaultValue={initialThanks}
-          placeholder="Obrigado! Entraremos em contato em ate 1 dia util."
+          placeholder="Obrigado! Entraremos em contato em ate 1 dia útil."
         />
       </div>
       <div>
@@ -83,7 +83,7 @@ export function FormSettingsForm({
           Excluir formulario
         </Button>
         <Button type="submit" disabled={pending}>
-          {pending ? "Salvando..." : "Salvar configuracao"}
+          {pending ? "Salvando..." : "Salvar configuração"}
         </Button>
       </div>
     </form>

@@ -16,9 +16,9 @@ export function RunOptimizationButton() {
       const result = await runOptimizationCycle();
       if (result.ok && result.data) {
         if (result.data.created > 0) {
-          toast.success(`${result.data.created} sugestao(oes) gerada(s)`);
+          toast.success(`${result.data.created} sugestão(oes) gerada(s)`);
         } else {
-          toast.info("Nenhuma nova sugestao — dados estao saudaveis ou ja sugeridas.");
+          toast.info("Nenhuma nova sugestão — dados estao saudaveis ou já sugeridas.");
         }
         router.refresh();
       } else {

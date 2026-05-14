@@ -31,7 +31,7 @@ export function SettingsPageShell({ kicker, title, description, roadmap, related
       <WidgetCard
         kicker="Proximo ciclo"
         title="O que esta vindo"
-        description="Estes controles serao wirados na proxima sprint. Infraestrutura de backend ja esta no lugar."
+        description="Estes controles serao wirados na próxima sprint. Infraestrutura de backend já esta no lugar."
       >
         <ul className="space-y-2 text-sm">
           {roadmap.map((r, i) => (

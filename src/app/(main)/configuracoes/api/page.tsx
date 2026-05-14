@@ -40,7 +40,7 @@ export default async function ApiKeysPage() {
       <PageHeader
         kicker="Avancado"
         title="API keys"
-        description="Tokens para acessar a API do workspace programaticamente. Headers de autenticacao: Authorization: Bearer ahk_..."
+        description="Tokens para acessar a API do workspace programaticamente. Headers de autenticação: Authorization: Bearer ahk_..."
         actions={
           <Link
             href="/configuracoes/api/docs"

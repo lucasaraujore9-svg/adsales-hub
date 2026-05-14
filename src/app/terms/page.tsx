@@ -12,11 +12,11 @@ const sections: { id: string; title: string }[] = [
   { id: "servico", title: "2. Descricao do servico" },
   { id: "conta", title: "3. Conta e responsabilidades" },
   { id: "uso", title: "4. Uso aceitavel" },
-  { id: "conteudo", title: "5. Conteudo do usuario" },
+  { id: "conteudo", title: "5. Conteudo do usuário" },
   { id: "pagamento", title: "6. Planos, pagamento e trial" },
   { id: "cancelamento", title: "7. Cancelamento e reembolso" },
   { id: "ip", title: "8. Propriedade intelectual" },
-  { id: "integracoes", title: "9. Integracoes e APIs de terceiros" },
+  { id: "integrações", title: "9. Integracoes e APIs de terceiros" },
   { id: "ia", title: "10. Conteudo gerado por IA" },
   { id: "garantias", title: "11. Garantias e limitacao de responsabilidade" },
   { id: "suspensao", title: "12. Suspensao e rescisao" },
@@ -260,7 +260,7 @@ export default function TermsPage() {
         </ul>
       </section>
 
-      <section id="integracoes">
+      <section id="integrações">
         <h2 className="text-xl font-medium tracking-tighter2 text-[color:var(--ink)]">
           9. Integracoes e APIs de terceiros
         </h2>

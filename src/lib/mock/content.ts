@@ -102,7 +102,7 @@ export const MOCK_SOCIAL_ACCOUNTS: MockSocialAccount[] = [
 export const MOCK_SOCIAL_POSTS: MockSocialPost[] = [
   {
     id: "sp_1",
-    content: "A diferenca entre uma agencia e um sistema que pensa por voce? A IA nao tira ferias. Rodamos R$180k em 30 dias, 100% automatizado.",
+    content: "A diferenca entre uma agencia e um sistema que pensa por você? A IA não tira ferias. Rodamos R$180k em 30 dias, 100% automatizado.",
     platforms: ["instagram", "linkedin"],
     status: "published",
     publishedAt: new Date(Date.now() - 3 * 864e5).toISOString(),
@@ -123,7 +123,7 @@ export const MOCK_SOCIAL_POSTS: MockSocialPost[] = [
   },
   {
     id: "sp_3",
-    content: "Acabei de descobrir uma feature. Quando uma campanha da CPL 3x acima da media, a IA aqui DESATIVA sozinha. Nao espera voce acordar.",
+    content: "Acabei de descobrir uma feature. Quando uma campanha da CPL 3x acima da media, a IA aqui DESATIVA sozinha. Nao espera você acordar.",
     platforms: ["instagram", "linkedin", "facebook"],
     status: "pending_approval",
     author: "u3",

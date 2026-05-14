@@ -8,7 +8,7 @@ export default function PaymentMethodPage() {
     <div className="space-y-4">
       <WidgetCard
         kicker="Metodo principal"
-        title="Como voce e cobrado"
+        title="Como você e cobrado"
         action={{ label: "Gerenciar no Stripe", href: "#" }}
       >
         <div className="flex items-center gap-4 rounded-lg border border-[color:var(--line)] bg-[color:var(--bg)] p-4">
@@ -27,7 +27,7 @@ export default function PaymentMethodPage() {
         </Button>
       </WidgetCard>
 
-      <WidgetCard kicker="Outras opcoes" title="Metodos aceitos">
+      <WidgetCard kicker="Outras opções" title="Metodos aceitos">
         <ul className="grid gap-2 sm:grid-cols-3">
           <li className="flex items-center gap-2 rounded-lg border border-[color:var(--line)] bg-[color:var(--bg)] p-3 text-sm">
             <CreditCard className="h-4 w-4 text-[color:var(--ink-3)]" />

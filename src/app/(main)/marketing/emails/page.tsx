@@ -64,7 +64,7 @@ export default async function EmailMarketingPage() {
       <PageHeader
         kicker="Bloco C · Mensagens"
         title="Email Marketing"
-        description="Disparos em massa, segmentacao, metricas abertura/clique via Resend webhook"
+        description="Disparos em massa, segmentação, metricas abertura/clique via Resend webhook"
         actions={
           <>
             <Button asChild variant="outline" size="sm">

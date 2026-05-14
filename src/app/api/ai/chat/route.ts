@@ -108,9 +108,9 @@ export async function POST(request: NextRequest) {
   };
 
   const systemPrompt = `Voce e o assistente de IA do AdSales Hub, um SaaS de marketing + vendas integrado.
-Responda perguntas usando o contexto de dados do workspace do usuario (campanhas, pipeline, social, emails).
-Seja conciso, direto e use portugues brasileiro. Cite numeros exatos quando aparecerem no contexto.
-Se nao tiver dados suficientes, diga explicitamente qual informacao falta.
+Responda perguntas usando o contexto de dados do workspace do usuário (campanhas, pipeline, social, emails).
+Seja conciso, direto e use portugues brasileiro. Cite números exatos quando aparecerem no contexto.
+Se não tiver dados suficientes, diga explicitamente qual informação falta.
 Contexto do workspace (parcial):
 ${JSON.stringify(ctx).slice(0, 4000)}`;
 

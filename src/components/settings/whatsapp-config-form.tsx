@@ -118,7 +118,7 @@ export function WhatsappConfigForm({
           id="verify_token"
           name="verify_token"
           defaultValue={initialVerifyToken}
-          placeholder="string-aleatoria-pra-verificacao"
+          placeholder="string-aleatoria-pra-verificação"
         />
         <p className="mt-1 text-[10px] text-[color:var(--ink-4)]">
           Configure no Meta Webhook → coloque exatamente este valor.

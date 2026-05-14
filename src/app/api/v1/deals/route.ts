@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ ok: false, error: "JSON invalido" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
   }
 
   const parsed = createSchema.safeParse(body);
@@ -125,7 +125,7 @@ export async function POST(req: NextRequest) {
     stage.pipeline_id !== parsed.data.pipeline_id
   ) {
     return NextResponse.json(
-      { ok: false, error: "Pipeline/stage invalido" },
+      { ok: false, error: "Pipeline/stage inválido" },
       { status: 400 },
     );
   }

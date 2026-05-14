@@ -45,10 +45,10 @@ interface Props {
 }
 
 const QUICK_PROMPTS = [
-  "Qual publico tem melhor ROAS nos ultimos 30 dias?",
+  "Qual público tem melhor ROAS nos últimos 30 dias?",
   "Quais campanhas estao com CPL acima de R$ 20?",
-  "Projete meu faturamento para o proximo trimestre",
-  "Quais vendedores tem taxa de conversao acima da media?",
+  "Projete meu faturamento para o próximo trimestre",
+  "Quais vendedores tem taxa de conversão acima da media?",
   "Quanto gastei em Meta Ads este mes e quantos leads gerei?",
 ];
 
@@ -72,7 +72,7 @@ export function ChatLive({ threads, initialThreadId, initialMessages }: Props) {
   async function loadThread(id: string) {
     const res = await fetch(`/api/ai/threads/${id}`);
     if (!res.ok) {
-      toast.error("Nao foi possivel carregar a conversa");
+      toast.error("Nao foi possível carregar a conversa");
       return;
     }
     const data = await res.json();

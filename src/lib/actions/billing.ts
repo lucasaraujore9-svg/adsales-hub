@@ -14,14 +14,14 @@ import { serverEnv } from "@/lib/env";
  */
 export async function startBasketCheckout(formData: FormData): Promise<void> {
   const basket = String(formData.get("basket") ?? "escala") as
-    | "operacao"
+    | "operação"
     | "crescimento"
     | "escala";
 
   const session = await requireWorkspaceAdmin();
   const env = serverEnv();
   const priceId =
-    basket === "operacao"
+    basket === "operação"
       ? env.STRIPE_PRICE_OPERACAO
       : basket === "crescimento"
         ? env.STRIPE_PRICE_CRESCIMENTO

@@ -5,7 +5,7 @@ import { createCheckoutSession } from "@/lib/stripe/checkout";
 import { basketPriceId } from "@/lib/stripe/products";
 
 const bodySchema = z.object({
-  basket: z.enum(["operacao", "crescimento", "escala"]).optional(),
+  basket: z.enum(["operação", "crescimento", "escala"]).optional(),
   price_id: z.string().optional(),
   trial_days: z.number().int().min(0).max(30).optional(),
   modules: z.array(z.string()).optional(),

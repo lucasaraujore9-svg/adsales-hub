@@ -47,8 +47,36 @@ export async function createGoal(input: unknown): Promise<ActionResult<{ id: str
     .select("id")
     .single();
   if (error) return { ok: false, error: error.message };
+
+  // Calcula achieved imediatamente após criar
+  const created = data as { id: string };
+  try {
+    const { recalculateGoal } = await import("@/lib/goals/recalculate");
+    await recalculateGoal(session.supabase, created.id);
+  } catch (e) {
+    console.error("[createGoal] initial recalc failed", e);
+  }
+
   revalidatePath("/metas");
-  return { ok: true, data: data as { id: string } };
+  return { ok: true, data: created };
+}
+
+/**
+ * Recalcula o `achieved` de uma meta sob demanda.
+ */
+export async function recalculateGoalAction(goalId: string): Promise<ActionResult<{ achieved: number | null }>> {
+  const session = await getSession();
+  try {
+    const { recalculateGoal } = await import("@/lib/goals/recalculate");
+    const achieved = await recalculateGoal(session.supabase, goalId);
+    revalidatePath("/metas");
+    return { ok: true, data: { achieved } };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "Falha ao recalcular",
+    };
+  }
 }
 
 export async function toggleAutomationActive(

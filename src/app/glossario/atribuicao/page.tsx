@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ContentLayout } from "@/components/content/content-layout";
 import { ArticleJsonLd } from "@/components/content/article-jsonld";
 
-const URL = "https://adsaleshub.7iegroup.com.br/glossario/atribuicao";
+const URL = "https://adsaleshub.7iegroup.com.br/glossario/atribuição";
 const TITLE_OG = encodeURIComponent("O que é atribuição de marketing");
 const SUBTITLE_OG = encodeURIComponent("Modelos, ROAS real e atribuição 1:1 do clique à receita");
 

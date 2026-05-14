@@ -69,7 +69,7 @@ export function AudienceActions() {
   }
 
   function handleImport() {
-    toast.info("Importacao de CSV chegando em breve. Use 'Novo publico' por enquanto.");
+    toast.info("Importacao de CSV chegando em breve. Use 'Novo público' por enquanto.");
   }
 
   return (

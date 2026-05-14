@@ -291,8 +291,8 @@ export const POSTS: Post[] = [
     },
   },
   {
-    slug: "atribuicao",
-    href: "/glossario/atribuicao",
+    slug: "atribuição",
+    href: "/glossario/atribuição",
     title: "O que é atribuição de marketing — modelos e como escolher",
     description:
       "First-touch, last-touch, multi-touch, data-driven. Modelos de atribuição explicados, com qual usar pro seu negócio.",

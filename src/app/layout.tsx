@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ConfirmProvider } from "@/components/ui/confirm-provider";
+import { CookieBanner } from "@/components/legal/cookie-banner";
+import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
 
 const SITE_URL = "https://adsaleshub.7iegroup.com.br";
 const OG_IMAGE = `${SITE_URL}/brand-assets/png/lockup-horizontal-primary-2x.png`;
@@ -133,8 +136,12 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
-          {children}
-          <Toaster position="top-right" richColors closeButton />
+          <ConfirmProvider>
+            {children}
+            <CookieBanner />
+            <ServiceWorkerRegister />
+            <Toaster position="top-right" richColors closeButton />
+          </ConfirmProvider>
         </ThemeProvider>
       </body>
     </html>

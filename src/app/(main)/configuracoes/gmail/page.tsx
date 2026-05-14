@@ -45,7 +45,7 @@ export default async function GmailPage() {
       <PageHeader
         kicker="Canais"
         title="Email do time"
-        description="Provider para envio de emails do CRM (sequencias, follow-ups, automacoes). Resend recomendado pra produção."
+        description="Provider para envio de emails do CRM (sequencias, follow-ups, automações). Resend recomendado pra produção."
         actions={
           integration && (
             <StatusBadge

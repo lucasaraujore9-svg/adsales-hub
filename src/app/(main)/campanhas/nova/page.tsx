@@ -25,7 +25,7 @@ export default async function NovaCampanhaPage({
       <PageHeader
         kicker="Criar campanha"
         title="Briefing em texto → campanha completa"
-        description="Escreva o que voce quer e a IA monta ad_sets, ads, lead form e salva como rascunho."
+        description="Escreva o que você quer e a IA monta ad_sets, ads, lead form e salva como rascunho."
       />
 
       {!hasKey && (
@@ -40,7 +40,7 @@ export default async function NovaCampanhaPage({
         </div>
       )}
 
-      <WidgetCard kicker="1. Briefing" title="Conte para a IA o que voce quer">
+      <WidgetCard kicker="1. Briefing" title="Conte para a IA o que você quer">
         <form action={generateCampaignWithAI} className="space-y-4">
           <Textarea
             name="briefing"

@@ -42,7 +42,7 @@ export function ConvertToDealDialog({ open, onClose, conversationId, defaultTitl
         if (err instanceof Error && err.message?.includes("NEXT_REDIRECT")) {
           return;
         }
-        toast.error("Nao foi possivel criar o negocio");
+        toast.error("Nao foi possível criar o negocio");
       }
     });
   }

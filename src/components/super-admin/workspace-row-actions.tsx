@@ -25,7 +25,7 @@ interface Props {
   unlimited: boolean;
 }
 
-const BASKETS = ["operacao", "crescimento", "escala", "custom", "master"] as const;
+const BASKETS = ["operação", "crescimento", "escala", "custom", "master"] as const;
 
 export function WorkspaceRowActions({ workspaceId, currentBasket, unlimited }: Props) {
   const router = useRouter();
@@ -33,7 +33,7 @@ export function WorkspaceRowActions({ workspaceId, currentBasket, unlimited }: P
   const [pending, start] = useTransition();
   const [amount, setAmount] = useState("100");
   const [note, setNote] = useState("");
-  const [basket, setBasket] = useState(currentBasket ?? "operacao");
+  const [basket, setBasket] = useState(currentBasket ?? "operação");
 
   function handleGrant() {
     start(async () => {

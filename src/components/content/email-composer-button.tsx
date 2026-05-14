@@ -134,7 +134,7 @@ export function EmailComposerButton({
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              placeholder="Acabou de chegar pra voce, {{contact_name}}"
+              placeholder="Acabou de chegar pra você, {{contact_name}}"
             />
           </div>
           <div>
@@ -143,7 +143,7 @@ export function EmailComposerButton({
               id="ec-preview"
               name="preview_text"
               maxLength={150}
-              placeholder="Aparece no preview do inbox antes do usuario abrir"
+              placeholder="Aparece no preview do inbox antes do usuário abrir"
             />
           </div>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">

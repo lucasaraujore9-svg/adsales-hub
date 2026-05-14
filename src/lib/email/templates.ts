@@ -55,11 +55,11 @@ export function renderInviteEmail(opts: {
   role: string;
 }): { subject: string; html: string } {
   const html = layout(
-    `${opts.invitedByName} convidou voce para ${opts.workspaceName}`,
+    `${opts.invitedByName} convidou você para ${opts.workspaceName}`,
     `
       <p>Voce foi convidado para entrar no workspace <strong>${opts.workspaceName}</strong> no AdSales Hub como <strong>${opts.role}</strong>.</p>
       <p style="margin:24px 0;">${button("Aceitar convite", opts.acceptUrl)}</p>
-      <p style="color:#71717a;">O link e valido por 72 horas. Se voce nao esperava esse convite, ignore este email.</p>
+      <p style="color:#71717a;">O link e válido por 72 horas. Se você não esperava esse convite, ignore este email.</p>
     `,
   );
   return {
@@ -122,7 +122,7 @@ export function renderPaymentFailed(opts: {
       `
         <p>A cobranca do workspace <strong>${opts.workspaceName}</strong> falhou. Atualize os dados do cartao para manter seu acesso.</p>
         <p style="margin:24px 0;">${button("Atualizar pagamento", opts.billingUrl)}</p>
-        <p style="color:#71717a;">Se o pagamento nao for regularizado, o workspace sera suspenso apos 7 dias.</p>
+        <p style="color:#71717a;">Se o pagamento não for regularizado, o workspace será suspenso após 7 dias.</p>
       `,
     ),
   };
@@ -136,10 +136,10 @@ export function renderReportReady(opts: {
   return {
     subject: `Relatorio pronto: ${opts.reportName}`,
     html: layout(
-      `Seu relatorio esta pronto`,
+      `Seu relatório esta pronto`,
       `
-        <p>O relatorio <strong>${opts.reportName}</strong> (${opts.period}) foi gerado com sucesso.</p>
-        <p style="margin:24px 0;">${button("Abrir relatorio", opts.reportUrl)}</p>
+        <p>O relatório <strong>${opts.reportName}</strong> (${opts.period}) foi gerado com sucesso.</p>
+        <p style="margin:24px 0;">${button("Abrir relatório", opts.reportUrl)}</p>
       `,
     ),
   };
@@ -153,9 +153,9 @@ export function renderSocialApproval(opts: {
   return {
     subject: `Aprovar post: ${opts.authorName}`,
     html: layout(
-      `Post aguardando aprovacao`,
+      `Post aguardando aprovação`,
       `
-        <p>${opts.authorName} enviou um post para aprovacao:</p>
+        <p>${opts.authorName} enviou um post para aprovação:</p>
         <blockquote style="margin:16px 0;padding:12px 16px;border-left:3px solid ${BRAND.primary};background:#fafafa;">${opts.postPreview}</blockquote>
         <p style="margin:24px 0;">${button("Aprovar ou editar", opts.approvalUrl)}</p>
       `,

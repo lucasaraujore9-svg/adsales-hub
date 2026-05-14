@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: "Posso criar campanha no Meta sem agência?",
-    a: "Pode, e a maioria das PMEs deveria. O Gerenciador de Anúncios é gratuito, está em português e a curva de aprendizado séria é de 2 a 3 semanas. O que agência cobra R$ 8.000/mês pra entregar você consegue fazer em 30 a 40 minutos por dia depois que entende a lógica. Se quiser pular a parte chata, plataformas como o AdSales·Hub recebem seu briefing em português e geram público, criativo e formulário automaticamente — você só aprova e publica.",
+    a: "Pode, e a maioria das PMEs deveria. O Gerenciador de Anúncios é gratuito, está em português e a curva de aprendizado séria é de 2 a 3 semanas. O que agência cobra R$ 8.000/mês pra entregar você consegue fazer em 30 a 40 minutos por dia depois que entende a lógica. Se quiser pular a parte chata, plataformas como o AdSales·Hub recebem seu briefing em português e geram público, criativo e formulário automaticamente — você só aprova e pública.",
   },
   {
     q: "Quanto investir no início?",
